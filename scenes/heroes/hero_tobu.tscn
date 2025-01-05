@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://dll64ogrgpcpo"]
+
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_5bwuj"]
+[ext_resource type="Script" path="res://scripts/hero_tobu.gd" id="1_to5ir"]
+
+[sub_resource type="Animation" id="Animation_v7ppq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l1u7w"]
+resource_name = "tobu_idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v5nts"]
+_data = {
+"RESET": SubResource("Animation_v7ppq"),
+"tobu_idle": SubResource("Animation_l1u7w")
+}
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1tiv3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b68r5"]
+radius = 18.0
+height = 63.0
+
+[node name="HeroTobu" type="CharacterBody2D"]
+script = ExtResource("1_to5ir")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_5bwuj")
+hframes = 20
+vframes = 20
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationTree")
+libraries = {
+"": SubResource("AnimationLibrary_v5nts")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath(".")
+tree_root = SubResource("AnimationNodeStateMachine_1tiv3")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0.5)
+shape = SubResource("CapsuleShape2D_b68r5")

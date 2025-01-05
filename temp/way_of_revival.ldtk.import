@@ -1,0 +1,32 @@
+[remap]
+
+importer="LDtk_world.import"
+type="PackedScene"
+uid="uid://b4kcmktuayk0e"
+path="res://.godot/imported/way_of_revival.ldtk-b011df5cb3f80b2f461a5a8f7843fc5f.scn"
+
+[deps]
+
+files=["res://temp/way_of_revival/tilesets/way_of_revival-tileset-16x16.res", "res://temp/way_of_revival/tilesets/way_of_revival-tileset-8x8.res", "res://temp/way_of_revival/tilesets/way_of_revival-tileset-4x4.res"]
+
+source_file="res://temp/way_of_revival.ldtk"
+dest_files=["res://.godot/imported/way_of_revival.ldtk-b011df5cb3f80b2f461a5a8f7843fc5f.scn", "res://temp/way_of_revival/tilesets/way_of_revival-tileset-16x16.res", "res://temp/way_of_revival/tilesets/way_of_revival-tileset-8x8.res", "res://temp/way_of_revival/tilesets/way_of_revival-tileset-4x4.res"]
+
+[params]
+
+world_add_metadata=false
+world_post_import_script=""
+Tilesets=""
+tileset_add_metadata=true
+import_tileset_custom_data=true
+tileset_post_import_script=""
+Levels=""
+level_add_metadata=true
+import_all_levels=true
+levels_to_import="0,1"
+pack_levels=false
+level_post_import_script=""
+Entities=""
+import_entities=true
+entity_add_metadata=true
+entity_post_import_script=""

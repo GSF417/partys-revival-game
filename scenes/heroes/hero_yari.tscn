@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxthpkt8nu05i"]
+
+[ext_resource type="Script" path="res://scripts/hero_yari.gd" id="1_eljcu"]
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_vsq16"]
+[ext_resource type="PackedScene" uid="uid://vfvqnuxp2t81" path="res://scenes/heroes/abilities/yari_ability.tscn" id="3_eeror"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fx4hr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i61de"]
+height = 66.0
+
+[node name="HeroYari" type="CharacterBody2D" node_paths=PackedStringArray("hero_ability")]
+script = ExtResource("1_eljcu")
+hero_ability = NodePath("YariAbility")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-4, 0)
+texture = ExtResource("1_vsq16")
+hframes = 20
+vframes = 20
+frame = 20
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_fx4hr")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_i61de")
+
+[node name="YariAbility" parent="." instance=ExtResource("3_eeror")]

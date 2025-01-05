@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://vfvqnuxp2t81"]
+
+[ext_resource type="Script" path="res://scripts/yari_ability.gd" id="1_irc37"]
+
+[node name="YariAbility" type="Node2D"]
+script = ExtResource("1_irc37")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

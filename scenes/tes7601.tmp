@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqma5155js3iu"]
+
+[ext_resource type="PackedScene" uid="uid://dll64ogrgpcpo" path="res://scenes/heroes/hero_tobu.tscn" id="1_obq7x"]
+[ext_resource type="Texture2D" uid="uid://yl6oq83sjjw1" path="res://icon.svg" id="2_65xul"]
+[ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="3_8opm5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2adv"]
+size = Vector2(128, 64)
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 50)
+scale = Vector2(1, 0.21875)
+texture = ExtResource("2_65xul")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_l2adv")
+
+[node name="HeroesController" parent="." node_paths=PackedStringArray("players") instance=ExtResource("3_8opm5")]
+players = [NodePath("../HeroTobu")]
+
+[node name="HeroTobu" parent="." instance=ExtResource("1_obq7x")]
+SPEED = 1000
+
+[node name="Camera2D" type="Camera2D" parent="HeroTobu"]

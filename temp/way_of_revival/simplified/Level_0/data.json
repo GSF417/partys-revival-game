@@ -1,0 +1,80 @@
+{
+	"identifier": "Level_0",
+	"uniqueIdentifer": "eb343f61-c210-11ef-a111-abe9554074a6",
+	"x": 0,
+	"y": 0,
+	"width": 1184,
+	"height": 256,
+	"bgColor": "#696A79",
+	"neighbourLevels": [],
+	"customFields" : {},
+	"layers": [
+		"Level_0_Background.png",
+		"Level_0_Trees.png",
+		"Level_0_Obstacles_3.png",
+		"Level_0_Obstacles_2.png",
+		"Level_0_Obstacles.png",
+		"Level_0_Ground.png",
+		"Level_0_Village_props.png",
+		"Level_1_Background.png",
+		"Level_1_Enemies.png",
+		"Level_1_Village_Props.png",
+		"Level_1_Obstacles2.png",
+		"Level_1_Ground.png",
+		"Level_1_Obstacles.png",
+		"Level_2_bg.png",
+		"Level_2_bg_2.png",
+		"Level_2_village_props.png",
+		"Level_2_ground.png",
+		"Level_2_enemies.png",
+		"Level_2_rocks.png"
+	],
+	"entities": {
+		"Player_inital_position": [
+			{
+				"id": "Player_inital_position",
+				"iid": "6782e170-c210-11ef-a95a-0f1c72fd1a9f",
+				"layer": "Level_0_Entities",
+				"x": 48,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields" : {}
+			},
+			{
+				"id": "Player_inital_position",
+				"iid": "70d3d450-c210-11ef-a95a-dd0cd8619a3e",
+				"layer": "Level_0_Entities",
+				"x": 64,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields" : {}
+			},
+			{
+				"id": "Player_inital_position",
+				"iid": "7112b210-c210-11ef-a95a-197554a8d757",
+				"layer": "Level_0_Entities",
+				"x": 80,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields" : {}
+			},
+			{
+				"id": "Player_inital_position",
+				"iid": "7141d860-c210-11ef-a95a-8148f3af27ba",
+				"layer": "Level_0_Entities",
+				"x": 96,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields" : {}
+			}
+		]
+	}
+}

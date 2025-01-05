@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqma5155js3iu"]
+
+[ext_resource type="PackedScene" uid="uid://dll64ogrgpcpo" path="res://scenes/heroes/hero_tobu.tscn" id="1_obq7x"]
+[ext_resource type="Texture2D" uid="uid://yl6oq83sjjw1" path="res://icon.svg" id="2_65xul"]
+[ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="3_8opm5"]
+[ext_resource type="PackedScene" uid="uid://dxthpkt8nu05i" path="res://scenes/heroes/hero_yari.tscn" id="4_dt6a8"]
+[ext_resource type="PackedScene" uid="uid://c4lw1o0a5u8ri" path="res://scenes/heroes/hero_kinroy.tscn" id="5_ay4gt"]
+[ext_resource type="PackedScene" uid="uid://0b0n7gs3rbil" path="res://scenes/heroes/hero_bakudan.tscn" id="6_445ad"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2adv"]
+size = Vector2(128, 64)
+
+[node name="Main" type="Node2D"]
+
+[node name="HeroesController" parent="." node_paths=PackedStringArray("players", "camera") instance=ExtResource("3_8opm5")]
+players = [NodePath("../HeroTobu"), NodePath("../HeroYari"), NodePath("../HeroKinroy"), NodePath("../HeroBakudan")]
+camera = NodePath("../HeroTobu/Camera2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 50)
+scale = Vector2(1, 0.21875)
+texture = ExtResource("2_65xul")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_l2adv")
+
+[node name="HeroTobu" parent="." instance=ExtResource("1_obq7x")]
+position = Vector2(-1, 18)
+
+[node name="Camera2D" type="Camera2D" parent="HeroTobu"]
+
+[node name="HeroYari" parent="." instance=ExtResource("4_dt6a8")]
+position = Vector2(-42, 17)
+
+[node name="HeroKinroy" parent="." instance=ExtResource("5_ay4gt")]
+position = Vector2(35, -29)
+
+[node name="HeroBakudan" parent="." instance=ExtResource("6_445ad")]
+position = Vector2(36, -94)

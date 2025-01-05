@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4lw1o0a5u8ri"]
+
+[ext_resource type="Script" path="res://scripts/hero_kinroy.gd" id="1_8w6l6"]
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_qcxh3"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fx4hr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i61de"]
+height = 38.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s0nca"]
+radius = 24.0
+
+[node name="HeroKinroy" type="CharacterBody2D"]
+position = Vector2(1, -13)
+script = ExtResource("1_8w6l6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_qcxh3")
+hframes = 20
+vframes = 20
+frame = 40
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_fx4hr")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 13)
+shape = SubResource("CapsuleShape2D_i61de")
+
+[node name="Area2D" type="Area2D" parent="." groups=["Burning"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 13)
+shape = SubResource("CircleShape2D_s0nca")
