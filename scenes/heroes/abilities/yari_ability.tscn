@@ -4,7 +4,3 @@
 
 [node name="YariAbility" type="Node2D"]
 script = ExtResource("1_irc37")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true

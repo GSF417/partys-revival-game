@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4lw1o0a5u8ri"]
+[gd_scene load_steps=9 format=3 uid="uid://c4lw1o0a5u8ri"]
 
 [ext_resource type="Script" path="res://scripts/hero_kinroy.gd" id="1_8w6l6"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_qcxh3"]
+[ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="3_lr5qj"]
+[ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="4_qm3b0"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fx4hr"]
 
@@ -9,7 +11,10 @@
 height = 38.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s0nca"]
-radius = 24.0
+radius = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08n0w"]
+radius = 8.0
 
 [node name="HeroKinroy" type="CharacterBody2D"]
 position = Vector2(1, -13)
@@ -32,8 +37,20 @@ anim_player = NodePath("../AnimationPlayer")
 position = Vector2(-1, 13)
 shape = SubResource("CapsuleShape2D_i61de")
 
-[node name="Area2D" type="Area2D" parent="." groups=["Burning", "Damage", "Hero_Attack", "Hero_Slash"]]
+[node name="FireAura" type="Area2D" parent="." groups=["Burning", "Damage", "Hero_Attack", "Hero_Slash"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireAura"]
 position = Vector2(-1, 13)
 shape = SubResource("CircleShape2D_s0nca")
+debug_color = Color(0.657679, 0.515891, 0, 0.42)
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_lr5qj")]
+health_component = NodePath("../HealthComponent")
+hero = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(-1, 13)
+shape = SubResource("CapsuleShape2D_08n0w")
+debug_color = Color(0.980392, 0.133333, 0, 0.419608)
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_qm3b0")]

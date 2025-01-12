@@ -19,19 +19,23 @@ func find_living_hero() -> int:
 	return -1
 
 func switch_hero(switch_to: int):
+	if (selected_hero == -1):
+		end_game()
+		return
 	if switch_to < 0 or switch_to >= 4:
 		return
-	players[selected_hero].remove_child(camera)
 	selected_hero = switch_to
 	if (players[selected_hero] == null):
 		selected_hero = find_living_hero()
 		if (selected_hero == -1):
 			end_game()
 			return
-	players[selected_hero].add_child(camera)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if players[selected_hero] == null:
+		selected_hero = find_living_hero()
+		switch_hero(selected_hero)
 	if players[selected_hero] != null:
 		players[selected_hero].checkForActions()
 	if Input.is_action_pressed("SwitchFirst"):
@@ -42,6 +46,8 @@ func _process(delta: float) -> void:
 		switch_hero(2)
 	if Input.is_action_pressed("SwitchFourth"):
 		switch_hero(3)
+	camera.global_position = players[selected_hero].global_position
 
 func end_game():
-	pass
+	# TO DO: Create an end game screen
+	get_tree().reload_current_scene()

@@ -19,11 +19,6 @@ var lookLeft = false
 func _ready() -> void:
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _physics_process(delta: float) -> void:
 	sprite.flip_h = lookLeft
 	if not is_on_floor():

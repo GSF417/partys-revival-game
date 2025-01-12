@@ -4,4 +4,4 @@ extends HeroEntity
 func _ready() -> void:
 	super()
 	SPEED = 225
-	jump_height = -450
+	jump_height = -375

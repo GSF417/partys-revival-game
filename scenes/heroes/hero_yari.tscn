@@ -1,13 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxthpkt8nu05i"]
+[gd_scene load_steps=9 format=3 uid="uid://dxthpkt8nu05i"]
 
 [ext_resource type="Script" path="res://scripts/hero_yari.gd" id="1_eljcu"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_vsq16"]
 [ext_resource type="PackedScene" uid="uid://vfvqnuxp2t81" path="res://scenes/heroes/abilities/yari_ability.tscn" id="3_eeror"]
+[ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="4_6eqk7"]
+[ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="5_0srty"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fx4hr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i61de"]
 height = 66.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wntyp"]
+radius = 7.0
+height = 58.0
 
 [node name="HeroYari" type="CharacterBody2D" node_paths=PackedStringArray("hero_ability")]
 script = ExtResource("1_eljcu")
@@ -32,3 +38,14 @@ position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_i61de")
 
 [node name="YariAbility" parent="." instance=ExtResource("3_eeror")]
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_6eqk7")]
+health_component = NodePath("../HealthComponent")
+hero = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_wntyp")
+debug_color = Color(0.980392, 0.133333, 0, 0.419608)
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_0srty")]

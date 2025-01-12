@@ -1,16 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://0b0n7gs3rbil"]
+[gd_scene load_steps=9 format=3 uid="uid://0b0n7gs3rbil"]
 
-[ext_resource type="Script" path="res://scripts/hero_kinroy.gd" id="1_6cbyi"]
+[ext_resource type="Script" path="res://scripts/hero_bakudan.gd" id="1_l4ii1"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_piksm"]
+[ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="3_p85lr"]
+[ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="4_8tq7g"]
+[ext_resource type="PackedScene" uid="uid://b24bfdc2n88hc" path="res://scenes/heroes/abilities/bakudan_ability.tscn" id="5_kf6dc"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fx4hr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i61de"]
 height = 38.0
 
-[node name="HeroBakudan" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8wwgh"]
+radius = 9.0
+height = 34.0
+
+[node name="HeroBakudan" type="CharacterBody2D" node_paths=PackedStringArray("hero_ability")]
 position = Vector2(0, -13)
-script = ExtResource("1_6cbyi")
+script = ExtResource("1_l4ii1")
+hero_ability = NodePath("BakudanAbility")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -29,3 +37,16 @@ anim_player = NodePath("../AnimationPlayer")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 13)
 shape = SubResource("CapsuleShape2D_i61de")
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_p85lr")]
+health_component = NodePath("../HealthComponent")
+hero = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, 13)
+shape = SubResource("CapsuleShape2D_8wwgh")
+debug_color = Color(0.982246, 0.13206, 0, 0.42)
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_8tq7g")]
+
+[node name="BakudanAbility" parent="." instance=ExtResource("5_kf6dc")]
