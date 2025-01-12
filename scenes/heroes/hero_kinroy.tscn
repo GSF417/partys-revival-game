@@ -32,7 +32,7 @@ anim_player = NodePath("../AnimationPlayer")
 position = Vector2(-1, 13)
 shape = SubResource("CapsuleShape2D_i61de")
 
-[node name="Area2D" type="Area2D" parent="." groups=["Burning"]]
+[node name="Area2D" type="Area2D" parent="." groups=["Burning", "Damage", "Hero_Attack", "Hero_Slash"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, 13)

@@ -20,9 +20,10 @@ enabled=PackedStringArray("res://addons/amano-ldtk-importer-main/addons/amano-ld
 
 [global_group]
 
-Hero_Slash=""
 Burning=""
 Explosion=""
+Damage=""
+Hero_Attack=""
 
 [input]
 

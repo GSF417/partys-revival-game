@@ -2,7 +2,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_51k2t"]
 
-[node name="ExplosionEffect" type="Area2D" groups=["Explosion"]]
+[node name="ExplosionEffect" type="Area2D" groups=["Damage", "Explosion"]]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
