@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ilkc5c2ck0kt"]
+[gd_scene load_steps=19 format=3 uid="uid://ilkc5c2ck0kt"]
 
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_igg3o"]
 [ext_resource type="PackedScene" uid="uid://dll64ogrgpcpo" path="res://scenes/heroes/hero_tobu.tscn" id="2_bsgug"]
@@ -6,7 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://c4lw1o0a5u8ri" path="res://scenes/heroes/hero_kinroy.tscn" id="4_an33l"]
 [ext_resource type="PackedScene" uid="uid://0b0n7gs3rbil" path="res://scenes/heroes/hero_bakudan.tscn" id="5_6w73x"]
 [ext_resource type="TileSet" uid="uid://bbvj3lhmlsa5s" path="res://levels/tilesets/forest_tileset.tres" id="6_c1git"]
+[ext_resource type="Texture2D" uid="uid://bckh8lsoua5tj" path="res://levels/assets/obstacles/box.png" id="6_hikop"]
+[ext_resource type="Texture2D" uid="uid://c68k1uj1si5gl" path="res://levels/assets/obstacles/right_arrow_sign.png" id="6_hujek"]
+[ext_resource type="Texture2D" uid="uid://d3nluwl6256vr" path="res://levels/assets/obstacles/left_arrow_sign.png" id="7_ehg57"]
 [ext_resource type="TileSet" uid="uid://5gmlxuui744x" path="res://levels/tilesets/cave_tileset.tres" id="7_vssw7"]
+[ext_resource type="Texture2D" uid="uid://4mn77u8t5s0w" path="res://levels/assets/obstacles/vines.png" id="8_8mi18"]
+[ext_resource type="Texture2D" uid="uid://5w15wy6tqlxg" path="res://levels/assets/obstacles/stone_barricade.png" id="8_31ibb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1pyr"]
 size = Vector2(108, 231)
@@ -17,6 +22,15 @@ colors = PackedColorArray(0.00392157, 0.027451, 0.0823529, 0.713726, 0.00392157,
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_r8mnt"]
 gradient = SubResource("Gradient_xfk58")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuhb0"]
+size = Vector2(295.427, 485.079)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8fpj"]
+size = Vector2(25.6006, 29.2197)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pc8e0"]
+size = Vector2(44.6515, 43.5145)
 
 [node name="Main" type="Node2D"]
 
@@ -58,11 +72,192 @@ limit_top = -300
 limit_right = 1250
 limit_bottom = 250
 
+[node name="Sign Right" type="Sprite2D" parent="."]
+position = Vector2(581, -12)
+scale = Vector2(0.922783, 0.615096)
+texture = ExtResource("6_hujek")
+
+[node name="Sign Left" type="Sprite2D" parent="."]
+position = Vector2(773, -13)
+scale = Vector2(0.922783, 0.615096)
+texture = ExtResource("7_ehg57")
+
 [node name="Sky" type="Sprite2D" parent="."]
 z_index = -9
-position = Vector2(398.5, 1.12502)
+position = Vector2(400, -2)
 scale = Vector2(7.66797, 607.75)
 texture = SubResource("GradientTexture1D_r8mnt")
+
+[node name="Stone Barricade" type="CanvasGroup" parent="."]
+position = Vector2(633, 2)
+rotation = 1.5708
+scale = Vector2(1.31241, 1.31241)
+
+[node name="Rocks" type="Sprite2D" parent="Stone Barricade"]
+position = Vector2(96.0065, 2.28585)
+rotation = 1.5708
+scale = Vector2(0.12251, 0.0895349)
+texture = ExtResource("8_31ibb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Stone Barricade/Rocks"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone Barricade/Rocks/StaticBody2D"]
+position = Vector2(4.66455, 8.51013)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_iuhb0")
+
+[node name="Rocks2" type="Sprite2D" parent="Stone Barricade"]
+position = Vector2(96.0065, -32.7641)
+rotation = 1.5708
+scale = Vector2(0.12251, 0.0895349)
+texture = ExtResource("8_31ibb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Stone Barricade/Rocks2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone Barricade/Rocks2/StaticBody2D"]
+position = Vector2(4.66455, 8.51013)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_iuhb0")
+
+[node name="Rocks3" type="Sprite2D" parent="Stone Barricade"]
+position = Vector2(96.0065, -67.8141)
+rotation = 1.5708
+scale = Vector2(0.12251, 0.0895349)
+texture = ExtResource("8_31ibb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Stone Barricade/Rocks3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone Barricade/Rocks3/StaticBody2D"]
+position = Vector2(4.66455, 8.51013)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_iuhb0")
+
+[node name="Vine Barricade" type="CanvasGroup" parent="."]
+position = Vector2(633, 2)
+rotation = 1.5708
+scale = Vector2(1.31241, 1.31241)
+
+[node name="Vine" type="Sprite2D" parent="Vine Barricade"]
+position = Vector2(6.8576, 11.4293)
+scale = Vector2(0.446447, 0.495459)
+texture = ExtResource("8_8mi18")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine/StaticBody2D"]
+position = Vector2(0.853357, 0.768982)
+shape = SubResource("RectangleShape2D_q8fpj")
+
+[node name="Vine2" type="Sprite2D" parent="Vine Barricade"]
+position = Vector2(6.8576, -3.04784)
+scale = Vector2(0.446447, 0.495459)
+texture = ExtResource("8_8mi18")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine2/StaticBody2D"]
+position = Vector2(0.853357, 0.768982)
+shape = SubResource("RectangleShape2D_q8fpj")
+
+[node name="Vine3" type="Sprite2D" parent="Vine Barricade"]
+position = Vector2(6.8576, -17.525)
+scale = Vector2(0.446447, 0.495459)
+texture = ExtResource("8_8mi18")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine3/StaticBody2D"]
+position = Vector2(0.853357, 0.768982)
+shape = SubResource("RectangleShape2D_q8fpj")
+
+[node name="Vine4" type="Sprite2D" parent="Vine Barricade"]
+position = Vector2(6.8576, -32.0022)
+scale = Vector2(0.446447, 0.495459)
+texture = ExtResource("8_8mi18")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine4/StaticBody2D"]
+position = Vector2(0.853357, 0.768982)
+shape = SubResource("RectangleShape2D_q8fpj")
+
+[node name="Vine5" type="Sprite2D" parent="Vine Barricade"]
+position = Vector2(6.8576, -46.4793)
+scale = Vector2(0.446447, 0.495459)
+texture = ExtResource("8_8mi18")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine5/StaticBody2D"]
+position = Vector2(0.853357, 0.768982)
+shape = SubResource("RectangleShape2D_q8fpj")
+
+[node name="Vine6" type="Sprite2D" parent="Vine Barricade"]
+position = Vector2(6.8576, -60.9565)
+scale = Vector2(0.446447, 0.495459)
+texture = ExtResource("8_8mi18")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine6/StaticBody2D"]
+position = Vector2(0.853357, 0.768982)
+shape = SubResource("RectangleShape2D_q8fpj")
+
+[node name="Vine7" type="Sprite2D" parent="Vine Barricade"]
+position = Vector2(6.8576, -74.6717)
+scale = Vector2(0.446447, 0.495459)
+texture = ExtResource("8_8mi18")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine7"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine7/StaticBody2D"]
+position = Vector2(0.853357, 0.768982)
+shape = SubResource("RectangleShape2D_q8fpj")
+
+[node name="Box Pile" type="CanvasGroup" parent="."]
+position = Vector2(259, -50)
+rotation = 1.5708
+scale = Vector2(1.11978, 1.17202)
+
+[node name="Box" type="Sprite2D" parent="Box Pile"]
+position = Vector2(22.3257, 5.97258)
+texture = ExtResource("6_hikop")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Box Pile/Box"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box Pile/Box/StaticBody2D"]
+position = Vector2(0.89303, 0)
+shape = SubResource("RectangleShape2D_pc8e0")
+
+[node name="Box2" type="Sprite2D" parent="Box Pile"]
+position = Vector2(-21.4327, 5.97258)
+texture = ExtResource("6_hikop")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Box Pile/Box2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box Pile/Box2/StaticBody2D"]
+position = Vector2(0.401747, -0.106659)
+shape = SubResource("RectangleShape2D_pc8e0")
+
+[node name="Box3" type="Sprite2D" parent="Box Pile"]
+position = Vector2(-65.1912, 5.97258)
+texture = ExtResource("6_hikop")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Box Pile/Box3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box Pile/Box3/StaticBody2D"]
+position = Vector2(0.401747, -0.106659)
+shape = SubResource("RectangleShape2D_pc8e0")
+
+[node name="Box4" type="Sprite2D" parent="Box Pile"]
+position = Vector2(-108.95, 5.97258)
+texture = ExtResource("6_hikop")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Box Pile/Box4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box Pile/Box4/StaticBody2D"]
+position = Vector2(-1.52588e-05, -0.106659)
+shape = SubResource("RectangleShape2D_pc8e0")
 
 [node name="Ground" type="TileMap" parent="."]
 tile_set = ExtResource("6_c1git")
@@ -82,24 +277,13 @@ format = 2
 layer_0/tile_data = PackedInt32Array(-9, 1245184, 20, 65527, 1245184, 21, -8, 1310720, 20, 65528, 1310720, 21, -7, 1376256, 20, 65529, 1376256, 21, -5, 1245184, 20, 65531, 1245184, 21, -4, 1310720, 20, 65532, 1310720, 21, -3, 1376256, 20, 65533, 1376256, 21, -65536, 1245184, 20, 0, 1245184, 21, -65535, 1310720, 20, 1, 1310720, 21, -65534, 1376256, 20, 2, 1376256, 21, -65531, 1245184, 20, 5, 1245184, 21, -65530, 1310720, 20, 6, 1310720, 21, -65529, 1376256, 20, 7, 1376256, 21, -65525, 1245184, 20, 11, 1245184, 21, -65524, 1310720, 20, 12, 1310720, 21, -65523, 1376256, 20, 13, 1376256, 21, -65520, 1245184, 20, 16, 1245184, 21, -65519, 1310720, 20, 17, 1310720, 21, -65518, 1376256, 20, 18, 1376256, 21, -65512, 1245184, 20, 24, 1245184, 21, -65511, 1310720, 20, 25, 1310720, 21, -65510, 1376256, 20, 26, 1376256, 21, -65507, 1245184, 20, 29, 1245184, 21, -65506, 1310720, 20, 30, 1310720, 21, -65505, 1376256, 20, 31, 1376256, 21)
 
 [node name="Ground_background" type="TileMap" parent="."]
-z_index = -1
+z_index = -2
 tile_set = ExtResource("7_vssw7")
 format = 2
-layer_0/tile_data = PackedInt32Array(65574, 196608, 2, 131110, 196608, 3, 65575, 131072, 2, 131111, 131072, 3, 65576, 196608, 2, 131112, 196608, 3, 196647, 131072, 2, 262183, 131072, 3, 196648, 196608, 2, 262184, 196608, 3, 196649, 131072, 2, 262185, 131072, 3, 196650, 196608, 2, 262186, 196608, 3, 327721, 131072, 2, 393257, 131072, 3, 327722, 196608, 2, 393258, 196608, 3, 327723, 131072, 2, 393259, 131072, 3, 327724, 196608, 2, 393260, 196608, 3, 458795, 131072, 2, 524331, 131072, 3, 458796, 196608, 2, 524332, 196608, 3, 458797, 131072, 2, 524333, 131072, 3, 589869, 131072, 2, 655405, 131072, 3, 720941, 131072, 2, 786477, 131072, 2, 720939, 131072, 2, 786475, 131072, 2, 720940, 196608, 2, 786476, 196608, 2, 720937, 131072, 2, 786473, 131072, 2, 720938, 196608, 2, 786474, 196608, 2, 720935, 131072, 2, 786471, 131072, 2, 720936, 196608, 2, 786472, 196608, 2, 720934, 196608, 2, 786470, 196608, 2, 589862, 196608, 2, 655398, 196608, 3, 589863, 131072, 2, 655399, 131072, 3, 589864, 196608, 2, 655400, 196608, 3, 589865, 131072, 2, 655401, 131072, 3, 589866, 196608, 2, 655402, 196608, 3, 589867, 131072, 2, 655403, 131072, 3, 589868, 196608, 2, 655404, 196608, 3, 458793, 131072, 2, 524329, 131072, 3, 458794, 196608, 2, 524330, 196608, 3, 327719, 131072, 2, 393255, 131072, 3, 327720, 196608, 2, 393256, 196608, 3, 327718, 196608, 2, 393254, 196608, 3, 458790, 196608, 2, 524326, 196608, 3, 458791, 131072, 2, 524327, 131072, 3, 458792, 196608, 2, 524328, 196608, 3, 327725, 131072, 2, 393261, 131072, 3, 196653, 131072, 2, 262189, 131072, 3, 65581, 131072, 2, 131117, 131072, 3, 65579, 131072, 2, 131115, 131072, 3, 65580, 196608, 2, 131116, 196608, 3, 65577, 131072, 2, 131113, 131072, 3, 65578, 196608, 2, 131114, 196608, 3, 196646, 196608, 2, 262182, 196608, 3, 196651, 131072, 2, 262187, 131072, 3, 196652, 196608, 2, 262188, 196608, 3, 852006, 196608, 3, 852007, 131072, 3, 852008, 196608, 3, 852009, 131072, 3, 852010, 196608, 3, 852011, 131072, 3, 852012, 196608, 3, 852013, 131072, 3, 65573, 131072, 2, 131109, 131072, 2, 196645, 131072, 2, 262181, 131072, 2, 327717, 131072, 2, 393253, 131072, 2, 458789, 131072, 2, 524325, 131072, 2, 589861, 131072, 2, 655397, 131072, 2, 720933, 131072, 2, 786469, 131072, 2, 852005, 131072, 3, 852014, 196608, 3, 786478, 196608, 2, 720942, 131072, 2, 655406, 131072, 2, 589870, 131072, 2, 524334, 131072, 2, 458798, 131072, 2, 393262, 131072, 2, 327726, 131072, 2, 65582, 131072, 2, 917540, 196608, 2, 983076, 196608, 3, 917541, 131072, 2, 983077, 131072, 3, 917542, 196608, 2, 983078, 196608, 3, 917543, 131072, 2, 983079, 131072, 3, 917544, 196608, 2, 983080, 196608, 3, 917545, 131072, 2, 983081, 131072, 3, 917546, 196608, 2, 983082, 196608, 3, 917547, 131072, 2, 983083, 131072, 3, 917548, 196608, 2, 983084, 196608, 3, 917549, 131072, 2, 983085, 131072, 3, 917550, 196608, 2, 983086, 196608, 3, 917551, 131072, 2, 983087, 131072, 3, 917552, 196608, 2, 983088, 196608, 3, 917553, 131072, 2, 983089, 131072, 3, 917538, 196608, 2, 983074, 196608, 3, 917539, 131072, 2, 983075, 131072, 3, 917536, 131072, 2, 983072, 131072, 3, 917537, 131072, 2, 983073, 131072, 3, 1048611, 131072, 2, 1114147, 131072, 3, 1048612, 196608, 2, 1114148, 196608, 3, 1048613, 131072, 2, 1114149, 131072, 3, 1048614, 196608, 2, 1114150, 196608, 3, 917554, 196608, 2, 983090, 196608, 3, 1048615, 131072, 2, 1114151, 131072, 3, 1048616, 196608, 2, 1114152, 196608, 3, 1048617, 131072, 2, 1114153, 131072, 3, 1048618, 196608, 2, 1114154, 196608, 3, 1048619, 131072, 2, 1114155, 131072, 3, 1048620, 196608, 2, 1114156, 196608, 3, 1048621, 131072, 2, 1114157, 131072, 3, 1048622, 196608, 2, 1114158, 196608, 3, 1048623, 131072, 2, 1114159, 131072, 3, 1048624, 196608, 2, 1114160, 196608, 3, 786479, 131072, 2, 852015, 131072, 3, 786480, 196608, 2, 852016, 196608, 3, 786467, 131072, 2, 852003, 131072, 3, 786468, 196608, 2, 852004, 196608, 3)
+layer_0/tile_data = PackedInt32Array(65574, 196608, 2, 131110, 196608, 3, 65575, 131072, 2, 131111, 131072, 3, 65576, 196608, 2, 131112, 196608, 3, 196647, 131072, 2, 262183, 131072, 3, 196648, 196608, 2, 262184, 196608, 3, 196649, 131072, 2, 262185, 131072, 3, 196650, 196608, 2, 262186, 196608, 3, 327721, 131072, 2, 393257, 131072, 3, 327722, 196608, 2, 393258, 196608, 3, 327723, 131072, 2, 393259, 131072, 3, 327724, 196608, 2, 393260, 196608, 3, 458795, 131072, 2, 524331, 131072, 3, 458796, 196608, 2, 524332, 196608, 3, 458797, 131072, 2, 524333, 131072, 3, 589869, 131072, 2, 655405, 131072, 3, 720941, 131072, 2, 786477, 131072, 2, 720939, 131072, 2, 786475, 131072, 2, 720940, 196608, 2, 786476, 196608, 2, 720937, 131072, 2, 786473, 131072, 2, 720938, 196608, 2, 786474, 196608, 2, 720935, 131072, 2, 786471, 131072, 2, 720936, 196608, 2, 786472, 196608, 2, 720934, 196608, 2, 786470, 196608, 2, 589862, 196608, 2, 655398, 196608, 3, 589863, 131072, 2, 655399, 131072, 3, 589864, 196608, 2, 655400, 196608, 3, 589865, 131072, 2, 655401, 131072, 3, 589866, 196608, 2, 655402, 196608, 3, 589867, 131072, 2, 655403, 131072, 3, 589868, 196608, 2, 655404, 196608, 3, 458793, 131072, 2, 524329, 131072, 3, 458794, 196608, 2, 524330, 196608, 3, 327719, 131072, 2, 393255, 131072, 3, 327720, 196608, 2, 393256, 196608, 3, 327718, 196608, 2, 393254, 196608, 3, 458790, 196608, 2, 524326, 196608, 3, 458791, 131072, 2, 524327, 131072, 3, 458792, 196608, 2, 524328, 196608, 3, 327725, 131072, 2, 393261, 131072, 3, 196653, 131072, 2, 262189, 131072, 3, 65581, 131072, 2, 131117, 131072, 3, 65579, 131072, 2, 131115, 131072, 3, 65580, 196608, 2, 131116, 196608, 3, 65577, 131072, 2, 131113, 131072, 3, 65578, 196608, 2, 131114, 196608, 3, 196646, 196608, 2, 262182, 196608, 3, 196651, 131072, 2, 262187, 131072, 3, 196652, 196608, 2, 262188, 196608, 3, 852006, 196608, 3, 852007, 131072, 3, 852008, 196608, 3, 852009, 131072, 3, 852010, 196608, 3, 852011, 131072, 3, 852012, 196608, 3, 852013, 131072, 3, 65573, 131072, 2, 131109, 131072, 2, 196645, 131072, 2, 262181, 131072, 2, 327717, 131072, 2, 393253, 131072, 2, 458789, 131072, 2, 524325, 131072, 2, 589861, 131072, 2, 655397, 131072, 2, 720933, 131072, 2, 786469, 131072, 2, 852005, 131072, 3, 852014, 196608, 3, 786478, 196608, 2, 720942, 131072, 2, 655406, 131072, 2, 589870, 131072, 2, 524334, 131072, 2, 458798, 131072, 2, 393262, 131072, 2, 327726, 131072, 2, 65582, 131072, 2, 917540, 196608, 2, 983076, 196608, 3, 917541, 131072, 2, 983077, 131072, 3, 917542, 196608, 2, 983078, 196608, 3, 917543, 131072, 2, 983079, 131072, 3, 917544, 196608, 2, 983080, 196608, 3, 917545, 131072, 2, 983081, 131072, 3, 917546, 196608, 2, 983082, 196608, 3, 917547, 131072, 2, 983083, 131072, 3, 917548, 196608, 2, 983084, 196608, 3, 917549, 131072, 2, 983085, 131072, 3, 917550, 196608, 2, 983086, 196608, 3, 917551, 131072, 2, 983087, 131072, 3, 917552, 196608, 2, 983088, 196608, 3, 917553, 131072, 2, 983089, 131072, 3, 917538, 196608, 2, 983074, 196608, 3, 917539, 131072, 2, 983075, 131072, 3, 917536, 131072, 2, 983072, 131072, 3, 917537, 131072, 2, 983073, 131072, 3, 1048611, 131072, 2, 1114147, 131072, 3, 1048612, 196608, 2, 1114148, 196608, 3, 1048613, 131072, 2, 1114149, 131072, 3, 1048614, 196608, 2, 1114150, 196608, 3, 917554, 196608, 2, 983090, 196608, 3, 1048615, 131072, 2, 1114151, 131072, 3, 1048616, 196608, 2, 1114152, 196608, 3, 1048617, 131072, 2, 1114153, 131072, 3, 1048618, 196608, 2, 1114154, 196608, 3, 1048619, 131072, 2, 1114155, 131072, 3, 1048620, 196608, 2, 1114156, 196608, 3, 1048621, 131072, 2, 1114157, 131072, 3, 1048622, 196608, 2, 1114158, 196608, 3, 1048623, 131072, 2, 1114159, 131072, 3, 1048624, 196608, 2, 1114160, 196608, 3, 786479, 131072, 2, 852015, 131072, 3, 786480, 196608, 2, 852016, 196608, 3, 786467, 131072, 2, 852003, 131072, 3, 786468, 196608, 2, 852004, 196608, 3, 131118, 131072, 2, 196654, 131072, 2, 262190, 131072, 2)
 
 [node name="Background" type="TileMap" parent="."]
 z_index = -10
 tile_set = ExtResource("6_c1git")
 format = 2
 layer_0/tile_data = PackedInt32Array(-262148, 0, 23, -327655, 0, 23)
-
-[node name="Obstacles" type="TileMap" parent="."]
-tile_set = ExtResource("6_c1git")
-format = 2
-layer_0/tile_data = PackedInt32Array(18, 1376256, 6, 19, 1441792, 6, 23, 1572864, 6, 22, 1507328, 6, 21, 1441792, 6, 20, 1441792, 6, -65528, 1179648, 7, -131064, 1179648, 6, -196600, 1179648, 6, -262136, 1179648, 6, -327672, 1179648, 5, -393208, 1179648, 4, -65525, 1441792, 1)
-
-[node name="Obstacles_2" type="TileMap" parent="."]
-z_index = -1
-tile_set = ExtResource("6_c1git")
-format = 2
-layer_0/tile_data = PackedInt32Array(393235, 1376256, 8, 393238, 1376256, 8)
