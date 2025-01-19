@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://ilkc5c2ck0kt"]
+[gd_scene load_steps=21 format=3 uid="uid://ilkc5c2ck0kt"]
 
+[ext_resource type="AudioStream" uid="uid://dinrpl5akdt6o" path="res://sounds/music.mp3" id="1_3hven"]
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_igg3o"]
 [ext_resource type="PackedScene" uid="uid://dll64ogrgpcpo" path="res://scenes/heroes/hero_tobu.tscn" id="2_bsgug"]
 [ext_resource type="PackedScene" uid="uid://dxthpkt8nu05i" path="res://scenes/heroes/hero_yari.tscn" id="3_2icxp"]
@@ -22,6 +23,9 @@ colors = PackedColorArray(0.00392157, 0.027451, 0.0823529, 0.713726, 0.00392157,
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_r8mnt"]
 gradient = SubResource("Gradient_xfk58")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8c2kw"]
+size = Vector2(824.089, 536.144)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iuhb0"]
 size = Vector2(295.427, 485.079)
@@ -88,6 +92,16 @@ position = Vector2(400, -2)
 scale = Vector2(7.66797, 607.75)
 texture = SubResource("GradientTexture1D_r8mnt")
 
+[node name="Warp To Level 2" type="Area2D" parent="."]
+position = Vector2(722, 275)
+rotation = -3.14159
+scale = Vector2(0.160783, 0.117506)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Warp To Level 2"]
+position = Vector2(304.759, 161.69)
+scale = Vector2(1, 0.999999)
+shape = SubResource("RectangleShape2D_8c2kw")
+
 [node name="Stone Barricade" type="CanvasGroup" parent="."]
 position = Vector2(633, 2)
 rotation = 1.5708
@@ -103,7 +117,6 @@ texture = ExtResource("8_31ibb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stone Barricade/Rocks/StaticBody2D"]
 position = Vector2(4.66455, 8.51013)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_iuhb0")
 
 [node name="Rocks2" type="Sprite2D" parent="Stone Barricade"]
@@ -116,7 +129,6 @@ texture = ExtResource("8_31ibb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stone Barricade/Rocks2/StaticBody2D"]
 position = Vector2(4.66455, 8.51013)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_iuhb0")
 
 [node name="Rocks3" type="Sprite2D" parent="Stone Barricade"]
@@ -129,7 +141,6 @@ texture = ExtResource("8_31ibb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stone Barricade/Rocks3/StaticBody2D"]
 position = Vector2(4.66455, 8.51013)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_iuhb0")
 
 [node name="Vine Barricade" type="CanvasGroup" parent="."]
@@ -287,3 +298,8 @@ z_index = -10
 tile_set = ExtResource("6_c1git")
 format = 2
 layer_0/tile_data = PackedInt32Array(-262148, 0, 23, -327655, 0, 23)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_3hven")
+volume_db = -10.0
+autoplay = true
