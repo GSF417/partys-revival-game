@@ -3,29 +3,29 @@
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_03gfk"]
 [ext_resource type="Script" path="res://scripts/explosion_effect.gd" id="1_bn5gc"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0wvi5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xah0i"]
 atlas = ExtResource("1_03gfk")
-region = Rect2(0, 512, 64, 64)
+region = Rect2(0, 640, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_slg5g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbxwq"]
 atlas = ExtResource("1_03gfk")
-region = Rect2(64, 512, 64, 64)
+region = Rect2(64, 640, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cjise"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vb0i"]
 atlas = ExtResource("1_03gfk")
-region = Rect2(128, 512, 64, 64)
+region = Rect2(128, 640, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uvaa5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0wvi5")
+"texture": SubResource("AtlasTexture_xah0i")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_slg5g")
+"texture": SubResource("AtlasTexture_dbxwq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cjise")
+"texture": SubResource("AtlasTexture_0vb0i")
 }],
 "loop": true,
 "name": &"default",
@@ -40,7 +40,7 @@ script = ExtResource("1_bn5gc")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_uvaa5")
-frame_progress = 0.643186
+frame_progress = 0.948536
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_51k2t")
