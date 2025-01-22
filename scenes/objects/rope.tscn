@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://idx7l3jlm8dn"]
+
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_mfl0i"]
+
+[node name="Rope" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mfl0i")
+hframes = 20
+vframes = 20
+frame = 240

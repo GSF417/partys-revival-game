@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ilkc5c2ck0kt"]
+[gd_scene load_steps=24 format=3 uid="uid://ilkc5c2ck0kt"]
 
 [ext_resource type="AudioStream" uid="uid://dinrpl5akdt6o" path="res://sounds/music.mp3" id="1_3hven"]
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_igg3o"]
@@ -13,6 +13,8 @@
 [ext_resource type="TileSet" uid="uid://5gmlxuui744x" path="res://levels/tilesets/cave_tileset.tres" id="7_vssw7"]
 [ext_resource type="Texture2D" uid="uid://4mn77u8t5s0w" path="res://levels/assets/obstacles/vines.png" id="8_8mi18"]
 [ext_resource type="Texture2D" uid="uid://5w15wy6tqlxg" path="res://levels/assets/obstacles/stone_barricade.png" id="8_31ibb"]
+[ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="11_cmfeb"]
+[ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="12_yr5qb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1pyr"]
 size = Vector2(108, 231)
@@ -32,6 +34,9 @@ size = Vector2(295.427, 485.079)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8fpj"]
 size = Vector2(25.6006, 29.2197)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgxbu"]
+size = Vector2(69, 215)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pc8e0"]
 size = Vector2(44.6515, 43.5145)
@@ -225,48 +230,59 @@ texture = ExtResource("8_8mi18")
 position = Vector2(0.853357, 0.768982)
 shape = SubResource("RectangleShape2D_q8fpj")
 
-[node name="Box Pile" type="CanvasGroup" parent="."]
+[node name="Box Pile" type="Node2D" parent="."]
+
+[node name="HurtboxComponent" parent="Box Pile" instance=ExtResource("12_yr5qb")]
+position = Vector2(253, -26)
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="Box Pile/HurtboxComponent"]
+position = Vector2(-0.5, -74.5)
+shape = SubResource("RectangleShape2D_cgxbu")
+
+[node name="HealthComponent" parent="Box Pile" instance=ExtResource("11_cmfeb")]
+
+[node name="Box Pile" type="CanvasGroup" parent="Box Pile"]
 position = Vector2(259, -50)
 rotation = 1.5708
 scale = Vector2(1.11978, 1.17202)
 
-[node name="Box" type="Sprite2D" parent="Box Pile"]
+[node name="Box" type="Sprite2D" parent="Box Pile/Box Pile"]
 position = Vector2(22.3257, 5.97258)
 texture = ExtResource("6_hikop")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Box Pile/Box"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Box Pile/Box Pile/Box"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Box Pile/Box/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box Pile/Box Pile/Box/StaticBody2D"]
 position = Vector2(0.89303, 0)
 shape = SubResource("RectangleShape2D_pc8e0")
 
-[node name="Box2" type="Sprite2D" parent="Box Pile"]
+[node name="Box2" type="Sprite2D" parent="Box Pile/Box Pile"]
 position = Vector2(-21.4327, 5.97258)
 texture = ExtResource("6_hikop")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Box Pile/Box2"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Box Pile/Box Pile/Box2"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Box Pile/Box2/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box Pile/Box Pile/Box2/StaticBody2D"]
 position = Vector2(0.401747, -0.106659)
 shape = SubResource("RectangleShape2D_pc8e0")
 
-[node name="Box3" type="Sprite2D" parent="Box Pile"]
+[node name="Box3" type="Sprite2D" parent="Box Pile/Box Pile"]
 position = Vector2(-65.1912, 5.97258)
 texture = ExtResource("6_hikop")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Box Pile/Box3"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Box Pile/Box Pile/Box3"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Box Pile/Box3/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box Pile/Box Pile/Box3/StaticBody2D"]
 position = Vector2(0.401747, -0.106659)
 shape = SubResource("RectangleShape2D_pc8e0")
 
-[node name="Box4" type="Sprite2D" parent="Box Pile"]
+[node name="Box4" type="Sprite2D" parent="Box Pile/Box Pile"]
 position = Vector2(-108.95, 5.97258)
 texture = ExtResource("6_hikop")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Box Pile/Box4"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Box Pile/Box Pile/Box4"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Box Pile/Box4/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box Pile/Box Pile/Box4/StaticBody2D"]
 position = Vector2(-1.52588e-05, -0.106659)
 shape = SubResource("RectangleShape2D_pc8e0")
 
