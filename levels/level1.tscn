@@ -354,3 +354,5 @@ layer_0/tile_data = PackedInt32Array(-262148, 0, 23, -327655, 0, 23)
 stream = ExtResource("1_3hven")
 volume_db = -10.0
 autoplay = true
+
+[connection signal="area_entered" from="Warp To Level 2" to="HeroesController" method="_on_warp_to_area_2_area_entered"]
