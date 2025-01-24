@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://scenes/heroes/abilities/bakudan_ability.gd" id="1_u7ull"]
 
-[node name="BakudanAbility" type="Node2D"]
+[node name="BakudanAbility" type="Node2D" groups=["Explosion"]]
 script = ExtResource("1_u7ull")

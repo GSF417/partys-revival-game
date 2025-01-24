@@ -5,6 +5,7 @@
 [node name="100Tons" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("1_ptf6k")
 hframes = 20
 vframes = 20

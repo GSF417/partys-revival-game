@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ilkc5c2ck0kt"]
+[gd_scene load_steps=26 format=3 uid="uid://ilkc5c2ck0kt"]
 
 [ext_resource type="AudioStream" uid="uid://dinrpl5akdt6o" path="res://sounds/music.mp3" id="1_3hven"]
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_igg3o"]
@@ -29,17 +29,23 @@ gradient = SubResource("Gradient_xfk58")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8c2kw"]
 size = Vector2(824.089, 536.144)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuhb0"]
-size = Vector2(295.427, 485.079)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8fpj"]
 size = Vector2(25.6006, 29.2197)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ii0ob"]
+size = Vector2(914.276, 255.304)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgxbu"]
 size = Vector2(69, 215)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pc8e0"]
 size = Vector2(44.6515, 43.5145)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuhb0"]
+size = Vector2(295.427, 485.079)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dc3bh"]
+size = Vector2(147, 97)
 
 [node name="Main" type="Node2D"]
 
@@ -107,133 +113,108 @@ position = Vector2(304.759, 161.69)
 scale = Vector2(1, 0.999999)
 shape = SubResource("RectangleShape2D_8c2kw")
 
-[node name="Stone Barricade" type="CanvasGroup" parent="."]
-position = Vector2(633, 2)
-rotation = 1.5708
-scale = Vector2(1.31241, 1.31241)
+[node name="Vine Barricade" type="Node2D" parent="."]
+position = Vector2(721.249, 127)
+rotation = -3.14159
+scale = Vector2(0.160783, 0.117506)
 
-[node name="Rocks" type="Sprite2D" parent="Stone Barricade"]
-position = Vector2(96.0065, 2.28585)
-rotation = 1.5708
-scale = Vector2(0.12251, 0.0895349)
-texture = ExtResource("8_31ibb")
+[node name="Vine Barricade" type="CanvasGroup" parent="Vine Barricade"]
+position = Vector2(548.877, 1063.77)
+rotation = -1.5708
+scale = Vector2(11.1688, 8.1626)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Stone Barricade/Rocks"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone Barricade/Rocks/StaticBody2D"]
-position = Vector2(4.66455, 8.51013)
-shape = SubResource("RectangleShape2D_iuhb0")
-
-[node name="Rocks2" type="Sprite2D" parent="Stone Barricade"]
-position = Vector2(96.0065, -32.7641)
-rotation = 1.5708
-scale = Vector2(0.12251, 0.0895349)
-texture = ExtResource("8_31ibb")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Stone Barricade/Rocks2"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone Barricade/Rocks2/StaticBody2D"]
-position = Vector2(4.66455, 8.51013)
-shape = SubResource("RectangleShape2D_iuhb0")
-
-[node name="Rocks3" type="Sprite2D" parent="Stone Barricade"]
-position = Vector2(96.0065, -67.8141)
-rotation = 1.5708
-scale = Vector2(0.12251, 0.0895349)
-texture = ExtResource("8_31ibb")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Stone Barricade/Rocks3"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone Barricade/Rocks3/StaticBody2D"]
-position = Vector2(4.66455, 8.51013)
-shape = SubResource("RectangleShape2D_iuhb0")
-
-[node name="Vine Barricade" type="CanvasGroup" parent="."]
-position = Vector2(633, 2)
-rotation = 1.5708
-scale = Vector2(1.31241, 1.31241)
-
-[node name="Vine" type="Sprite2D" parent="Vine Barricade"]
+[node name="Vine" type="Sprite2D" parent="Vine Barricade/Vine Barricade"]
 position = Vector2(6.8576, 11.4293)
 scale = Vector2(0.446447, 0.495459)
 texture = ExtResource("8_8mi18")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine Barricade/Vine"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine Barricade/Vine/StaticBody2D"]
 position = Vector2(0.853357, 0.768982)
 shape = SubResource("RectangleShape2D_q8fpj")
 
-[node name="Vine2" type="Sprite2D" parent="Vine Barricade"]
+[node name="Vine2" type="Sprite2D" parent="Vine Barricade/Vine Barricade"]
 position = Vector2(6.8576, -3.04784)
 scale = Vector2(0.446447, 0.495459)
 texture = ExtResource("8_8mi18")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine2"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine Barricade/Vine2"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine2/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine Barricade/Vine2/StaticBody2D"]
 position = Vector2(0.853357, 0.768982)
 shape = SubResource("RectangleShape2D_q8fpj")
 
-[node name="Vine3" type="Sprite2D" parent="Vine Barricade"]
+[node name="Vine3" type="Sprite2D" parent="Vine Barricade/Vine Barricade"]
 position = Vector2(6.8576, -17.525)
 scale = Vector2(0.446447, 0.495459)
 texture = ExtResource("8_8mi18")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine3"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine Barricade/Vine3"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine3/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine Barricade/Vine3/StaticBody2D"]
 position = Vector2(0.853357, 0.768982)
 shape = SubResource("RectangleShape2D_q8fpj")
 
-[node name="Vine4" type="Sprite2D" parent="Vine Barricade"]
+[node name="Vine4" type="Sprite2D" parent="Vine Barricade/Vine Barricade"]
 position = Vector2(6.8576, -32.0022)
 scale = Vector2(0.446447, 0.495459)
 texture = ExtResource("8_8mi18")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine4"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine Barricade/Vine4"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine4/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine Barricade/Vine4/StaticBody2D"]
 position = Vector2(0.853357, 0.768982)
 shape = SubResource("RectangleShape2D_q8fpj")
 
-[node name="Vine5" type="Sprite2D" parent="Vine Barricade"]
+[node name="Vine5" type="Sprite2D" parent="Vine Barricade/Vine Barricade"]
 position = Vector2(6.8576, -46.4793)
 scale = Vector2(0.446447, 0.495459)
 texture = ExtResource("8_8mi18")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine5"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine Barricade/Vine5"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine5/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine Barricade/Vine5/StaticBody2D"]
 position = Vector2(0.853357, 0.768982)
 shape = SubResource("RectangleShape2D_q8fpj")
 
-[node name="Vine6" type="Sprite2D" parent="Vine Barricade"]
+[node name="Vine6" type="Sprite2D" parent="Vine Barricade/Vine Barricade"]
 position = Vector2(6.8576, -60.9565)
 scale = Vector2(0.446447, 0.495459)
 texture = ExtResource("8_8mi18")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine6"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine Barricade/Vine6"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine6/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine Barricade/Vine6/StaticBody2D"]
 position = Vector2(0.853357, 0.768982)
 shape = SubResource("RectangleShape2D_q8fpj")
 
-[node name="Vine7" type="Sprite2D" parent="Vine Barricade"]
+[node name="Vine7" type="Sprite2D" parent="Vine Barricade/Vine Barricade"]
 position = Vector2(6.8576, -74.6717)
 scale = Vector2(0.446447, 0.495459)
 texture = ExtResource("8_8mi18")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine7"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Vine Barricade/Vine Barricade/Vine7"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine7/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/Vine Barricade/Vine7/StaticBody2D"]
 position = Vector2(0.853357, 0.768982)
 shape = SubResource("RectangleShape2D_q8fpj")
 
+[node name="HurtboxComponent" parent="Vine Barricade" node_paths=PackedStringArray("health_component") instance=ExtResource("12_yr5qb")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine Barricade/HurtboxComponent"]
+position = Vector2(284.541, 987.183)
+shape = SubResource("RectangleShape2D_ii0ob")
+
+[node name="HealthComponent" parent="Vine Barricade" instance=ExtResource("11_cmfeb")]
+
 [node name="Box Pile" type="Node2D" parent="."]
 
-[node name="HurtboxComponent" parent="Box Pile" instance=ExtResource("12_yr5qb")]
+[node name="HurtboxComponent" parent="Box Pile" node_paths=PackedStringArray("health_component") instance=ExtResource("12_yr5qb")]
 position = Vector2(253, -26)
+health_component = NodePath("../HealthComponent")
+fire_invulnerable = true
 
 [node name="HurtboxShape" type="CollisionShape2D" parent="Box Pile/HurtboxComponent"]
 position = Vector2(-0.5, -74.5)
@@ -285,6 +266,60 @@ texture = ExtResource("6_hikop")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Box Pile/Box Pile/Box4/StaticBody2D"]
 position = Vector2(-1.52588e-05, -0.106659)
 shape = SubResource("RectangleShape2D_pc8e0")
+
+[node name="Stone Barricade" type="Node2D" parent="."]
+
+[node name="Stone Barricade" type="CanvasGroup" parent="Stone Barricade"]
+position = Vector2(633, 2)
+rotation = 1.5708
+scale = Vector2(1.31241, 1.31241)
+
+[node name="Rocks" type="Sprite2D" parent="Stone Barricade/Stone Barricade"]
+position = Vector2(96.0065, 2.28585)
+rotation = 1.5708
+scale = Vector2(0.12251, 0.0895349)
+texture = ExtResource("8_31ibb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Stone Barricade/Stone Barricade/Rocks"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone Barricade/Stone Barricade/Rocks/StaticBody2D"]
+position = Vector2(4.66455, 8.51013)
+shape = SubResource("RectangleShape2D_iuhb0")
+
+[node name="Rocks2" type="Sprite2D" parent="Stone Barricade/Stone Barricade"]
+position = Vector2(96.0065, -32.7641)
+rotation = 1.5708
+scale = Vector2(0.12251, 0.0895349)
+texture = ExtResource("8_31ibb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Stone Barricade/Stone Barricade/Rocks2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone Barricade/Stone Barricade/Rocks2/StaticBody2D"]
+position = Vector2(4.66455, 8.51013)
+shape = SubResource("RectangleShape2D_iuhb0")
+
+[node name="Rocks3" type="Sprite2D" parent="Stone Barricade/Stone Barricade"]
+position = Vector2(96.0065, -67.8141)
+rotation = 1.5708
+scale = Vector2(0.12251, 0.0895349)
+texture = ExtResource("8_31ibb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Stone Barricade/Stone Barricade/Rocks3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone Barricade/Stone Barricade/Rocks3/StaticBody2D"]
+position = Vector2(4.66455, 8.51013)
+shape = SubResource("RectangleShape2D_iuhb0")
+
+[node name="HealthComponent" parent="Stone Barricade" instance=ExtResource("11_cmfeb")]
+
+[node name="HurtboxComponent" parent="Stone Barricade" node_paths=PackedStringArray("health_component") instance=ExtResource("12_yr5qb")]
+health_component = NodePath("../HealthComponent")
+fire_invulnerable = true
+cut_invulnerable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone Barricade/HurtboxComponent"]
+position = Vector2(674.5, 113.5)
+shape = SubResource("RectangleShape2D_dc3bh")
 
 [node name="Ground" type="TileMap" parent="."]
 tile_set = ExtResource("6_c1git")
