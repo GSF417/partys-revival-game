@@ -1,3 +1,47 @@
-[gd_scene format=3 uid="uid://c7guhmawub6ja"]
+[gd_scene load_steps=7 format=3 uid="uid://c7guhmawub6ja"]
+
+[ext_resource type="Script" path="res://scripts/lever.gd" id="1_uq1lq"]
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_wafra"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acipe"]
+atlas = ExtResource("2_wafra")
+region = Rect2(896, 704, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2hqk"]
+atlas = ExtResource("2_wafra")
+region = Rect2(832, 704, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_meb8c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acipe")
+}],
+"loop": true,
+"name": &"activated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2hqk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8sc18"]
+radius = 81.0247
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_uq1lq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_meb8c")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8sc18")
