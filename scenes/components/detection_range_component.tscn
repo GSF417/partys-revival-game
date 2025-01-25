@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh3uhsd7vk6cg"]
+
+[ext_resource type="Script" path="res://scripts/detection_range.gd" id="1_xqdt8"]
+
+[node name="DetectionRange" type="Area2D"]
+script = ExtResource("1_xqdt8")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]

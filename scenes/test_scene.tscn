@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqma5155js3iu"]
+[gd_scene load_steps=10 format=3 uid="uid://bqma5155js3iu"]
 
 [ext_resource type="PackedScene" uid="uid://dll64ogrgpcpo" path="res://scenes/heroes/hero_tobu.tscn" id="1_obq7x"]
 [ext_resource type="Texture2D" uid="uid://yl6oq83sjjw1" path="res://icon.svg" id="2_65xul"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c4lw1o0a5u8ri" path="res://scenes/heroes/hero_kinroy.tscn" id="5_ay4gt"]
 [ext_resource type="PackedScene" uid="uid://0b0n7gs3rbil" path="res://scenes/heroes/hero_bakudan.tscn" id="6_445ad"]
 [ext_resource type="PackedScene" uid="uid://c7guhmawub6ja" path="res://scenes/objects/lever.tscn" id="7_klxls"]
+[ext_resource type="PackedScene" uid="uid://cwthhov5107qg" path="res://scenes/enemies/biter.tscn" id="8_ybbqb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l2adv"]
 size = Vector2(128, 64)
@@ -46,3 +47,6 @@ position = Vector2(-1, 18)
 
 [node name="Lever" parent="." instance=ExtResource("7_klxls")]
 position = Vector2(203, 38)
+
+[node name="Biter" parent="." instance=ExtResource("8_ybbqb")]
+position = Vector2(449, 43)

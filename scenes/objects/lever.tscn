@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7guhmawub6ja"]
+[gd_scene load_steps=8 format=3 uid="uid://c7guhmawub6ja"]
 
 [ext_resource type="Script" path="res://scripts/lever.gd" id="1_uq1lq"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_wafra"]
+[ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="3_bvnh3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_acipe"]
 atlas = ExtResource("2_wafra")
@@ -41,11 +42,6 @@ texture_filter = 1
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_meb8c")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_8sc18")
-
 [node name="Arrow" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
@@ -55,5 +51,7 @@ hframes = 20
 vframes = 20
 frame = 237
 
-[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
-[connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]
+[node name="DetectionRange" parent="." instance=ExtResource("3_bvnh3")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_8sc18")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnc11yhf7373u"]
+[gd_scene load_steps=8 format=3 uid="uid://bnc11yhf7373u"]
 
 [ext_resource type="Script" path="res://scenes/heroes/abilities/yari_slash_instance.gd" id="1_o1jfv"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_6h5fx"]
@@ -6,19 +6,33 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_tix80"]
 radius = 37.1214
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_klcl8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mreqe"]
 atlas = ExtResource("2_6h5fx")
-region = Rect2(0, 192, 64, 64)
+region = Rect2(192, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn000"]
+atlas = ExtResource("2_6h5fx")
+region = Rect2(256, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b337"]
+atlas = ExtResource("2_6h5fx")
+region = Rect2(320, 640, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_smktr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_klcl8")
+"texture": SubResource("AtlasTexture_mreqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn000")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7b337")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 15.0
 }]
 
 [node name="Slash" type="Node2D"]
@@ -30,12 +44,14 @@ script = ExtResource("1_o1jfv")
 shape = SubResource("CircleShape2D_tix80")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.25
 one_shot = true
 autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_smktr")
+frame = 2
+frame_progress = 1.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

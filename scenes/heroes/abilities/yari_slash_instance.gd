@@ -7,7 +7,12 @@ var flipLeft
 
 # Called when the node enters the scene tree for the first time.
 
+func _ready() -> void:
+	if sprite != null:
+		sprite.flip_h = flipLeft
+
 func _process(delta: float):
+	sprite.play()
 	if sprite != null:
 		sprite.flip_h = flipLeft
 

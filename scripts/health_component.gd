@@ -10,7 +10,11 @@ func _ready():
 
 
 func suffer_damage():
-	get_parent().queue_free()
+	var parent = get_parent()
+	if parent.has_method("die"):
+		parent.die()
+	else:
+		parent.queue_free()
 	#health -= 2
 	#
 	#if health <= 0 && get_parent().has_method("die"):

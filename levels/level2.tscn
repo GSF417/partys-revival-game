@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://nuxnyfvrk8iu"]
 
-[ext_resource type="PackedScene" uid="uid://cwthhov5107qg" path="res://scenes/enemies/mordedor.tscn" id="1_8rdgr"]
+[ext_resource type="PackedScene" uid="uid://cwthhov5107qg" path="res://scenes/enemies/biter.tscn" id="1_8rdgr"]
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_xle22"]
 [ext_resource type="PackedScene" uid="uid://dll64ogrgpcpo" path="res://scenes/heroes/hero_tobu.tscn" id="2_e1hlb"]
 [ext_resource type="PackedScene" uid="uid://c7guhmawub6ja" path="res://scenes/objects/lever.tscn" id="2_lixil"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://0b0n7gs3rbil" path="res://scenes/heroes/hero_bakudan.tscn" id="5_1w3tr"]
 [ext_resource type="TileSet" uid="uid://5gmlxuui744x" path="res://levels/tilesets/cave_tileset.tres" id="6_j74p8"]
 [ext_resource type="Texture2D" uid="uid://4e5hq8h3we6g" path="res://levels/assets/Cave_Background_1.png" id="7_tkcsk"]
-[ext_resource type="PackedScene" uid="uid://canyhltdfqw6m" path="res://scenes/enemies/foice.tscn" id="10_xj2gj"]
+[ext_resource type="PackedScene" uid="uid://canyhltdfqw6m" path="res://scenes/enemies/reaper.tscn" id="10_xj2gj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1pyr"]
 size = Vector2(108, 326.5)
