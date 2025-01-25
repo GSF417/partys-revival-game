@@ -15,7 +15,7 @@ height = 38.0
 radius = 9.0
 height = 34.0
 
-[node name="HeroBakudan" type="CharacterBody2D" node_paths=PackedStringArray("hero_ability")]
+[node name="HeroBakudan" type="CharacterBody2D" node_paths=PackedStringArray("hero_ability") groups=["Explosion"]]
 position = Vector2(0, -13)
 script = ExtResource("1_l4ii1")
 hero_ability = NodePath("BakudanAbility")

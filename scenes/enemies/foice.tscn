@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://canyhltdfqw6m"]
+
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_87bwj"]
+
+[node name="Foice" type="Node2D"]
+
+[node name="Sprite" type="CanvasGroup" parent="."]
+
+[node name="Eye" type="Sprite2D" parent="Sprite"]
+texture_filter = 1
+texture = ExtResource("1_87bwj")
+hframes = 20
+vframes = 20
+frame = 120
+
+[node name="Sickle 1" type="Sprite2D" parent="Sprite"]
+texture_filter = 1
+position = Vector2(-45, -17)
+texture = ExtResource("1_87bwj")
+hframes = 20
+vframes = 20
+frame = 124
+
+[node name="Sickle 2" type="Sprite2D" parent="Sprite"]
+texture_filter = 1
+position = Vector2(20, -45)
+rotation = 1.5708
+texture = ExtResource("1_87bwj")
+hframes = 20
+vframes = 20
+frame = 124
+
+[node name="Sickle 3" type="Sprite2D" parent="Sprite"]
+texture_filter = 1
+position = Vector2(47, 18)
+rotation = -3.14159
+texture = ExtResource("1_87bwj")
+hframes = 20
+vframes = 20
+frame = 124
+
+[node name="Sickle 4" type="Sprite2D" parent="Sprite"]
+texture_filter = 1
+position = Vector2(-19, 45)
+rotation = -1.5708
+texture = ExtResource("1_87bwj")
+hframes = 20
+vframes = 20
+frame = 124

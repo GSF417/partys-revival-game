@@ -51,3 +51,9 @@ func _process(delta: float) -> void:
 func end_game():
 	# TO DO: Create an end game screen
 	get_tree().reload_current_scene()
+	
+func _on_warp_to_area_2_area_entered(area):
+	get_tree().change_scene_to_file("res://levels/level2.tscn")
+
+func _on_warp_to_area_3_area_entered(area):
+	pass # Replace with function body.
