@@ -15,6 +15,8 @@ var jump_height : int = -600
 var direction = 0
 var lookLeft = false
 
+var interactables_list = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -41,6 +43,17 @@ func jump():
 	if Input.is_action_just_pressed("MoveUp") and is_on_floor():
 		#jump_sfx.play()
 		velocity.y = jump_height
+
+func addInteractable(interactable):
+	if interactable.has_method("interact"):
+		interactables_list.append(interactable)
+
+func removeInteractable(interactable):
+	interactables_list.erase(interactable)
+	
+func interactWithAll():
+	for interactable in interactables_list:
+		interactable.interact()
 
 func useAbility():
 	if hero_ability != null and Input.is_action_just_pressed("ExecuteAction"):
