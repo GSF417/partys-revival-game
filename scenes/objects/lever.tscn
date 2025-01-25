@@ -46,5 +46,14 @@ sprite_frames = SubResource("SpriteFrames_meb8c")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_8sc18")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -42)
+texture = ExtResource("2_wafra")
+hframes = 20
+vframes = 20
+frame = 237
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]

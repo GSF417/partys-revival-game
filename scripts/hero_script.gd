@@ -16,6 +16,7 @@ var direction = 0
 var lookLeft = false
 
 var interactables_list = []
+var interactables_num = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,17 +47,22 @@ func jump():
 
 func addInteractable(interactable):
 	if interactable.has_method("interact"):
+		interactables_num = interactables_num + 1
 		interactables_list.append(interactable)
 
 func removeInteractable(interactable):
-	interactables_list.erase(interactable)
+	if interactable.has_method("interact"):
+		interactables_num = interactables_num - 1
+		interactables_list.erase(interactable)
 	
 func interactWithAll():
 	for interactable in interactables_list:
 		interactable.interact()
 
 func useAbility():
-	if hero_ability != null and Input.is_action_just_pressed("ExecuteAction"):
+	if interactables_num > 0 and Input.is_action_just_pressed("ExecuteAction"):
+		interactWithAll()
+	elif hero_ability != null and Input.is_action_just_pressed("ExecuteAction"):
 		hero_ability.execute(lookLeft)
 
 func checkForActions():

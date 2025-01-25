@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5fy2lt00i7b0"]
+
+[ext_resource type="Script" path="res://scripts/warp_script.gd" id="1_oknt1"]
+
+[node name="Warp Instance" type="Area2D"]
+script = ExtResource("1_oknt1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
