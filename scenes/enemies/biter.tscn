@@ -134,19 +134,19 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_itrsb"]
 advance_mode = 2
-advance_expression = "moving == true"
+advance_expression = "moving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_71asl"]
 advance_mode = 2
-advance_expression = "dead == true"
+advance_expression = "dead"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8sa6i"]
 advance_mode = 2
-advance_expression = "dead == true"
+advance_expression = "dead"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s5411"]
 advance_mode = 2
-advance_expression = "moving == false"
+advance_expression = "!moving"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yqfyn"]
 states/dying/node = SubResource("AnimationNodeAnimation_8bpo2")
