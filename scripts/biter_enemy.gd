@@ -18,14 +18,14 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var hitbox_component_col = $HitboxComponent/CollisionShape2D
 @onready var detection_range = $DetectionRange
 @onready var timer = $Timer
-@onready var sprite = $AnimatedSprite2D
+@onready var sprite = $Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
 func chase(target: HeroEntity):
-	direction = position.direction_to(detection_range.lastToEnter.position)
+	direction = position.direction_to(target.position)
 	if not stays_in_place:
 		moving = true
 	if direction.x < 0:
@@ -41,16 +41,16 @@ func chase(target: HeroEntity):
 func _process(delta: float) -> void:
 	if detection_range == null:
 		return
-	var nearby_heroes = detection_range.nearby_heroes
+	var nearby_heroes = detection_range.heroes_count()
 	if nearby_heroes > 0 and not dead:
-		chase(detection_range.lastToEnter)
+		chase(detection_range.last_to_enter())
 	else:
 		direction.x = 0
 		
 func _physics_process(delta: float) -> void:
 	sprite.flip_h = lookLeft
-	animation_tree.set("parameters/conditions/idle", !moving)
-	animation_tree.set("parameters/conditions/moving", moving)
+	animation_tree.set("parameters/conditions/idle", !moving and !jumping)
+	animation_tree.set("parameters/conditions/moving", moving or jumping)
 	animation_tree.set("parameters/conditions/dead", dead)
 	if moving:
 		velocity.x = direction.x * SPEED

@@ -15,7 +15,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if detection_range == null:
 		return
-	var nearby_heroes = detection_range.nearby_heroes
+	var nearby_heroes = detection_range.heroes_count()
 	if nearby_heroes > 0 and not activated:
 		sprite_arrow.visible = true
 	else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://canyhltdfqw6m"]
+[gd_scene load_steps=21 format=3 uid="uid://canyhltdfqw6m"]
 
 [ext_resource type="Script" path="res://scripts/reaper_enemy.gd" id="1_76qhk"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_saprp"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="3_mfp8l"]
 [ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="4_hw4q0"]
 [ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="5_abh16"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88fpi"]
+size = Vector2(26, 27)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u6yy2"]
 radius = 63.0079
@@ -225,15 +228,20 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ow66"]
 advance_mode = 2
+advance_expression = "detected_hero"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3gu8s"]
+advance_mode = 2
+advance_expression = "!detected_hero"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4jhto"]
 states/hero_detected/node = SubResource("AnimationNodeAnimation_kx72o")
 states/hero_detected/position = Vector2(501, 86)
 states/idle/node = SubResource("AnimationNodeAnimation_17kqv")
 states/idle/position = Vector2(344, 86)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_5851o"), "idle", "hero_detected", SubResource("AnimationNodeStateMachineTransition_2ow66")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_5851o"), "idle", "hero_detected", SubResource("AnimationNodeStateMachineTransition_2ow66"), "hero_detected", "idle", SubResource("AnimationNodeStateMachineTransition_3gu8s")]
 
-[node name="Reaper" type="Node2D"]
+[node name="Reaper" type="StaticBody2D"]
 script = ExtResource("1_76qhk")
 
 [node name="Sprite" type="CanvasGroup" parent="."]
@@ -280,6 +288,10 @@ hframes = 20
 vframes = 20
 frame = 124
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_88fpi")
+
 [node name="HitboxComponent" parent="." instance=ExtResource("2_g22qr")]
 position = Vector2(1, 0)
 monitoring = false
@@ -313,4 +325,5 @@ libraries = {
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_4jhto")
+advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
