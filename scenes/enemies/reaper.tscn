@@ -1,8 +1,240 @@
-[gd_scene load_steps=2 format=3 uid="uid://canyhltdfqw6m"]
+[gd_scene load_steps=19 format=3 uid="uid://canyhltdfqw6m"]
 
+[ext_resource type="Script" path="res://scripts/reaper_enemy.gd" id="1_76qhk"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_saprp"]
+[ext_resource type="PackedScene" uid="uid://b1fyjsi227yrw" path="res://scenes/components/hitbox_component.tscn" id="2_g22qr"]
+[ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="3_mfp8l"]
+[ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="4_hw4q0"]
+[ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="5_abh16"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u6yy2"]
+radius = 63.0079
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q2u77"]
+radius = 53.0377
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r0mvg"]
+radius = 207.0
+
+[sub_resource type="Animation" id="Animation_1ut3c"]
+length = 0.001
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Eye:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [120]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/Sickle 1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [124]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/Sickle 2:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [124]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite/Sickle 3:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [124]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite/Sickle 4:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [124]
+}
+
+[sub_resource type="Animation" id="Animation_jrxtr"]
+resource_name = "hero_detected"
+step = 0.097
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Eye:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [121, 122]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/Sickle 1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [124, 125]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/Sickle 2:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [124, 125]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite/Sickle 3:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.01, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [124, 125]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite/Sickle 4:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [124, 125]
+}
+
+[sub_resource type="Animation" id="Animation_pft2p"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Eye:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [120]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/Sickle 1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [124]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/Sickle 2:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [124]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite/Sickle 3:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [124]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite/Sickle 4:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [124]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fgws1"]
+_data = {
+"RESET": SubResource("Animation_1ut3c"),
+"hero_detected": SubResource("Animation_jrxtr"),
+"idle": SubResource("Animation_pft2p")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kx72o"]
+animation = &"hero_detected"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_17kqv"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5851o"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ow66"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4jhto"]
+states/hero_detected/node = SubResource("AnimationNodeAnimation_kx72o")
+states/hero_detected/position = Vector2(501, 86)
+states/idle/node = SubResource("AnimationNodeAnimation_17kqv")
+states/idle/position = Vector2(344, 86)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_5851o"), "idle", "hero_detected", SubResource("AnimationNodeStateMachineTransition_2ow66")]
 
 [node name="Reaper" type="Node2D"]
+script = ExtResource("1_76qhk")
 
 [node name="Sprite" type="CanvasGroup" parent="."]
 
@@ -23,7 +255,7 @@ frame = 124
 
 [node name="Sickle 2" type="Sprite2D" parent="Sprite"]
 texture_filter = 1
-position = Vector2(20, -45)
+position = Vector2(18, -46)
 rotation = 1.5708
 texture = ExtResource("1_saprp")
 hframes = 20
@@ -47,3 +279,38 @@ texture = ExtResource("1_saprp")
 hframes = 20
 vframes = 20
 frame = 124
+
+[node name="HitboxComponent" parent="." instance=ExtResource("2_g22qr")]
+position = Vector2(1, 0)
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_u6yy2")
+debug_color = Color(1, 0.0136411, 0.00643604, 0.42)
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_mfp8l")]
+health_component = NodePath("../HealthComponent")
+fire_invulnerable = true
+enemy = true
+cut_invulnerable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_q2u77")
+debug_color = Color(0.451071, 0.595906, 1.92523e-07, 0.42)
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_hw4q0")]
+
+[node name="DetectionRange" parent="." instance=ExtResource("5_abh16")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_r0mvg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fgws1")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_4jhto")
+anim_player = NodePath("../AnimationPlayer")

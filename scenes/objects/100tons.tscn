@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://dccw2grb3ijjk"]
+[gd_scene load_steps=6 format=3 uid="uid://dccw2grb3ijjk"]
 
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_ptf6k"]
+[ext_resource type="Script" path="res://scripts/100_tons.gd" id="1_s3522"]
+[ext_resource type="PackedScene" uid="uid://b1fyjsi227yrw" path="res://scenes/components/hitbox_component.tscn" id="3_ytjth"]
 
-[node name="100Tons" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rx2cy"]
+size = Vector2(40, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eacdh"]
+size = Vector2(42, 9)
+
+[node name="100Tons" type="RigidBody2D"]
+freeze = true
+script = ExtResource("1_s3522")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -10,3 +20,16 @@ texture = ExtResource("1_ptf6k")
 hframes = 20
 vframes = 20
 frame = 235
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_rx2cy")
+
+[node name="HitboxComponent" parent="." groups=["Damage"] instance=ExtResource("3_ytjth")]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 15.5)
+shape = SubResource("RectangleShape2D_eacdh")
+debug_color = Color(0.99593, 0, 0.196349, 0.42)

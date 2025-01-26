@@ -16,12 +16,12 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, 
 	if body is HeroEntity:
 		lastToEnter = body
 		nearby_heroes = nearby_heroes + 1
-		body.addInteractable(self)
+		body.addInteractable(get_parent())
 
 func _on_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body is HeroEntity:
 		nearby_heroes = nearby_heroes - 1
-		body.removeInteractable(self)
+		body.removeInteractable(get_parent())
 	if nearby_heroes <= 0:
 		nearby_heroes = 0
 		lastToEnter = null

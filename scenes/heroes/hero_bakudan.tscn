@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://0b0n7gs3rbil"]
+[gd_scene load_steps=10 format=3 uid="uid://0b0n7gs3rbil"]
 
 [ext_resource type="Script" path="res://scripts/hero_bakudan.gd" id="1_l4ii1"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_piksm"]
@@ -8,8 +8,11 @@
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fx4hr"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i61de"]
-height = 38.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f6yw"]
+size = Vector2(9, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vj3r"]
+size = Vector2(2, 2)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8wwgh"]
 radius = 9.0
@@ -35,8 +38,12 @@ tree_root = SubResource("AnimationNodeStateMachine_fx4hr")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 13)
-shape = SubResource("CapsuleShape2D_i61de")
+position = Vector2(-1, 31)
+shape = SubResource("RectangleShape2D_1f6yw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_7vj3r")
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_p85lr")]
 health_component = NodePath("../HealthComponent")

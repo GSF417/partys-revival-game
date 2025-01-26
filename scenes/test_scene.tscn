@@ -27,7 +27,6 @@ texture = ExtResource("2_65xul")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
 position = Vector2(0, 32)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_l2adv")
 
 [node name="HeroTobu" parent="." instance=ExtResource("1_obq7x")]

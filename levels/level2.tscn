@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://nuxnyfvrk8iu"]
+[gd_scene load_steps=17 format=3 uid="uid://nuxnyfvrk8iu"]
 
 [ext_resource type="PackedScene" uid="uid://cwthhov5107qg" path="res://scenes/enemies/biter.tscn" id="1_8rdgr"]
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_xle22"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c7guhmawub6ja" path="res://scenes/objects/lever.tscn" id="2_lixil"]
 [ext_resource type="PackedScene" uid="uid://dccw2grb3ijjk" path="res://scenes/objects/100tons.tscn" id="3_d6msc"]
 [ext_resource type="PackedScene" uid="uid://dxthpkt8nu05i" path="res://scenes/heroes/hero_yari.tscn" id="3_edl3u"]
+[ext_resource type="PackedScene" uid="uid://dl678sxad8ayy" path="res://scenes/components/destroyer_component.tscn" id="4_fs6xw"]
 [ext_resource type="PackedScene" uid="uid://c4lw1o0a5u8ri" path="res://scenes/heroes/hero_kinroy.tscn" id="4_lx8tk"]
 [ext_resource type="PackedScene" uid="uid://idx7l3jlm8dn" path="res://scenes/objects/rope.tscn" id="4_uqkei"]
 [ext_resource type="PackedScene" uid="uid://0b0n7gs3rbil" path="res://scenes/heroes/hero_bakudan.tscn" id="5_1w3tr"]
@@ -26,11 +27,13 @@ sources/0 = SubResource("TileSetAtlasSource_iogt0")
 
 [node name="Main" type="Node2D"]
 
-[node name="Node2D" parent="." instance=ExtResource("2_lixil")]
-position = Vector2(453, -32)
+[node name="Lever" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_lixil")]
+position = Vector2(516, -20)
+target = NodePath("../Rope2/DestroyerComponent")
 
-[node name="100Tons" parent="." instance=ExtResource("3_d6msc")]
+[node name="100Tons" parent="." node_paths=PackedStringArray("supported_by") instance=ExtResource("3_d6msc")]
 position = Vector2(401, -217)
+supported_by = NodePath("../Rope2")
 
 [node name="Rope2" type="CanvasGroup" parent="."]
 position = Vector2(0, 4)
@@ -43,6 +46,8 @@ position = Vector2(401, -302)
 
 [node name="Rope3" parent="Rope2" instance=ExtResource("4_uqkei")]
 position = Vector2(400, -356)
+
+[node name="DestroyerComponent" parent="Rope2" instance=ExtResource("4_fs6xw")]
 
 [node name="WorldLeftBound" type="StaticBody2D" parent="."]
 position = Vector2(-1, 18)
@@ -75,9 +80,10 @@ position = Vector2(63, -30)
 position = Vector2(128, -30)
 
 [node name="Mordedor" parent="." instance=ExtResource("1_8rdgr")]
-position = Vector2(404, -32)
+position = Vector2(397, -14)
 rotation = 3.14159
 scale = Vector2(1, -1)
+stays_in_place = true
 
 [node name="Foice" parent="." instance=ExtResource("10_xj2gj")]
 position = Vector2(912, 4)

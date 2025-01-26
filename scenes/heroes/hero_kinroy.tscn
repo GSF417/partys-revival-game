@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4lw1o0a5u8ri"]
+[gd_scene load_steps=10 format=3 uid="uid://c4lw1o0a5u8ri"]
 
 [ext_resource type="Script" path="res://scripts/hero_kinroy.gd" id="1_8w6l6"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_qcxh3"]
@@ -7,14 +7,17 @@
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fx4hr"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i61de"]
-height = 38.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3qrm"]
+size = Vector2(10, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s0nca"]
 radius = 32.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08n0w"]
-radius = 8.0
+height = 40.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ll4ta"]
+size = Vector2(2, 2)
 
 [node name="HeroKinroy" type="CharacterBody2D"]
 position = Vector2(1, -13)
@@ -34,8 +37,8 @@ tree_root = SubResource("AnimationNodeStateMachine_fx4hr")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 13)
-shape = SubResource("CapsuleShape2D_i61de")
+position = Vector2(-1, 31)
+shape = SubResource("RectangleShape2D_c3qrm")
 
 [node name="FireAura" type="Area2D" parent="." groups=["Burning", "Damage", "Hero_Attack", "Hero_Slash"]]
 
@@ -54,3 +57,7 @@ shape = SubResource("CapsuleShape2D_08n0w")
 debug_color = Color(0.980392, 0.133333, 0, 0.419608)
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_qm3b0")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -5)
+shape = SubResource("RectangleShape2D_ll4ta")

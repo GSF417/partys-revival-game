@@ -25,6 +25,7 @@ Explosion=""
 Damage=""
 Hero_Attack=""
 Cut_Attack=""
+Enemy_Attack=""
 
 [input]
 
