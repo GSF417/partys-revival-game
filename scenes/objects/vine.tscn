@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://13ukgpfvownd"]
+
+[ext_resource type="Texture2D" uid="uid://4mn77u8t5s0w" path="res://levels/assets/obstacles/vines.png" id="1_2cvce"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cilvh"]
+size = Vector2(31, 32)
+
+[node name="Vine" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_2cvce")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_cilvh")

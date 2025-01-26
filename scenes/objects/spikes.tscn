@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5540jjp8iquv"]
+
+[ext_resource type="PackedScene" uid="uid://b1fyjsi227yrw" path="res://scenes/components/hitbox_component.tscn" id="1_8yll0"]
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_u5fed"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8wcmr"]
+size = Vector2(66, 35)
+
+[node name="Spikes" type="Node2D"]
+
+[node name="HitboxComponent" parent="." groups=["Damage"] instance=ExtResource("1_8yll0")]
+position = Vector2(1, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" groups=["Damage"]]
+position = Vector2(0, 13.5)
+shape = SubResource("RectangleShape2D_8wcmr")
+debug_color = Color(0.999838, 0, 0.0993215, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, -16)
+texture = ExtResource("1_u5fed")
+hframes = 20
+vframes = 20
+frame = 220

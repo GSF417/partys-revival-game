@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dctp4qgghvdhb"]
+
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_cg103"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0m6d2"]
+size = Vector2(66, 66)
+
+[node name="Web" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-3, -2)
+texture = ExtResource("1_cg103")
+hframes = 20
+vframes = 20
+frame = 232
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2, -1)
+shape = SubResource("RectangleShape2D_0m6d2")

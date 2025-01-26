@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7rb0xdma46b"]
+
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_3eodt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlkwy"]
+size = Vector2(66, 36)
+
+[node name="Rock" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_3eodt")
+hframes = 20
+vframes = 20
+frame = 260
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_jlkwy")
