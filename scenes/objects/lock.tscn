@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0fi0cvmqk3c"]
+
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_r4qin"]
+
+[node name="Lock" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_r4qin")
+hframes = 20
+vframes = 20
+frame = 227

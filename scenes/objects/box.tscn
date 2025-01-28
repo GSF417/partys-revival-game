@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf5ttisngp5q8"]
+
+[ext_resource type="Texture2D" uid="uid://bckh8lsoua5tj" path="res://levels/assets/obstacles/box.png" id="1_fabee"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7idbk"]
+size = Vector2(44.6515, 43.5145)
+
+[node name="Box" type="Node2D"]
+
+[node name="Box" type="Sprite2D" parent="."]
+position = Vector2(22.3257, 5.97258)
+texture = ExtResource("1_fabee")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Box"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box/StaticBody2D"]
+position = Vector2(0.89303, 0)
+shape = SubResource("RectangleShape2D_7idbk")

@@ -14,6 +14,8 @@ hframes = 20
 vframes = 20
 frame = 260
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 14)
 shape = SubResource("RectangleShape2D_jlkwy")
