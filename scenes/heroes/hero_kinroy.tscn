@@ -20,6 +20,7 @@ size = Vector2(2, 2)
 
 [node name="HeroKinroy" type="CharacterBody2D"]
 position = Vector2(1, -13)
+collision_layer = 2
 script = ExtResource("1_8w6l6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

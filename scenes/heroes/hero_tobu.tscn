@@ -50,6 +50,7 @@ height = 68.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8v1y"]
 
 [node name="HeroTobu" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_to5ir")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

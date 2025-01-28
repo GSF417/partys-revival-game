@@ -16,6 +16,7 @@ height = 38.0
 
 [node name="HeroBakudan" type="CharacterBody2D" node_paths=PackedStringArray("hero_ability") groups=["Explosion"]]
 position = Vector2(0, -13)
+collision_layer = 2
 script = ExtResource("1_l4ii1")
 hero_ability = NodePath("BakudanAbility")
 
