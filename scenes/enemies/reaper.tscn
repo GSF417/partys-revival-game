@@ -292,7 +292,7 @@ frame = 124
 position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_88fpi")
 
-[node name="HitboxComponent" parent="." instance=ExtResource("2_g22qr")]
+[node name="HitboxComponent" parent="." groups=["Damage", "Enemy_Attack"] instance=ExtResource("2_g22qr")]
 position = Vector2(1, 0)
 monitoring = false
 monitorable = false

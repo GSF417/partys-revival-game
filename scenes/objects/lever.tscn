@@ -52,6 +52,7 @@ vframes = 20
 frame = 237
 
 [node name="DetectionRange" parent="." instance=ExtResource("3_bvnh3")]
+interactable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
 shape = SubResource("CircleShape2D_8sc18")

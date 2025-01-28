@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8evgc6jmxts4"]
+
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_7adh1"]
+[ext_resource type="Script" path="res://scripts/missile.gd" id="1_wnh7l"]
+[ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="3_c8f2o"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yp5ut"]
+radius = 3.65854
+height = 7.31707
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evcpj"]
+radius = 9.0
+height = 18.0
+
+[node name="Missile" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_wnh7l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -6)
+texture = ExtResource("1_7adh1")
+hframes = 20
+vframes = 20
+frame = 224
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5.48, 1.64)
+shape = SubResource("CapsuleShape2D_yp5ut")
+
+[node name="DetectionRange" parent="." node_paths=PackedStringArray("triggerable") instance=ExtResource("3_c8f2o")]
+triggerable = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+scale = Vector2(3.30421, 0.764093)
+shape = SubResource("CapsuleShape2D_evcpj")
+debug_color = Color(0.7, 0, 0, 0.419608)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

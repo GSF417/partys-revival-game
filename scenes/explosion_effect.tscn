@@ -33,6 +33,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_51k2t"]
+radius = 39.0512
 
 [node name="ExplosionEffect" type="Area2D" groups=["Damage", "Explosion"]]
 script = ExtResource("1_bn5gc")

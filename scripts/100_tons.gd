@@ -10,4 +10,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if supported_by == null:
 		self.freeze = false
+	if linear_velocity.y > 10:
 		hitbox_component.monitorable = true
+	else:
+		hitbox_component.monitorable = false
+	

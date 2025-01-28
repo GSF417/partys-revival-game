@@ -7,8 +7,7 @@
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fx4hr"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3qrm"]
-size = Vector2(10, 1)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bpu4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s0nca"]
 radius = 32.0
@@ -37,8 +36,9 @@ tree_root = SubResource("AnimationNodeStateMachine_fx4hr")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 31)
-shape = SubResource("RectangleShape2D_c3qrm")
+position = Vector2(-1, 15)
+scale = Vector2(0.680002, 1.72)
+shape = SubResource("RectangleShape2D_6bpu4")
 
 [node name="FireAura" type="Area2D" parent="." groups=["Burning", "Damage", "Hero_Attack", "Hero_Slash"]]
 

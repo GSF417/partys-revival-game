@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://nuxnyfvrk8iu"]
+[gd_scene load_steps=30 format=3 uid="uid://nuxnyfvrk8iu"]
 
 [ext_resource type="PackedScene" uid="uid://cwthhov5107qg" path="res://scenes/enemies/biter.tscn" id="1_8rdgr"]
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_xle22"]
@@ -12,14 +12,16 @@
 [ext_resource type="PackedScene" uid="uid://0b0n7gs3rbil" path="res://scenes/heroes/hero_bakudan.tscn" id="5_1w3tr"]
 [ext_resource type="TileSet" uid="uid://5gmlxuui744x" path="res://levels/tilesets/cave_tileset.tres" id="6_j74p8"]
 [ext_resource type="Texture2D" uid="uid://4e5hq8h3we6g" path="res://levels/assets/Cave_Background_1.png" id="7_tkcsk"]
-[ext_resource type="PackedScene" uid="uid://c5540jjp8iquv" path="res://scenes/objects/spikes.tscn" id="10_lmjwp"]
-[ext_resource type="PackedScene" uid="uid://13ukgpfvownd" path="res://scenes/objects/vine.tscn" id="10_rwtfs"]
+[ext_resource type="PackedScene" path="res://scenes/objects/spikes.tscn" id="10_lmjwp"]
+[ext_resource type="PackedScene" path="res://scenes/objects/vine.tscn" id="10_rwtfs"]
 [ext_resource type="PackedScene" uid="uid://canyhltdfqw6m" path="res://scenes/enemies/reaper.tscn" id="10_xj2gj"]
 [ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="11_fxvn7"]
 [ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="12_1y6l7"]
-[ext_resource type="PackedScene" uid="uid://dctp4qgghvdhb" path="res://scenes/objects/web.tscn" id="13_fxuw0"]
+[ext_resource type="PackedScene" path="res://scenes/objects/web.tscn" id="13_fxuw0"]
 [ext_resource type="AudioStream" uid="uid://dinrpl5akdt6o" path="res://sounds/music.mp3" id="19_65uyd"]
+[ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="20_nw8ts"]
 [ext_resource type="PackedScene" uid="uid://c5fy2lt00i7b0" path="res://scenes/objects/warp_instance.tscn" id="20_pah15"]
+[ext_resource type="PackedScene" uid="uid://cuily6pjelejh" path="res://scenes/objects/spawners/missile_spawner.tscn" id="21_wtri2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1pyr"]
 size = Vector2(108, 326.5)
@@ -38,6 +40,9 @@ texture = ExtResource("7_tkcsk")
 [sub_resource type="TileSet" id="TileSet_ajvm6"]
 sources/0 = SubResource("TileSetAtlasSource_iogt0")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lm7f7"]
+radius = 44.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8rbh"]
 size = Vector2(53, 69)
 
@@ -48,11 +53,11 @@ position = Vector2(516, -20)
 target = NodePath("../Rope2/DestroyerComponent")
 
 [node name="100Tons" parent="." node_paths=PackedStringArray("supported_by") instance=ExtResource("3_d6msc")]
-position = Vector2(401, -217)
+position = Vector2(401, -271)
 supported_by = NodePath("../Rope2")
 
 [node name="Rope2" type="CanvasGroup" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, -50)
 
 [node name="Rope" parent="Rope2" instance=ExtResource("4_uqkei")]
 position = Vector2(402, -248)
@@ -78,22 +83,6 @@ position = Vector2(693, 11)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldRightBound"]
 position = Vector2(1045, -131)
 shape = SubResource("RectangleShape2D_y1pyr")
-
-[node name="HeroesController" parent="." node_paths=PackedStringArray("players", "camera") instance=ExtResource("1_xle22")]
-players = [NodePath("../HeroTobu"), NodePath("../HeroYari"), NodePath("../HeroKinroy"), NodePath("../HeroBakudan")]
-camera = NodePath("../Camera2D")
-
-[node name="HeroTobu" parent="." instance=ExtResource("2_e1hlb")]
-position = Vector2(-1, -30)
-
-[node name="HeroYari" parent="." instance=ExtResource("3_edl3u")]
-position = Vector2(-42, -30)
-
-[node name="HeroKinroy" parent="." instance=ExtResource("4_lx8tk")]
-position = Vector2(63, -30)
-
-[node name="HeroBakudan" parent="." instance=ExtResource("5_1w3tr")]
-position = Vector2(128, -30)
 
 [node name="Vines" type="CanvasGroup" parent="."]
 z_index = 4
@@ -300,15 +289,6 @@ position = Vector2(941, 48)
 [node name="Spikes3" parent="Spikes" instance=ExtResource("10_lmjwp")]
 position = Vector2(1005, 48)
 
-[node name="Mordedor" parent="." instance=ExtResource("1_8rdgr")]
-position = Vector2(397, -14)
-rotation = 3.14159
-scale = Vector2(1, -1)
-stays_in_place = true
-
-[node name="Foice" parent="." instance=ExtResource("10_xj2gj")]
-position = Vector2(925, -63)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(41, 21)
 zoom = Vector2(1.5, 1.5)
@@ -334,10 +314,59 @@ tile_set = ExtResource("6_j74p8")
 format = 2
 layer_0/tile_data = PackedInt32Array(-1245181, 393216, 36, -1179645, 393216, 36, -1245180, 458752, 36, -1179644, 458752, 36, -1245183, 393216, 36, -1179647, 393216, 36, -1245182, 458752, 36, -1179646, 458752, 36, -1179649, 393216, 36, -1114113, 393216, 36, -1245184, 458752, 36, -1179648, 458752, 36, -1179651, 393216, 36, -1114115, 393216, 36, -1179650, 458752, 36, -1114114, 458752, 36, -1114109, 393216, 37, -1114108, 458752, 37, -1048573, 393216, 36, -983037, 393216, 37, -1048572, 458752, 36, -983036, 458752, 37, -1048575, 393216, 36, -983039, 393216, 37, -1048574, 458752, 36, -983038, 458752, 37, -983041, 393216, 36, -917505, 393216, 37, -1048576, 458752, 36, -983040, 458752, 37, -1048577, 393216, 37, -1114112, 458752, 37, -1048579, 393216, 37, -1048578, 458752, 37, -983043, 393216, 36, -917507, 393216, 37, -983042, 458752, 36, -917506, 458752, 37, -1114111, 393216, 37, -1114110, 458752, 37, -851971, 393216, 36, -786435, 393216, 37, -851970, 458752, 36, -786434, 458752, 37, -851969, 393216, 36, -786433, 393216, 37, -917504, 458752, 36, -851968, 458752, 37, -917503, 393216, 36, -851967, 393216, 37, -917502, 458752, 36, -851966, 458752, 37, -917501, 393216, 36, -851965, 393216, 37, -917500, 458752, 36, -851964, 458752, 37)
 
+[node name="HeroesController" parent="." node_paths=PackedStringArray("players", "camera") instance=ExtResource("1_xle22")]
+players = [NodePath("../HeroTobu"), NodePath("../HeroYari"), NodePath("../HeroKinroy"), NodePath("../HeroBakudan")]
+camera = NodePath("../Camera2D")
+
+[node name="HeroTobu" parent="." instance=ExtResource("2_e1hlb")]
+position = Vector2(-1, -30)
+
+[node name="HeroYari" parent="." instance=ExtResource("3_edl3u")]
+position = Vector2(-42, -30)
+
+[node name="HeroKinroy" parent="." instance=ExtResource("4_lx8tk")]
+position = Vector2(63, -30)
+
+[node name="HeroBakudan" parent="." instance=ExtResource("5_1w3tr")]
+position = Vector2(128, -30)
+
+[node name="Mordedor" parent="." instance=ExtResource("1_8rdgr")]
+position = Vector2(397, -14)
+rotation = 3.14159
+scale = Vector2(1, -1)
+stays_in_place = true
+
+[node name="Foice" parent="." instance=ExtResource("10_xj2gj")]
+position = Vector2(925, -63)
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_65uyd")
 volume_db = -10.0
 autoplay = true
+
+[node name="DetectionRange2" parent="." node_paths=PackedStringArray("triggerable") instance=ExtResource("20_nw8ts")]
+position = Vector2(1522, -45)
+triggerable = NodePath("MissileSpawner")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange2"]
+shape = SubResource("CircleShape2D_lm7f7")
+
+[node name="MissileSpawner" parent="DetectionRange2" instance=ExtResource("21_wtri2")]
+ammunition = 1
+travel_dir = -1
+spawn_offset = Vector2(200, 0)
+
+[node name="DetectionRange" parent="." node_paths=PackedStringArray("triggerable") instance=ExtResource("20_nw8ts")]
+position = Vector2(301, -162)
+triggerable = NodePath("MissileSpawner")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_lm7f7")
+
+[node name="MissileSpawner" parent="DetectionRange" instance=ExtResource("21_wtri2")]
+ammunition = 1
+travel_dir = -1
+spawn_offset = Vector2(300, -50)
 
 [node name="Warp Instance" parent="." instance=ExtResource("20_pah15")]
 warp_to = "res://levels/level3.tscn"

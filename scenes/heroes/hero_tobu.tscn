@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dll64ogrgpcpo"]
+[gd_scene load_steps=11 format=3 uid="uid://dll64ogrgpcpo"]
 
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_5bwuj"]
 [ext_resource type="Script" path="res://scripts/hero_tobu.gd" id="1_to5ir"]
@@ -47,11 +47,7 @@ _data = {
 radius = 21.0
 height = 68.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_coape"]
-size = Vector2(17, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vod5x"]
-size = Vector2(1, 1)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8v1y"]
 
 [node name="HeroTobu" type="CharacterBody2D"]
 script = ExtResource("1_to5ir")
@@ -85,9 +81,6 @@ debug_color = Color(0.980392, 0.133333, 0, 0.419608)
 [node name="HealthComponent" parent="." instance=ExtResource("4_yn46n")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 31)
-shape = SubResource("RectangleShape2D_coape")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, -25)
-shape = SubResource("RectangleShape2D_vod5x")
+position = Vector2(2, 2)
+scale = Vector2(1.2822, 2.86485)
+shape = SubResource("RectangleShape2D_v8v1y")
