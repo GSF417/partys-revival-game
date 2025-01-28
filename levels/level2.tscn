@@ -352,7 +352,7 @@ triggerable = NodePath("MissileSpawner")
 shape = SubResource("CircleShape2D_lm7f7")
 
 [node name="MissileSpawner" parent="DetectionRange2" instance=ExtResource("21_wtri2")]
-ammunition = 1
+ammunition = 2
 travel_dir = -1
 spawn_offset = Vector2(200, 0)
 

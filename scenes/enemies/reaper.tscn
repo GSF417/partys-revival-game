@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://canyhltdfqw6m"]
+[gd_scene load_steps=26 format=3 uid="uid://canyhltdfqw6m"]
 
 [ext_resource type="Script" path="res://scripts/reaper_enemy.gd" id="1_76qhk"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_saprp"]
@@ -18,6 +18,9 @@ radius = 53.0377
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r0mvg"]
 radius = 207.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3l1oo"]
+radius = 73.0616
 
 [sub_resource type="Animation" id="Animation_1ut3c"]
 length = 0.001
@@ -81,6 +84,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [124]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_jrxtr"]
@@ -210,12 +225,92 @@ tracks/4/keys = {
 "values": [124]
 }
 
+[sub_resource type="Animation" id="Animation_utm58"]
+resource_name = "attack"
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Eye:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [122, 121]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/Sickle 1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [125, 126]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/Sickle 2:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.525),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [125, 126]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite/Sickle 3:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.55),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [125, 126]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite/Sickle 4:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.575),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [125, 126]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.59, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fgws1"]
 _data = {
 "RESET": SubResource("Animation_1ut3c"),
+"attack": SubResource("Animation_utm58"),
 "hero_detected": SubResource("Animation_jrxtr"),
 "idle": SubResource("Animation_pft2p")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b4k2i"]
+animation = &"attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kx72o"]
 animation = &"hero_detected"
@@ -234,12 +329,22 @@ advance_expression = "detected_hero"
 advance_mode = 2
 advance_expression = "!detected_hero"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4q67m"]
+advance_mode = 2
+advance_expression = "attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yxrfw"]
+advance_mode = 2
+advance_expression = "!attacking"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4jhto"]
+states/attack/node = SubResource("AnimationNodeAnimation_b4k2i")
+states/attack/position = Vector2(517, 187)
 states/hero_detected/node = SubResource("AnimationNodeAnimation_kx72o")
 states/hero_detected/position = Vector2(501, 86)
 states/idle/node = SubResource("AnimationNodeAnimation_17kqv")
 states/idle/position = Vector2(344, 86)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_5851o"), "idle", "hero_detected", SubResource("AnimationNodeStateMachineTransition_2ow66"), "hero_detected", "idle", SubResource("AnimationNodeStateMachineTransition_3gu8s")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_5851o"), "idle", "hero_detected", SubResource("AnimationNodeStateMachineTransition_2ow66"), "hero_detected", "idle", SubResource("AnimationNodeStateMachineTransition_3gu8s"), "hero_detected", "attack", SubResource("AnimationNodeStateMachineTransition_4q67m"), "attack", "hero_detected", SubResource("AnimationNodeStateMachineTransition_yxrfw")]
 
 [node name="Reaper" type="StaticBody2D"]
 script = ExtResource("1_76qhk")
@@ -294,11 +399,10 @@ shape = SubResource("RectangleShape2D_88fpi")
 
 [node name="HitboxComponent" parent="." groups=["Damage", "Enemy_Attack"] instance=ExtResource("2_g22qr")]
 position = Vector2(1, 0)
-monitoring = false
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_u6yy2")
+disabled = true
 debug_color = Color(1, 0.0136411, 0.00643604, 0.42)
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_mfp8l")]
@@ -317,6 +421,12 @@ debug_color = Color(0.451071, 0.595906, 1.92523e-07, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
 shape = SubResource("CircleShape2D_r0mvg")
+
+[node name="AttackRange" parent="." instance=ExtResource("5_abh16")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_3l1oo")
+debug_color = Color(0.67613, 0.4134, 0.78, 0.435294)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
