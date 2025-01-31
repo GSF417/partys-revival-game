@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://co1enjo00jk1s"]
+
+[ext_resource type="Texture2D" uid="uid://btg24j2kuby8u" path="res://levels/assets/obstacles/iron_door.png" id="1_ryfw0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7ffg"]
+size = Vector2(46, 19)
+
+[node name="IronDoorFragment" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_ryfw0")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_b7ffg")
