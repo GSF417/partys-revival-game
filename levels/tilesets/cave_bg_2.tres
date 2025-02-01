@@ -1,0 +1,11 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b7tks7trqvdbh"]
+
+[ext_resource type="Texture2D" uid="uid://cawo3f8wpiut3" path="res://levels/assets/Cave_Background_2.png" id="1_a8fr6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h11p2"]
+texture = ExtResource("1_a8fr6")
+0:0/size_in_atlas = Vector2i(60, 30)
+0:0/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_h11p2")

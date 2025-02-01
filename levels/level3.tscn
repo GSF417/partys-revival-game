@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bggya41q0tch2"]
+[gd_scene load_steps=24 format=3 uid="uid://bggya41q0tch2"]
 
 [ext_resource type="Texture2D" uid="uid://4e5hq8h3we6g" path="res://levels/assets/Cave_Background_1.png" id="1_0kj3b"]
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_thw4h"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c7guhmawub6ja" path="res://scenes/objects/lever.tscn" id="11_cgmun"]
 [ext_resource type="PackedScene" uid="uid://c7rb0xdma46b" path="res://scenes/objects/rock.tscn" id="14_ue3ch"]
 [ext_resource type="PackedScene" uid="uid://c5fy2lt00i7b0" path="res://scenes/objects/warp_instance.tscn" id="16_l7k6i"]
+[ext_resource type="AudioStream" uid="uid://dinrpl5akdt6o" path="res://sounds/music.mp3" id="18_vok7p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g7cx7"]
 texture = ExtResource("1_0kj3b")
@@ -180,3 +181,8 @@ warp_to = "res://levels/level4.tscn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Warp Instance"]
 position = Vector2(28, -125)
 shape = SubResource("RectangleShape2D_ntvvk")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_vok7p")
+volume_db = -10.0
+autoplay = true
