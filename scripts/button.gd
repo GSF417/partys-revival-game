@@ -4,14 +4,23 @@ extends Node2D
 @onready var detection_range = $DetectionRange
 @onready var anim_player = $AnimationPlayer
 
-var active : bool = false
+var interacting_with : int = 0
 
 func _process(delta: float) -> void:
-	if detection_range == null:
-		return
-	if detection_range.heroes_count() > 0:
-		active = true
+	pass
+
+func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if body is HeroTobu or body is RigidBody2D:
 		anim_player.play("active")
-	else:
-		active = false
+		if interacting_with == 0 and target.has_method("enable"):
+			target.enable()
+		interacting_with = interacting_with + 1
+
+func _on_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if body is HeroTobu or body is RigidBody2D:
+		interacting_with = interacting_with - 1
+	if interacting_with <= 0:
+		interacting_with = 0
+		if target.has_method("disable"):
+			target.disable()
 		anim_player.play("inactive")

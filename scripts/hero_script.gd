@@ -11,6 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var SPEED : int = 225
 var jump_height : int = -600
+var push_force : float = 80.0
 
 var direction = 0
 var lookLeft = false
@@ -31,6 +32,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
+	
+	# To collide with Rigid Bodies
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 
 func move():
 	direction = Input.get_axis("MoveLeft", "MoveRight")

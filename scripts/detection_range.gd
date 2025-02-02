@@ -29,7 +29,6 @@ func _on_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, l
 		if interactable:
 			body.removeInteractable(get_parent())
 
-
 func _on_timer_timeout() -> void:
 	if list_of_heroes.size() > 0:
 		list_of_heroes = list_of_heroes.filter(func(element): return is_instance_valid(element))

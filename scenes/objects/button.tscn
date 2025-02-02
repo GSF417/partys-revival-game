@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_2v4a5"]
 [ext_resource type="Script" path="res://scripts/button.gd" id="1_ld445"]
-[ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="2_iulk5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmu45"]
 size = Vector2(48, 23)
@@ -59,7 +58,11 @@ _data = {
 "inactive": SubResource("Animation_ktdmx")
 }
 
-[node name="Button" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_voquu"]
+size = Vector2(48, 15)
+
+[node name="Button" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_ld445")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -69,9 +72,7 @@ hframes = 20
 vframes = 20
 frame = 230
 
-[node name="DetectionRange" parent="." instance=ExtResource("2_iulk5")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 20.5)
 shape = SubResource("RectangleShape2D_pmu45")
 
@@ -79,3 +80,13 @@ shape = SubResource("RectangleShape2D_pmu45")
 libraries = {
 "": SubResource("AnimationLibrary_b0t43")
 }
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 24.5)
+shape = SubResource("RectangleShape2D_voquu")
+debug_color = Color(0.287706, 0.630222, 5.77569e-07, 0.42)
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
