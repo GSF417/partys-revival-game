@@ -1,8 +1,66 @@
-[gd_scene load_steps=2 format=3 uid="uid://cx5gk6k1yhs5r"]
+[gd_scene load_steps=9 format=3 uid="uid://cx5gk6k1yhs5r"]
 
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_2v4a5"]
+[ext_resource type="Script" path="res://scripts/button.gd" id="1_ld445"]
+[ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="2_iulk5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmu45"]
+size = Vector2(48, 23)
+
+[sub_resource type="Animation" id="Animation_ktdmx"]
+resource_name = "inactive"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [230]
+}
+
+[sub_resource type="Animation" id="Animation_o4ifs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [230]
+}
+
+[sub_resource type="Animation" id="Animation_imv44"]
+resource_name = "active"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [231]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b0t43"]
+_data = {
+"RESET": SubResource("Animation_o4ifs"),
+"active": SubResource("Animation_imv44"),
+"inactive": SubResource("Animation_ktdmx")
+}
 
 [node name="Button" type="Node2D"]
+script = ExtResource("1_ld445")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -10,3 +68,14 @@ texture = ExtResource("1_2v4a5")
 hframes = 20
 vframes = 20
 frame = 230
+
+[node name="DetectionRange" parent="." instance=ExtResource("2_iulk5")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+position = Vector2(0, 20.5)
+shape = SubResource("RectangleShape2D_pmu45")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b0t43")
+}

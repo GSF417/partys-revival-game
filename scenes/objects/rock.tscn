@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7rb0xdma46b"]
+[gd_scene load_steps=6 format=3 uid="uid://c7rb0xdma46b"]
 
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_3eodt"]
+[ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="2_nbh8r"]
+[ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="3_xjssn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlkwy"]
 size = Vector2(66, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7e2vq"]
+size = Vector2(79, 53)
 
 [node name="Rock" type="Node2D"]
 
@@ -19,3 +24,15 @@ frame = 260
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 14)
 shape = SubResource("RectangleShape2D_jlkwy")
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_nbh8r")]
+health_component = NodePath("../HealthComponent")
+fire_invulnerable = true
+cut_invulnerable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(-0.5, 13.5)
+shape = SubResource("RectangleShape2D_7e2vq")
+debug_color = Color(0.996775, 0, 0.180009, 0.42)
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_xjssn")]
