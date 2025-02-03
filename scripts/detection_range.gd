@@ -1,4 +1,5 @@
 extends Area2D
+class_name DetectionRangeComponent
 
 @export var interactable : bool
 @export var triggerable : Node2D
@@ -14,7 +15,7 @@ func heroes_count() -> int:
 func last_to_enter() -> Node2D:
 	return list_of_heroes[list_of_heroes.size() - 1]
 
-func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+func check_body_entered(body: Node2D):
 	if body is HeroEntity:
 		$Timer.start()
 		if triggerable:
@@ -23,11 +24,17 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, 
 		if interactable:
 			body.addInteractable(get_parent())
 
-func _on_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+func check_body_exited(body: Node2D):
 	if body is HeroEntity:
 		list_of_heroes.erase(body)
 		if interactable:
 			body.removeInteractable(get_parent())
+
+func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	check_body_entered(body)
+
+func _on_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	check_body_exited(body)
 
 func _on_timer_timeout() -> void:
 	if list_of_heroes.size() > 0:

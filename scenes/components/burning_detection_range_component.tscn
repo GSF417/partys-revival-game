@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c26llcxyq8c8y"]
+
+[ext_resource type="Script" path="res://scripts/burning_detection_range.gd" id="1_vvj4c"]
+
+[node name="Node2D" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_vvj4c")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -23,21 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://c5fy2lt00i7b0" path="res://scenes/objects/warp_instance.tscn" id="16_l7k6i"]
 [ext_resource type="AudioStream" uid="uid://dinrpl5akdt6o" path="res://sounds/music.mp3" id="18_vok7p"]
 
-[sub_resource type="Animation" id="Animation_be8o4"]
-resource_name = "starting_position"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(700, 397)]
-}
-
 [sub_resource type="Animation" id="Animation_quyom"]
 length = 0.001
 tracks/0/type = "value"
@@ -51,6 +36,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(700, 397)]
+}
+
+[sub_resource type="Animation" id="Animation_3tppd"]
+resource_name = "move_back"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1000, 397), Vector2(700, 397)]
 }
 
 [sub_resource type="Animation" id="Animation_nguk1"]
@@ -68,8 +68,8 @@ tracks/0/keys = {
 "values": [Vector2(700, 397), Vector2(1000, 397)]
 }
 
-[sub_resource type="Animation" id="Animation_3tppd"]
-resource_name = "move_back"
+[sub_resource type="Animation" id="Animation_be8o4"]
+resource_name = "starting_position"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -77,10 +77,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1000, 397), Vector2(700, 397)]
+"values": [Vector2(700, 397)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_skmsu"]
