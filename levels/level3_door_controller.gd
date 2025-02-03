@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var needed_to_open : int
 @onready var anim_player = $AnimationPlayer
 
 var open : bool = false
@@ -11,11 +12,11 @@ func _ready() -> void:
 
 func enable():
 	enable_count = enable_count + 1
-	if enable_count == 2:
+	if enable_count == needed_to_open:
 		anim_player.play("move_out")
 
 func disable():
-	if enable_count == 2:
+	if enable_count == needed_to_open:
 		anim_player.play("move_back")
 	enable_count = enable_count - 1
 	

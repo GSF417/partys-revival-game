@@ -138,6 +138,7 @@ position = Vector2(129, -34)
 [node name="Iron Door" type="Node2D" parent="."]
 position = Vector2(700, 397)
 script = ExtResource("6_76yfl")
+needed_to_open = 2
 
 [node name="IronDoorFragment" parent="Iron Door" instance=ExtResource("6_wtwr2")]
 position = Vector2(-74, 0)

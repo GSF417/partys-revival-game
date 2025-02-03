@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://da4bfft201rj5"]
+[gd_scene load_steps=24 format=3 uid="uid://da4bfft201rj5"]
 
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_747c0"]
 [ext_resource type="PackedScene" uid="uid://dll64ogrgpcpo" path="res://scenes/heroes/hero_tobu.tscn" id="2_10wv6"]
@@ -11,11 +11,80 @@
 [ext_resource type="PackedScene" path="res://scenes/objects/huge_rock.tscn" id="6_t18oy"]
 [ext_resource type="PackedScene" uid="uid://cx5gk6k1yhs5r" path="res://scenes/objects/button.tscn" id="7_u872m"]
 [ext_resource type="PackedScene" uid="uid://c5pmubnnb88ng" path="res://scenes/objects/iron_door.tscn" id="8_4mldt"]
+[ext_resource type="Script" path="res://levels/level3_door_controller.gd" id="9_7o2cf"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/fire_mage.tscn" id="11_eovpi"]
 [ext_resource type="TileSet" uid="uid://dlc6jmhcm0txr" path="res://levels/tilesets/lava.tres" id="11_tnule"]
 [ext_resource type="TileSet" uid="uid://bax1h15rekh86" path="res://levels/tilesets/cave_bg_2.tres" id="12_154pc"]
 [ext_resource type="PackedScene" uid="uid://c5fy2lt00i7b0" path="res://scenes/objects/warp_instance.tscn" id="15_0p0oq"]
 [ext_resource type="AudioStream" uid="uid://dinrpl5akdt6o" path="res://sounds/music.mp3" id="16_5b0n6"]
+
+[sub_resource type="Animation" id="Animation_hj8rc"]
+resource_name = "starting_position"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(547, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_x183l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(547, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_140wh"]
+resource_name = "move_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(547, 7), Vector2(749, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_7rd1j"]
+resource_name = "move_back"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(749, 7), Vector2(547, 7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h25yv"]
+_data = {
+"RESET": SubResource("Animation_x183l"),
+"move_back": SubResource("Animation_7rd1j"),
+"move_out": SubResource("Animation_140wh"),
+"starting_position": SubResource("Animation_hj8rc")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2qti"]
 size = Vector2(56, 78)
@@ -54,29 +123,33 @@ scale = Vector2(2.83459, 2.84883)
 [node name="FireMage" parent="." instance=ExtResource("11_eovpi")]
 position = Vector2(560, -32)
 
-[node name="Iron Door System" type="Node2D" parent="."]
-position = Vector2(-102, -32)
+[node name="Button" parent="." instance=ExtResource("7_u872m")]
+position = Vector2(234, -148)
 
-[node name="Button" parent="Iron Door System" instance=ExtResource("7_u872m")]
-position = Vector2(336, -116)
+[node name="Iron door" type="Node2D" parent="."]
+position = Vector2(547, 7)
+script = ExtResource("9_7o2cf")
+needed_to_open = 1
 
-[node name="Iron door" type="Node2D" parent="Iron Door System"]
-position = Vector2(647, 38)
-
-[node name="IronDoorFragment" parent="Iron Door System/Iron door" instance=ExtResource("8_4mldt")]
+[node name="IronDoorFragment" parent="Iron door" instance=ExtResource("8_4mldt")]
 position = Vector2(-74, 1)
 
-[node name="IronDoorFragment2" parent="Iron Door System/Iron door" instance=ExtResource("8_4mldt")]
+[node name="IronDoorFragment2" parent="Iron door" instance=ExtResource("8_4mldt")]
 position = Vector2(-28, 1)
 
-[node name="IronDoorFragment3" parent="Iron Door System/Iron door" instance=ExtResource("8_4mldt")]
+[node name="IronDoorFragment3" parent="Iron door" instance=ExtResource("8_4mldt")]
 position = Vector2(18, 1)
 
-[node name="IronDoorFragment4" parent="Iron Door System/Iron door" instance=ExtResource("8_4mldt")]
+[node name="IronDoorFragment4" parent="Iron door" instance=ExtResource("8_4mldt")]
 position = Vector2(64, 1)
 
-[node name="IronDoorFragment5" parent="Iron Door System/Iron door" instance=ExtResource("8_4mldt")]
+[node name="IronDoorFragment5" parent="Iron door" instance=ExtResource("8_4mldt")]
 position = Vector2(110, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Iron door"]
+libraries = {
+"": SubResource("AnimationLibrary_h25yv")
+}
 
 [node name="Gnome Rock" type="Node2D" parent="."]
 position = Vector2(514, -51)
