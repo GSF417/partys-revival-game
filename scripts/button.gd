@@ -21,6 +21,8 @@ func _on_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, l
 		interacting_with = interacting_with - 1
 	if interacting_with <= 0:
 		interacting_with = 0
-		if target.has_method("disable"):
-			target.disable()
 		anim_player.play("inactive")
+		if target == null:
+			pass
+		elif target.has_method("disable"):
+			target.disable()

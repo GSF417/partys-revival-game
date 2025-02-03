@@ -16,6 +16,7 @@ height = 58.0
 
 [node name="HeroYari" type="CharacterBody2D" node_paths=PackedStringArray("hero_ability")]
 collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_eljcu")
 hero_ability = NodePath("YariAbility")
 
@@ -43,6 +44,7 @@ shape = SubResource("RectangleShape2D_iakiu")
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_6eqk7")]
 health_component = NodePath("../HealthComponent")
 hero = true
+spike_invulnerable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(-1, 0)

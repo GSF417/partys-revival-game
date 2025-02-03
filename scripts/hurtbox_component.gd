@@ -7,6 +7,7 @@ class_name HurtboxComponent
 @export var enemy : bool
 @export var cut_invulnerable : bool
 @export var explosion_invulnerable : bool
+@export var spike_invulnerable : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,5 +26,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Cut_Attack") and cut_invulnerable:
 		return
 	if area.is_in_group("Explosion") and explosion_invulnerable:
+		return
+	if area.is_in_group("Spike_Attack") and spike_invulnerable:
 		return
 	health_component.suffer_damage()
