@@ -10,6 +10,8 @@ var spawn_pos : Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	global_position = spawn_pos
+	if travel_dir > 0:
+		$Sprite2D.flip_h = true
 
 func _physics_process(delta: float) -> void:
 	velocity = Vector2(SPEED * travel_dir, 0)

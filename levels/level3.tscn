@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bggya41q0tch2"]
+[gd_scene load_steps=37 format=3 uid="uid://bggya41q0tch2"]
 
 [ext_resource type="Texture2D" uid="uid://4e5hq8h3we6g" path="res://levels/assets/Cave_Background_1.png" id="1_0kj3b"]
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_thw4h"]
@@ -22,6 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://c7rb0xdma46b" path="res://scenes/objects/rock.tscn" id="14_ue3ch"]
 [ext_resource type="PackedScene" uid="uid://c5fy2lt00i7b0" path="res://scenes/objects/warp_instance.tscn" id="16_l7k6i"]
 [ext_resource type="AudioStream" uid="uid://dinrpl5akdt6o" path="res://sounds/music.mp3" id="18_vok7p"]
+[ext_resource type="PackedScene" uid="uid://cuily6pjelejh" path="res://scenes/objects/spawners/missile_spawner.tscn" id="23_m1lx1"]
+[ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="24_aa6ob"]
 
 [sub_resource type="Animation" id="Animation_quyom"]
 length = 0.001
@@ -110,6 +112,9 @@ size = Vector2(213, 1180)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ntvvk"]
 size = Vector2(343.5, 128)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pn17d"]
+radius = 30.0167
 
 [node name="Main" type="Node2D"]
 
@@ -277,3 +282,27 @@ shape = SubResource("RectangleShape2D_ntvvk")
 stream = ExtResource("18_vok7p")
 volume_db = -10.0
 autoplay = true
+
+[node name="DetectionRange2" parent="." node_paths=PackedStringArray("triggerable") instance=ExtResource("24_aa6ob")]
+position = Vector2(124, 351)
+triggerable = NodePath("MissileSpawner")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange2"]
+shape = SubResource("CircleShape2D_pn17d")
+
+[node name="MissileSpawner" parent="DetectionRange2" instance=ExtResource("23_m1lx1")]
+ammunition = 1
+travel_dir = 1
+spawn_offset = Vector2(-500, 0)
+
+[node name="DetectionRange" parent="." node_paths=PackedStringArray("triggerable") instance=ExtResource("24_aa6ob")]
+position = Vector2(280, -277)
+triggerable = NodePath("MissileSpawner")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_pn17d")
+
+[node name="MissileSpawner" parent="DetectionRange" instance=ExtResource("23_m1lx1")]
+ammunition = 2
+travel_dir = -1
+spawn_offset = Vector2(500, -30)

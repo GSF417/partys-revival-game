@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 2
+const SPEED = 4
 @export var roaming_range : int
 @onready var burning_detection : BurningDetectionRange = $BurningDetection
 var rng = RandomNumberGenerator.new()

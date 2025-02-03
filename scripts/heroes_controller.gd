@@ -16,7 +16,6 @@ func find_living_hero() -> int:
 		candidate = players[i]
 		if (candidate != null):
 			return i
-	end_game()
 	return -1
 
 func switch_hero(switch_to: int):
