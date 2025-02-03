@@ -16,6 +16,7 @@ func find_living_hero() -> int:
 		candidate = players[i]
 		if (candidate != null):
 			return i
+	end_game()
 	return -1
 
 func switch_hero(switch_to: int):
@@ -38,6 +39,8 @@ func _process(delta: float) -> void:
 		switch_hero(selected_hero)
 	if players[selected_hero] != null:
 		players[selected_hero].checkForActions()
+	if Input.is_action_just_pressed("Restart"):
+		end_game()
 	if Input.is_action_pressed("SwitchFirst"):
 		switch_hero(0)
 	if Input.is_action_pressed("SwitchSecond"):
