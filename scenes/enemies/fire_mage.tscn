@@ -1,12 +1,423 @@
-[gd_scene load_steps=2 format=3 uid="uid://duiiqp5vkbrne"]
+[gd_scene load_steps=20 format=3 uid="uid://b0y5w2hjky3wr"]
 
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_2tp1g"]
+[ext_resource type="Script" path="res://scripts/fire_roach.gd" id="1_7tafs"]
+[ext_resource type="PackedScene" uid="uid://b1fyjsi227yrw" path="res://scenes/components/hitbox_component.tscn" id="2_q5leh"]
+[ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="3_aggjv"]
 
-[node name="FireMage" type="Node2D"]
+[sub_resource type="Animation" id="Animation_lily4"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireRoach:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [180]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlameSpoutTopRight2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlameSpoutTopRight:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlameSpoutRight:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlameSpoutLeft:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitboxComponent:monitorable")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitboxComponent:monitoring")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[sub_resource type="Animation" id="Animation_3g7v7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireRoach:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [180]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlameSpoutLeft:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlameSpoutRight:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlameSpoutTopRight:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlameSpoutTopRight2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitboxComponent:monitorable")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitboxComponent:monitoring")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_b57qb"]
+resource_name = "attacking"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireRoach:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [180, 181]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitboxComponent:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitboxComponent:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlameSpoutLeft:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlameSpoutRight:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FlameSpoutTopRight:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FlameSpoutTopRight2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_xj4v0"]
+resource_name = "dead"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4qruy"]
+_data = {
+"RESET": SubResource("Animation_3g7v7"),
+"attacking": SubResource("Animation_b57qb"),
+"dead": SubResource("Animation_xj4v0"),
+"idle": SubResource("Animation_lily4")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u0rei"]
+animation = &"attacking"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c8thk"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1kxwg"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c2ty2"]
+advance_mode = 2
+advance_expression = "attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_doufm"]
+advance_mode = 2
+advance_expression = "!attacking"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_p10o1"]
+states/attacking/node = SubResource("AnimationNodeAnimation_u0rei")
+states/attacking/position = Vector2(459, 79)
+states/idle/node = SubResource("AnimationNodeAnimation_c8thk")
+states/idle/position = Vector2(341, 76)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1kxwg"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_c2ty2"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_doufm")]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptn26"]
+size = Vector2(284, 258)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pks8u"]
+size = Vector2(20, 229.248)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_32wjs"]
+size = Vector2(112, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eaujr"]
+size = Vector2(40, 45)
+
+[node name="FireMage" type="StaticBody2D"]
+script = ExtResource("1_7tafs")
+
+[node name="FlameSpoutLeft" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(-92, 1)
+rotation = 3.14159
+scale = Vector2(2, -1)
+texture = ExtResource("1_2tp1g")
+hframes = 20
+vframes = 20
+frame = 183
+
+[node name="FlameSpoutRight" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(94, 1)
+scale = Vector2(2, 1)
+texture = ExtResource("1_2tp1g")
+hframes = 20
+vframes = 20
+frame = 183
+
+[node name="FlameSpoutTopRight" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(76, -130)
+rotation = -1.0472
+scale = Vector2(4, 1.564)
+skew = -0.340379
+texture = ExtResource("1_2tp1g")
+hframes = 20
+vframes = 20
+frame = 183
+
+[node name="FlameSpoutTopRight2" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(-75, -128)
+rotation = -2.0944
+scale = Vector2(4, -1.56)
+skew = -0.197167
+texture = ExtResource("1_2tp1g")
+hframes = 20
+vframes = 20
+frame = 183
+
+[node name="FireRoach" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_2tp1g")
 hframes = 20
 vframes = 20
 frame = 180
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4qruy")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_p10o1")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="DetectionRange" parent="." instance=ExtResource("3_aggjv")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+position = Vector2(1, -96)
+shape = SubResource("RectangleShape2D_ptn26")
+debug_color = Color(0.66084, 0.514229, 0, 0.42)
+
+[node name="HitboxComponent" parent="." groups=["Burning", "Damage", "Enemy_Attack"] instance=ExtResource("2_q5leh")]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-70.38, -117.898)
+rotation = -0.512395
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_pks8u")
+debug_color = Color(0.997683, 0, 0.160418, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(72, -120)
+rotation = 0.503894
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_pks8u")
+debug_color = Color(0.990892, 0, 0.272615, 0.42)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-85, 2)
+shape = SubResource("RectangleShape2D_32wjs")
+debug_color = Color(1, 0.00965185, 0.0342356, 0.42)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(87, 3)
+shape = SubResource("RectangleShape2D_32wjs")
+debug_color = Color(1, 0.00965185, 0.0342356, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_eaujr")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

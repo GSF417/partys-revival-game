@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8j8tks6ne7al"]
+
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_bpkdw"]
+[ext_resource type="Script" path="res://scripts/explosive.gd" id="1_sl1vw"]
+
+[node name="Explosive" type="Node2D"]
+script = ExtResource("1_sl1vw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_bpkdw")
+hframes = 20
+vframes = 20
+frame = 223

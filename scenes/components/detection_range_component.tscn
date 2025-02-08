@@ -6,10 +6,5 @@
 collision_mask = 3
 script = ExtResource("1_xqdt8")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
-
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

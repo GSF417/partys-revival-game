@@ -50,6 +50,7 @@ debug_color = Color(0.657679, 0.515891, 0, 0.42)
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_lr5qj")]
 health_component = NodePath("../HealthComponent")
+fire_invulnerable = true
 hero = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]

@@ -6,7 +6,6 @@ class_name HeroEntity
 @export var jump_sfx : AudioStreamPlayer
 @export var hero_ability : HeroAbility
 
-
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var SPEED : int = 225
