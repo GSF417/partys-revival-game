@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dll64ogrgpcpo"]
+[gd_scene load_steps=13 format=3 uid="uid://dll64ogrgpcpo"]
 
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_5bwuj"]
 [ext_resource type="Script" path="res://scripts/hero_tobu.gd" id="1_to5ir"]
 [ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="3_qkuw4"]
 [ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="4_yn46n"]
+[ext_resource type="PackedScene" uid="uid://b1fyjsi227yrw" path="res://scenes/components/hitbox_component.tscn" id="5_6jc4r"]
 
 [sub_resource type="Animation" id="Animation_v7ppq"]
 length = 0.001
@@ -49,6 +50,9 @@ height = 68.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8v1y"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kwyby"]
+size = Vector2(28, 20)
+
 [node name="HeroTobu" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_to5ir")
@@ -85,3 +89,10 @@ debug_color = Color(0.980392, 0.133333, 0, 0.419608)
 position = Vector2(2, 2)
 scale = Vector2(1.2822, 2.86485)
 shape = SubResource("RectangleShape2D_v8v1y")
+
+[node name="HitboxComponent" parent="." groups=["Damage", "Hero_Attack", "Jump_Attack"] instance=ExtResource("5_6jc4r")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" groups=["Hero_Attack", "Jump_Attack"]]
+position = Vector2(2, 30)
+shape = SubResource("RectangleShape2D_kwyby")
+debug_color = Color(1, 0.616667, 0, 0.419608)

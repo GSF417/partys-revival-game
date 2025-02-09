@@ -18,12 +18,16 @@ var lookLeft = false
 var interactables_list = []
 var interactables_num = 0
 
+var dying : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
 func _physics_process(delta: float) -> void:
 	sprite.flip_h = lookLeft
+	if dying:
+		return
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	if direction:
@@ -72,6 +76,8 @@ func useAbility():
 		hero_ability.execute(lookLeft)
 
 func checkForActions():
+	if dying:
+		return
 	move()
 	jump()
 	useAbility()

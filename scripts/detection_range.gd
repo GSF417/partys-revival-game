@@ -20,7 +20,7 @@ func last_to_enter() -> Node2D:
 
 func check_body_entered(body: Node2D):
 	if body is HeroEntity:
-		if triggerable:
+		if triggerable != null:
 			triggerable.trigger()
 		list_of_heroes.append(body)
 		if interactable:

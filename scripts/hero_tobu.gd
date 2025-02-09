@@ -6,3 +6,6 @@ func _ready() -> void:
 	super()
 	SPEED = 225
 	jump_height = -620
+
+func attack_recoil() -> void:
+	velocity.y = jump_height * 1.75

@@ -1,96 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://b0y5w2hjky3wr"]
+[gd_scene load_steps=23 format=3 uid="uid://b0y5w2hjky3wr"]
 
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_2tp1g"]
 [ext_resource type="Script" path="res://scripts/fire_roach.gd" id="1_7tafs"]
 [ext_resource type="PackedScene" uid="uid://b1fyjsi227yrw" path="res://scenes/components/hitbox_component.tscn" id="2_q5leh"]
 [ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="3_aggjv"]
-
-[sub_resource type="Animation" id="Animation_lily4"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FireRoach:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [180]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FlameSpoutTopRight2:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("FlameSpoutTopRight:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("FlameSpoutRight:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("FlameSpoutLeft:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("HitboxComponent:monitorable")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("HitboxComponent:monitoring")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
+[ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="5_njw0n"]
+[ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="6_71qre"]
 
 [sub_resource type="Animation" id="Animation_3g7v7"]
 length = 0.001
@@ -269,6 +184,93 @@ tracks/6/keys = {
 [sub_resource type="Animation" id="Animation_xj4v0"]
 resource_name = "dead"
 
+[sub_resource type="Animation" id="Animation_lily4"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireRoach:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [180]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlameSpoutTopRight2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlameSpoutTopRight:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlameSpoutRight:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlameSpoutLeft:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitboxComponent:monitorable")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitboxComponent:monitoring")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4qruy"]
 _data = {
 "RESET": SubResource("Animation_3g7v7"),
@@ -313,7 +315,10 @@ size = Vector2(112, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eaujr"]
 size = Vector2(40, 45)
 
-[node name="FireMage" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5u1nt"]
+size = Vector2(48, 50)
+
+[node name="FireMage" type="CharacterBody2D"]
 script = ExtResource("1_7tafs")
 
 [node name="FlameSpoutLeft" type="Sprite2D" parent="."]
@@ -392,14 +397,12 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(-70.38, -117.898)
 rotation = -0.512395
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_pks8u")
 debug_color = Color(0.997683, 0, 0.160418, 0.42)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(72, -120)
 rotation = 0.503894
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_pks8u")
 debug_color = Color(0.990892, 0, 0.272615, 0.42)
 
@@ -419,5 +422,18 @@ shape = SubResource("RectangleShape2D_eaujr")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_njw0n")]
+health_component = NodePath("../HealthComponent")
+fire_invulnerable = true
+enemy = true
+cut_invulnerable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_5u1nt")
+debug_color = Color(0.998048, 0, 0.151823, 0.42)
+
+[node name="HealthComponent" parent="." instance=ExtResource("6_71qre")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

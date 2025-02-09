@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://da4bfft201rj5"]
+[gd_scene load_steps=33 format=3 uid="uid://da4bfft201rj5"]
 
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_747c0"]
 [ext_resource type="PackedScene" uid="uid://dll64ogrgpcpo" path="res://scenes/heroes/hero_tobu.tscn" id="2_10wv6"]
@@ -8,7 +8,7 @@
 [ext_resource type="TileSet" uid="uid://5gmlxuui744x" path="res://levels/tilesets/cave_tileset.tres" id="6_aqqs1"]
 [ext_resource type="PackedScene" uid="uid://chqvd4y4v7d7l" path="res://scenes/enemies/gnome.tscn" id="6_mla8b"]
 [ext_resource type="PackedScene" uid="uid://c7guhmawub6ja" path="res://scenes/objects/lever.tscn" id="6_ned26"]
-[ext_resource type="PackedScene" path="res://scenes/objects/huge_rock.tscn" id="6_t18oy"]
+[ext_resource type="PackedScene" uid="uid://c044253o7f7jm" path="res://scenes/objects/huge_rock.tscn" id="6_t18oy"]
 [ext_resource type="PackedScene" uid="uid://cx5gk6k1yhs5r" path="res://scenes/objects/button.tscn" id="7_u872m"]
 [ext_resource type="PackedScene" uid="uid://c5pmubnnb88ng" path="res://scenes/objects/iron_door.tscn" id="8_4mldt"]
 [ext_resource type="Script" path="res://levels/level3_door_controller.gd" id="9_7o2cf"]
@@ -18,8 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="13_ju8ka"]
 [ext_resource type="PackedScene" uid="uid://cuily6pjelejh" path="res://scenes/objects/spawners/missile_spawner.tscn" id="14_orbxt"]
 [ext_resource type="PackedScene" uid="uid://c5fy2lt00i7b0" path="res://scenes/objects/warp_instance.tscn" id="15_0p0oq"]
+[ext_resource type="PackedScene" uid="uid://v85ya55vmsei" path="res://scenes/objects/multitrigger.tscn" id="15_ay54e"]
 [ext_resource type="PackedScene" uid="uid://c8j8tks6ne7al" path="res://scenes/objects/explosive.tscn" id="15_p5cpn"]
 [ext_resource type="AudioStream" uid="uid://dinrpl5akdt6o" path="res://sounds/music.mp3" id="16_5b0n6"]
+[ext_resource type="PackedScene" uid="uid://cp17hygj10n6s" path="res://scenes/objects/spawners/gnome_spawner.tscn" id="16_iqut8"]
 [ext_resource type="PackedScene" uid="uid://c5540jjp8iquv" path="res://scenes/objects/spikes.tscn" id="18_emewk"]
 
 [sub_resource type="Animation" id="Animation_x183l"]
@@ -90,6 +92,12 @@ _data = {
 "starting_position": SubResource("Animation_hj8rc")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mc5jo"]
+size = Vector2(20, 384)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5wufj"]
+size = Vector2(184, 128)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sf7oq"]
 size = Vector2(56, 40)
 
@@ -125,13 +133,13 @@ limit_bottom = 220
 
 [node name="HugeRock" parent="." instance=ExtResource("6_t18oy")]
 position = Vector2(1126, -413)
-scale = Vector2(2.83459, 2.84883)
 
 [node name="FireMage" parent="." instance=ExtResource("11_eovpi")]
 position = Vector2(560, -32)
 
-[node name="Button" parent="." instance=ExtResource("7_u872m")]
+[node name="Button" parent="." node_paths=PackedStringArray("target") instance=ExtResource("7_u872m")]
 position = Vector2(728, -192)
+target = NodePath("../Iron door")
 
 [node name="Iron door" type="Node2D" parent="."]
 position = Vector2(547, 7)
@@ -158,19 +166,79 @@ libraries = {
 "": SubResource("AnimationLibrary_h25yv")
 }
 
-[node name="Gnome Missile" parent="." instance=ExtResource("6_mla8b")]
-position = Vector2(784, 125)
+[node name="MissileRange" parent="." node_paths=PackedStringArray("triggerable") instance=ExtResource("13_ju8ka")]
+position = Vector2(824, -40)
+triggerable = NodePath("../Gnome Missile")
 
-[node name="Lever Missile" parent="." instance=ExtResource("6_ned26")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MissileRange"]
+position = Vector2(0, -160)
+shape = SubResource("RectangleShape2D_mc5jo")
+
+[node name="Gnome Missile" parent="." node_paths=PackedStringArray("interactable") instance=ExtResource("6_mla8b")]
+position = Vector2(784, 125)
+interactable = NodePath("../Lever Missile")
+
+[node name="Missile Multitrigger" parent="." node_paths=PackedStringArray("to_trigger") instance=ExtResource("15_ay54e")]
+position = Vector2(1032, -40)
+to_trigger = [NodePath("MissileSpawner"), NodePath("MissileSpawner2"), NodePath("MissileSpawner3"), NodePath("MissileSpawner4"), NodePath("MissileSpawner5"), NodePath("MissileSpawner6")]
+
+[node name="MissileSpawner" parent="Missile Multitrigger" instance=ExtResource("14_orbxt")]
+ammunition = 5
+travel_dir = -1
+spawn_offset = Vector2(500, 0)
+
+[node name="MissileSpawner2" parent="Missile Multitrigger" instance=ExtResource("14_orbxt")]
+position = Vector2(0, -64)
+ammunition = 5
+travel_dir = -1
+spawn_offset = Vector2(500, 0)
+
+[node name="MissileSpawner3" parent="Missile Multitrigger" instance=ExtResource("14_orbxt")]
+position = Vector2(0, -128)
+ammunition = 5
+travel_dir = -1
+spawn_offset = Vector2(500, 0)
+
+[node name="MissileSpawner4" parent="Missile Multitrigger" instance=ExtResource("14_orbxt")]
+position = Vector2(0, -192)
+ammunition = 5
+travel_dir = -1
+spawn_offset = Vector2(500, 0)
+
+[node name="MissileSpawner5" parent="Missile Multitrigger" instance=ExtResource("14_orbxt")]
+position = Vector2(0, -256)
+ammunition = 5
+travel_dir = -1
+spawn_offset = Vector2(500, 0)
+
+[node name="MissileSpawner6" parent="Missile Multitrigger" instance=ExtResource("14_orbxt")]
+position = Vector2(0, -328)
+ammunition = 5
+travel_dir = -1
+spawn_offset = Vector2(500, 0)
+
+[node name="Lever Missile" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_ned26")]
 z_index = -1
 position = Vector2(736, 137)
+target = NodePath("../Missile Multitrigger")
+reenables = true
 
-[node name="Gnome Rock" parent="." instance=ExtResource("6_mla8b")]
+[node name="Gnome Rock" parent="." node_paths=PackedStringArray("interactable") instance=ExtResource("6_mla8b")]
 position = Vector2(970, -310)
+interactable = NodePath("../Lever Rock")
 
-[node name="Lever Rock" parent="." instance=ExtResource("6_ned26")]
+[node name="Lever Rock" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_ned26")]
 z_index = -1
 position = Vector2(918, -297)
+target = NodePath("../HugeRock")
+
+[node name="RockRange" parent="." node_paths=PackedStringArray("triggerable") instance=ExtResource("13_ju8ka")]
+position = Vector2(912, -48)
+triggerable = NodePath("../Gnome Rock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RockRange"]
+position = Vector2(60, -24)
+shape = SubResource("RectangleShape2D_5wufj")
 
 [node name="DetectionRange4" parent="." node_paths=PackedStringArray("triggerable") instance=ExtResource("13_ju8ka")]
 position = Vector2(184, 112)
@@ -208,9 +276,17 @@ ammunition = 1
 travel_dir = -1
 spawn_offset = Vector2(600, 0)
 
-[node name="Lever" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_ned26")]
+[node name="LeverMulti" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_ned26")]
 position = Vector2(360, 160)
-target = NodePath("../Explosive")
+target = NodePath("../Multitrigger")
+
+[node name="GnomeSpawner" parent="." instance=ExtResource("16_iqut8")]
+position = Vector2(560, -408)
+ammunition = 1
+
+[node name="Multitrigger" parent="." node_paths=PackedStringArray("to_trigger") instance=ExtResource("15_ay54e")]
+position = Vector2(360, 160)
+to_trigger = [NodePath("../Explosive"), NodePath("../GnomeSpawner")]
 
 [node name="Explosive" parent="." instance=ExtResource("15_p5cpn")]
 position = Vector2(792, 128)

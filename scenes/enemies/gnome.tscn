@@ -1,13 +1,125 @@
-[gd_scene load_steps=5 format=3 uid="uid://chqvd4y4v7d7l"]
+[gd_scene load_steps=21 format=3 uid="uid://chqvd4y4v7d7l"]
 
+[ext_resource type="Script" path="res://scripts/gnome.gd" id="1_44b5e"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_uhjbm"]
 [ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="2_oesxf"]
 [ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="3_b8u0k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_367ow"]
+size = Vector2(40, 56)
+
+[sub_resource type="Animation" id="Animation_esjis"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [140]
+}
+
+[sub_resource type="Animation" id="Animation_4w8jp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [140]
+}
+
+[sub_resource type="Animation" id="Animation_reafu"]
+resource_name = "moving"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [141, 142]
+}
+
+[sub_resource type="Animation" id="Animation_vf0uk"]
+resource_name = "dying"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [143]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mboex"]
+_data = {
+"RESET": SubResource("Animation_4w8jp"),
+"dying": SubResource("Animation_vf0uk"),
+"idle": SubResource("Animation_esjis"),
+"moving": SubResource("Animation_reafu")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mwpsw"]
+animation = &"dying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cn0rm"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gu77s"]
+animation = &"moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dkstv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j5m8p"]
+advance_mode = 2
+advance_expression = "moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_56e27"]
+advance_mode = 2
+advance_expression = "!moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s50kr"]
+advance_mode = 2
+advance_expression = "dying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q04a4"]
+advance_mode = 2
+advance_expression = "dying"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_v3o2v"]
+states/dying/node = SubResource("AnimationNodeAnimation_mwpsw")
+states/dying/position = Vector2(406, 181)
+states/idle/node = SubResource("AnimationNodeAnimation_cn0rm")
+states/idle/position = Vector2(337, 65)
+states/moving/node = SubResource("AnimationNodeAnimation_gu77s")
+states/moving/position = Vector2(467, 68)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_dkstv"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_j5m8p"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_56e27"), "idle", "dying", SubResource("AnimationNodeStateMachineTransition_s50kr"), "moving", "dying", SubResource("AnimationNodeStateMachineTransition_q04a4")]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4864"]
 size = Vector2(24, 40)
 
-[node name="Gnome" type="Node2D"]
+[node name="Gnome" type="CharacterBody2D"]
+script = ExtResource("1_44b5e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -21,10 +133,29 @@ health_component = NodePath("../HealthComponent")
 fire_invulnerable = true
 enemy = true
 cut_invulnerable = true
+jump_vulnerable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(-4, 12)
+position = Vector2(-4, 4)
 shape = SubResource("RectangleShape2D_367ow")
 debug_color = Color(0.7, 0, 0, 0.419608)
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_b8u0k")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mboex")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_v3o2v")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 12)
+shape = SubResource("RectangleShape2D_m4864")
+
+[node name="CleanupTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CleanupTimer" to="." method="_on_cleanup_timer_timeout"]
