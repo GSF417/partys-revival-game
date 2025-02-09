@@ -4,6 +4,7 @@ class_name HeroesHandler
 @export var players : Array[HeroEntity] = [null, null, null, null]
 @export var camera : Camera2D
 
+var FOLLOW_SPEED = 4.0
 var selected_hero 
 
 # Called when the node enters the scene tree for the first time.
@@ -48,7 +49,7 @@ func _process(delta: float) -> void:
 		switch_hero(2)
 	if Input.is_action_pressed("SwitchFourth"):
 		switch_hero(3)
-	camera.global_position = players[selected_hero].global_position
+	camera.global_position = camera.global_position.lerp(players[selected_hero].global_position, delta * FOLLOW_SPEED)
 
 func end_game():
 	# TO DO: Create an end game screen
