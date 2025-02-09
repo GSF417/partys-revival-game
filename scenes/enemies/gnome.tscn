@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="3_b8u0k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_367ow"]
-size = Vector2(40, 56)
+size = Vector2(40, 40)
 
-[sub_resource type="Animation" id="Animation_esjis"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_4w8jp"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,8 +23,23 @@ tracks/0/keys = {
 "values": [140]
 }
 
-[sub_resource type="Animation" id="Animation_4w8jp"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_vf0uk"]
+resource_name = "dying"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [143]
+}
+
+[sub_resource type="Animation" id="Animation_esjis"]
+resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -53,21 +68,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [141, 142]
-}
-
-[sub_resource type="Animation" id="Animation_vf0uk"]
-resource_name = "dying"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [143]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mboex"]
@@ -136,7 +136,7 @@ cut_invulnerable = true
 jump_vulnerable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(-4, 4)
+position = Vector2(-4, 12)
 shape = SubResource("RectangleShape2D_367ow")
 debug_color = Color(0.7, 0, 0, 0.419608)
 
