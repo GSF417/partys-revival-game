@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbagf5rmw70rq"]
+[gd_scene load_steps=9 format=3 uid="uid://bbagf5rmw70rq"]
 
 [ext_resource type="Script" path="res://interface/mainMenu/menu.gd" id="1_cohib"]
 [ext_resource type="FontFile" uid="uid://cmlwdpru017yw" path="res://interface/mainMenu/American Captain.otf" id="1_e7gwn"]
@@ -11,8 +11,18 @@ base_font = ExtResource("1_e7gwn")
 [sub_resource type="LabelSettings" id="LabelSettings_wenv7"]
 font = SubResource("FontVariation_idqj8")
 font_size = 116
+font_color = Color(1, 0.857667, 0.39, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 shadow_size = 4
 shadow_color = Color(0, 0, 0, 0.972549)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tvevj"]
+font = ExtResource("1_e7gwn")
+font_size = 42
+font_color = Color(0.69, 0.1794, 0.1794, 1)
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f0qfg"]
 
@@ -42,21 +52,32 @@ texture = ExtResource("2_oeufw")
 [node name="title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.270062
-anchor_right = 0.5
-anchor_bottom = 0.270062
+anchor_left = 0.500434
+anchor_top = 0.169753
+anchor_right = 0.500434
+anchor_bottom = 0.169753
 offset_left = -331.5
 offset_top = -12.0
 offset_right = 331.5
 offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Party of Revival"
+text = "Revival's Party"
 label_settings = SubResource("LabelSettings_wenv7")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="subtitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 443.0
+offset_top = 214.0
+offset_right = 721.0
+offset_bottom = 257.0
+text = "The party's revival"
+label_settings = SubResource("LabelSettings_tvevj")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="buttonContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
