@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://bq7kr2obd38hf"]
+[gd_scene load_steps=34 format=4 uid="uid://djdqiasjkfnif"]
 
 [ext_resource type="Texture2D" uid="uid://c1cnl57s20fkp" path="res://images/abstract-space-background-with-fictional-planet.jpg" id="1_jfn6q"]
 [ext_resource type="Texture2D" uid="uid://b07bokmtqimc2" path="res://tilesets/Mine Tileset/5. Mine Tileset - Starter Pack 32p/Mine_Tileset_1B.png" id="1_y481m"]
@@ -8,18 +8,19 @@
 [ext_resource type="PackedScene" uid="uid://c4lw1o0a5u8ri" path="res://scenes/heroes/hero_kinroy.tscn" id="5_h8m82"]
 [ext_resource type="PackedScene" uid="uid://lpv2tavx2blo" path="res://scenes/enemies/bat.tscn" id="6_1snya"]
 [ext_resource type="PackedScene" uid="uid://0b0n7gs3rbil" path="res://scenes/heroes/hero_bakudan.tscn" id="6_uytfc"]
-[ext_resource type="PackedScene" uid="uid://b0y5w2hjky3wr" path="res://scenes/enemies/fire_mage.tscn" id="8_5e23m"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/fire_mage.tscn" id="8_5e23m"]
 [ext_resource type="PackedScene" uid="uid://cx5gk6k1yhs5r" path="res://scenes/objects/button.tscn" id="9_gnssa"]
 [ext_resource type="Script" path="res://levels/level3_door_controller.gd" id="10_06xrd"]
-[ext_resource type="PackedScene" uid="uid://bam7022karoot" path="res://scenes/objects/portal.tscn" id="10_8srm2"]
-[ext_resource type="PackedScene" uid="uid://c5pmubnnb88ng" path="res://scenes/objects/iron_door.tscn" id="11_fj4nk"]
+[ext_resource type="PackedScene" path="res://scenes/objects/portal.tscn" id="10_8srm2"]
+[ext_resource type="PackedScene" path="res://scenes/objects/iron_door.tscn" id="11_fj4nk"]
 [ext_resource type="PackedScene" uid="uid://canyhltdfqw6m" path="res://scenes/enemies/reaper.tscn" id="14_psc64"]
 [ext_resource type="PackedScene" uid="uid://c7guhmawub6ja" path="res://scenes/objects/lever.tscn" id="16_8ypux"]
-[ext_resource type="PackedScene" uid="uid://c8j8tks6ne7al" path="res://scenes/objects/explosive.tscn" id="18_nvpjc"]
+[ext_resource type="PackedScene" path="res://scenes/objects/explosive.tscn" id="18_nvpjc"]
 [ext_resource type="AudioStream" uid="uid://p0inj0xmqiuu" path="res://sounds/omega.mp3" id="19_bf46p"]
 [ext_resource type="PackedScene" uid="uid://cwthhov5107qg" path="res://scenes/enemies/biter.tscn" id="19_btk6d"]
 [ext_resource type="PackedScene" uid="uid://c5540jjp8iquv" path="res://scenes/objects/spikes.tscn" id="19_bvlxd"]
-[ext_resource type="PackedScene" uid="uid://7t3u2b5qnj3g" path="res://scenes/enemies/the_wizard.tscn" id="20_khoj0"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/the_wizard.tscn" id="20_khoj0"]
+[ext_resource type="PackedScene" uid="uid://cgpaeodlbq1jo" path="res://interface/pauseMenu/pause_menu.tscn" id="21_j735p"]
 
 [sub_resource type="Animation" id="Animation_rg4wj"]
 length = 0.001
@@ -1506,3 +1507,5 @@ autoplay = true
 [node name="The Wizard" parent="." instance=ExtResource("20_khoj0")]
 position = Vector2(112, -860)
 movement_points = Array[Vector2]([Vector2(752, -80), Vector2(752, -340), Vector2(752, -600), Vector2(752, -860), Vector2(112, -80), Vector2(112, -340), Vector2(112, -600), Vector2(112, -860)])
+
+[node name="pauseMenu" parent="." instance=ExtResource("21_j735p")]

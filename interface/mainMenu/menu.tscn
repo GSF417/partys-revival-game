@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbagf5rmw70rq"]
+
+[ext_resource type="Script" path="res://interface/mainMenu/menu.gd" id="1_cohib"]
+[ext_resource type="FontFile" uid="uid://cmlwdpru017yw" path="res://interface/mainMenu/American Captain.otf" id="1_e7gwn"]
+[ext_resource type="Texture2D" uid="uid://cwslgcmmkhlhe" path="res://interface/mainMenu/pixel-art-illustration-mysterious-cave-with-torch-illuminating-pathway_36682-105347.jpg" id="2_oeufw"]
+[ext_resource type="AudioStream" uid="uid://dinrpl5akdt6o" path="res://sounds/music.mp3" id="4_ajowj"]
+
+[sub_resource type="FontVariation" id="FontVariation_idqj8"]
+base_font = ExtResource("1_e7gwn")
+
+[sub_resource type="LabelSettings" id="LabelSettings_wenv7"]
+font = SubResource("FontVariation_idqj8")
+font_size = 116
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.972549)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f0qfg"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cohib")
+
+[node name="background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.77827, 0.753758, 0.732877, 0.321569)
+
+[node name="Pixel-art-illustration-mysterious-cave-with-torch-illuminating-pathway36682-105347" type="Sprite2D" parent="."]
+position = Vector2(584.577, 318.625)
+scale = Vector2(1.41181, 1.43575)
+texture = ExtResource("2_oeufw")
+
+[node name="title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.270062
+anchor_right = 0.5
+anchor_bottom = 0.270062
+offset_left = -331.5
+offset_top = -12.0
+offset_right = 331.5
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Party of Revival"
+label_settings = SubResource("LabelSettings_wenv7")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="buttonContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.5
+offset_top = 8.0
+offset_right = 75.5
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="newGame" type="Button" parent="buttonContainer" groups=["button"]]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894651, 0.766135, 0.461488, 1)
+theme_override_fonts/font = ExtResource("1_e7gwn")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f0qfg")
+text = "Novo Jogo"
+flat = true
+
+[node name="controls" type="Button" parent="buttonContainer" groups=["button"]]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894651, 0.766135, 0.461488, 1)
+theme_override_fonts/font = ExtResource("1_e7gwn")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f0qfg")
+text = "Controles"
+flat = true
+
+[node name="exit" type="Button" parent="buttonContainer" groups=["button"]]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894651, 0.766135, 0.461488, 1)
+theme_override_fonts/font = ExtResource("1_e7gwn")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f0qfg")
+text = "Sair"
+flat = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ajowj")
