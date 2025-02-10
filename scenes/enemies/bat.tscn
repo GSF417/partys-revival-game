@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://lpv2tavx2blo"]
+[gd_scene load_steps=16 format=3 uid="uid://lpv2tavx2blo"]
 
 [ext_resource type="Script" path="res://scripts/bat.gd" id="1_8g5h2"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_il6sk"]
 [ext_resource type="PackedScene" uid="uid://c26llcxyq8c8y" path="res://scenes/components/burning_detection_range_component.tscn" id="3_vioxa"]
 [ext_resource type="PackedScene" uid="uid://b1fyjsi227yrw" path="res://scenes/components/hitbox_component.tscn" id="4_cix13"]
 [ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="5_o7jjm"]
+[ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="6_84l2x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nc73f"]
 radius = 15.0333
@@ -107,12 +108,15 @@ wait_time = 0.75
 shape = SubResource("CircleShape2D_gxxbq")
 debug_color = Color(0.988541, 0, 0.300824, 0.42)
 
-[node name="HurtboxComponent" parent="." instance=ExtResource("5_o7jjm")]
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_o7jjm")]
+health_component = NodePath("../HealthComponent")
 enemy = true
 cut_invulnerable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_nc73f")
 debug_color = Color(0, 0.651004, 0.0466897, 0.42)
+
+[node name="HealthComponent" parent="." instance=ExtResource("6_84l2x")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

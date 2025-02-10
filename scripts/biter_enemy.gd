@@ -15,7 +15,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var stays_in_place : bool
 
 @onready var animation_tree = $AnimationTree
-@onready var hitbox_component_col = $HitboxComponent/CollisionShape2D
+@onready var hitbox_component = $HitboxComponent
 @onready var detection_range = $DetectionRange
 @onready var timer = $Timer
 @onready var sprite = $Sprite2D
@@ -65,7 +65,8 @@ func _physics_process(delta: float) -> void:
 func die() -> void:
 	moving = false
 	dead = true
-	hitbox_component_col.disabled = true
+	hitbox_component.monitorable = false
+	hitbox_component.monitoring = false
 	timer.start()
 
 func _on_timer_timeout() -> void:

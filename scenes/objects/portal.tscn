@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://bam7022karoot"]
+
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_kmouo"]
+[ext_resource type="Script" path="res://scripts/portal.gd" id="1_slwdt"]
+[ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="2_osome"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tk12r"]
+atlas = ExtResource("1_kmouo")
+region = Rect2(1216, 704, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_av0xa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tk12r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_cp450"]
+resource_name = "swirling"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_etrum"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a1m0k"]
+_data = {
+"RESET": SubResource("Animation_etrum"),
+"swirling": SubResource("Animation_cp450")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n6dud"]
+radius = 48.0
+
+[node name="Portal" type="Node2D"]
+script = ExtResource("1_slwdt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_av0xa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_a1m0k")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 12
+emission_shape = 2
+emission_sphere_radius = 45.0
+direction = Vector2(1, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+color = Color(0.266667, 0, 1, 1)
+hue_variation_min = 0.5
+hue_variation_max = 1.0
+
+[node name="DetectionRange" parent="." instance=ExtResource("2_osome")]
+interactable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_n6dud")

@@ -67,7 +67,7 @@ func removeInteractable(interactable):
 	
 func interactWithAll():
 	for interactable in interactables_list:
-		interactable.interact()
+		interactable.interact(self)
 
 func useAbility():
 	if interactables_num > 0 and Input.is_action_just_pressed("ExecuteAction"):

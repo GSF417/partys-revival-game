@@ -15,8 +15,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if attack_range.heroes_count() > 0:
 		attacking = true
-	elif detection_range.heroes_count() > 0:
+		$AttackTimer.start()
+	if detection_range.heroes_count() > 0:
 		detected_hero = true
 	else:
-		attacking = false
 		detected_hero = false
+
+func _on_attack_timer_timeout() -> void:
+	if attack_range.heroes_count() <= 0:
+		attacking = false

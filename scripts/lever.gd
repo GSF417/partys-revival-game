@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 	else:
 		sprite_arrow.visible = false
 
-func interact() -> void:
+func interact(source: Node2D) -> void:
 	if activated:
 		return
 	if reenables:

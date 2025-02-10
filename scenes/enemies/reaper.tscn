@@ -333,7 +333,7 @@ advance_expression = "!detected_hero"
 advance_mode = 2
 advance_expression = "attacking"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yxrfw"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vsvjd"]
 advance_mode = 2
 advance_expression = "!attacking"
 
@@ -344,7 +344,7 @@ states/hero_detected/node = SubResource("AnimationNodeAnimation_kx72o")
 states/hero_detected/position = Vector2(501, 86)
 states/idle/node = SubResource("AnimationNodeAnimation_17kqv")
 states/idle/position = Vector2(344, 86)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_5851o"), "idle", "hero_detected", SubResource("AnimationNodeStateMachineTransition_2ow66"), "hero_detected", "idle", SubResource("AnimationNodeStateMachineTransition_3gu8s"), "hero_detected", "attack", SubResource("AnimationNodeStateMachineTransition_4q67m"), "attack", "hero_detected", SubResource("AnimationNodeStateMachineTransition_yxrfw")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_5851o"), "idle", "hero_detected", SubResource("AnimationNodeStateMachineTransition_2ow66"), "hero_detected", "idle", SubResource("AnimationNodeStateMachineTransition_3gu8s"), "hero_detected", "attack", SubResource("AnimationNodeStateMachineTransition_4q67m"), "attack", "hero_detected", SubResource("AnimationNodeStateMachineTransition_vsvjd")]
 
 [node name="Reaper" type="StaticBody2D"]
 script = ExtResource("1_76qhk")
@@ -438,3 +438,8 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_4jhto")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
