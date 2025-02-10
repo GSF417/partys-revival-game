@@ -13,7 +13,7 @@ var activated = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	selected_hero = 0
 
 func find_living_hero() -> int:
 	var candidate
@@ -33,6 +33,11 @@ func switch_hero(switch_to: int):
 			return
 
 func _process(delta: float) -> void:
+	if players[selected_hero] == null:
+		selected_hero = find_living_hero()
+		switch_hero(selected_hero)
+	if players[selected_hero] != null:
+		players[selected_hero].checkForActions()
 	if Input.is_action_pressed("SwitchFirst"):
 		switch_hero(0)
 	if Input.is_action_pressed("SwitchSecond"):
@@ -53,7 +58,6 @@ func _process(delta: float) -> void:
 func interact(source: Node2D) -> void:
 	if selected_hero == 1 && players[1] != null:
 		players[1].queue_free()
-		players[1] = null
 		sprite.play("activated")
 		light.visible = true
 		if target == null:
@@ -61,3 +65,9 @@ func interact(source: Node2D) -> void:
 		if target.has_method("trigger") && activated == false:
 			target.trigger()
 		activated = true
+	else: if players[0] == null && players[2] == null && players[3] == null:
+			sprite.play("activated")
+			if target.has_method("trigger") && activated == false:
+				players[1].queue_free()
+				sprite.play("activated")
+				target.trigger()
