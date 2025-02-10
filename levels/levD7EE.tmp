@@ -1505,7 +1505,7 @@ volume_db = -10.0
 autoplay = true
 
 [node name="The Wizard" parent="." instance=ExtResource("20_khoj0")]
-position = Vector2(419, -478)
+position = Vector2(112, -860)
 movement_points = Array[Vector2]([Vector2(752, -80), Vector2(752, -340), Vector2(752, -600), Vector2(752, -860), Vector2(112, -80), Vector2(112, -340), Vector2(112, -600), Vector2(112, -860)])
 
 [node name="pauseMenu" parent="." instance=ExtResource("21_j735p")]

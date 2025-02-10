@@ -7,12 +7,14 @@ extends Node2D
 @onready var anim_player = $AnimationPlayer
 @export var movement_points : Array[Vector2]
 
+var rng = RandomNumberGenerator.new()
 var own_beam_root = null
-var MOVE_SPEED : float = 1.5
+var MOVE_SPEED : float = 150
 var target_index : int = 0
 var moving : bool = false
 var charging_up : bool = false
 var cross_count : int = 0
+var crossing_over : bool = false
 var right_side : bool = true
 var going_reverse : bool = false
 
@@ -22,11 +24,13 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if global_position.distance_to(movement_points[get_target_index()])> 4:
-		global_position = global_position.lerp(movement_points[get_target_index()], delta * MOVE_SPEED)
+		#global_position = global_position.lerp(movement_points[get_target_index()], delta * MOVE_SPEED)
+		global_position = global_position.move_toward(movement_points[get_target_index()], delta * MOVE_SPEED)
 		$MoveTimer.start()
 	else:
 		global_position = movement_points[get_target_index()]
 		moving = false
+		crossing_over = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -34,7 +38,7 @@ func _process(delta: float) -> void:
 		scale.x = 1
 	elif right_side && !moving:
 		scale.x = -1
-	if charging_up && own_beam_root == null:
+	if !moving && charging_up && own_beam_root == null:
 		$ChargingTimer.start()
 		manage_beam_root()
 
@@ -44,8 +48,8 @@ func manage_beam_root() -> void:
 		x_pos = -x_pos
 	if own_beam_root == null:
 		own_beam_root = beam_root.instantiate()
-		own_beam_root.global_position = global_position + Vector2(x_pos, 8)
 		main.add_child(own_beam_root)
+	own_beam_root.global_position = global_position + Vector2(x_pos, 8)
 
 func get_target_index() -> int:
 	var true_index = target_index
@@ -61,6 +65,7 @@ func move_to_next() -> void:
 	if cross_count >= 4:
 		cross_count = 0
 		right_side = !right_side
+		crossing_over = true
 	elif going_reverse:
 		target_index = target_index - 1
 	else:
@@ -76,7 +81,7 @@ func move_to_next() -> void:
 		target_index = 1
 
 func restart_charge_interval() -> void:
-	$ChargeInterval.start()
+	$ChargeInterval.start(rng.randi_range(18, 24))
 
 func _on_move_timer_timeout() -> void:
 	if charging_up:
@@ -107,4 +112,6 @@ func _on_charging_timer_timeout() -> void:
 	main.remove_child(own_beam_root)
 	own_beam_root = null
 	charging_up = false
-	$ChargeInterval.start()
+	cross_count = 4
+	restart_charge_interval()
+	$MoveTimer.start(4)

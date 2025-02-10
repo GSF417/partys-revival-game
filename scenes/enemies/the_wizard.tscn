@@ -274,20 +274,20 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yack3"]
 advance_mode = 2
-advance_expression = "moving && right_side
+advance_expression = "moving && crossing_over && !right_side
 "
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dlu2d"]
 advance_mode = 2
-advance_expression = "!moving"
+advance_expression = "!crossing_over"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ts8iv"]
 advance_mode = 2
-advance_expression = "moving && !right_side"
+advance_expression = "moving && crossing_over && right_side"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qlc4a"]
 advance_mode = 2
-advance_expression = "!moving"
+advance_expression = "!crossing_over"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_81hxr"]
 advance_mode = 2
@@ -299,12 +299,11 @@ advance_expression = "!charging_up"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pparu"]
 advance_mode = 2
-advance_expression = "moving && !right_side"
+advance_expression = "moving && crossing_over && right_side"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ejau1"]
 advance_mode = 2
-advance_expression = "moving && right_side
-"
+advance_expression = "moving && crossing_over && !right_side"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gbe8s"]
 states/charging_up/node = SubResource("AnimationNodeAnimation_ilp6r")
@@ -376,6 +375,7 @@ autostart = true
 
 [node name="ChargeInterval" type="Timer" parent="."]
 wait_time = 18.0
+one_shot = true
 autostart = true
 
 [node name="ChargingTimer" type="Timer" parent="."]

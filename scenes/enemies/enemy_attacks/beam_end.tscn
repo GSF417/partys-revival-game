@@ -8,6 +8,7 @@
 size = Vector2(50, 64)
 
 [node name="BeamEnd" type="Node2D"]
+scale = Vector2(1, 1.5)
 script = ExtResource("1_hinxl")
 move_speed = 400.0
 move_dir = 1
