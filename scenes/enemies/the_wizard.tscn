@@ -1,13 +1,21 @@
-[gd_scene load_steps=26 format=3 uid="uid://7t3u2b5qnj3g"]
+[gd_scene load_steps=36 format=3 uid="uid://7t3u2b5qnj3g"]
 
 [ext_resource type="Script" path="res://scripts/the_wizard.gd" id="1_bvufi"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_ekhtx"]
 [ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="2_4s6lv"]
 [ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="3_husk0"]
+[ext_resource type="Shader" path="res://scenes/enemies/the_wizard.gdshader" id="3_xbqf7"]
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="5_0aprd"]
+[ext_resource type="FontFile" uid="uid://cmlwdpru017yw" path="res://interface/mainMenu/American Captain.otf" id="5_b01po"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_smbq3"]
+shader = ExtResource("3_xbqf7")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = null
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_prenr"]
-radius = 16.0
-height = 48.0
+radius = 63.0
+height = 126.0
 
 [sub_resource type="Animation" id="Animation_yfrfj"]
 length = 0.001
@@ -316,6 +324,58 @@ states/moving_left/node = SubResource("AnimationNodeAnimation_1m1nl")
 states/moving_left/position = Vector2(514, 182)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_i2wnr"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_yack3"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_dlu2d"), "idle", "moving_left", SubResource("AnimationNodeStateMachineTransition_ts8iv"), "moving_left", "idle", SubResource("AnimationNodeStateMachineTransition_qlc4a"), "idle", "charging_up", SubResource("AnimationNodeStateMachineTransition_81hxr"), "charging_up", "idle", SubResource("AnimationNodeStateMachineTransition_87adu"), "charging_up", "moving_left", SubResource("AnimationNodeStateMachineTransition_pparu"), "charging_up", "moving", SubResource("AnimationNodeStateMachineTransition_ejau1")]
 
+[sub_resource type="Animation" id="Animation_pxss8"]
+resource_name = "hit_flash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wizard Sprite:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [null, 1.0, 0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_eavm8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wizard Sprite:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3meqx"]
+_data = {
+"RESET": SubResource("Animation_eavm8"),
+"hit_flash": SubResource("Animation_pxss8")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sep4k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snhs1"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_isf77"]
+font = ExtResource("5_b01po")
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
 [node name="The Wizard" type="Node2D"]
 scale = Vector2(-1, 1)
 script = ExtResource("1_bvufi")
@@ -338,6 +398,7 @@ frame = 206
 
 [node name="Wizard Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_smbq3")
 texture = ExtResource("1_ekhtx")
 hframes = 20
 vframes = 20
@@ -355,8 +416,10 @@ position = Vector2(0, 9)
 shape = SubResource("CapsuleShape2D_prenr")
 debug_color = Color(0.998151, 0, 0.149284, 0.42)
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_husk0")]
-MAX_HEALTH = 6
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar", "flash_player") instance=ExtResource("3_husk0")]
+MAX_HEALTH = 8
+health_bar = NodePath("../CanvasLayer/HealthBar")
+flash_player = NodePath("../HitflashPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -367,6 +430,11 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_gbe8s")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="HitflashPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3meqx")
+}
 
 [node name="MoveTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -381,6 +449,33 @@ autostart = true
 [node name="ChargingTimer" type="Timer" parent="."]
 wait_time = 8.0
 one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+custom_minimum_size = Vector2(400, 4)
+offset_left = 732.0
+offset_top = 18.0
+offset_right = 1132.0
+offset_bottom = 45.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_sep4k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_snhs1")
+max_value = 8.0
+step = 1.0
+value = 8.0
+show_percentage = false
+script = ExtResource("5_0aprd")
+
+[node name="TheWizardName" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+offset_left = 899.0
+offset_top = 23.0
+offset_right = 960.0
+offset_bottom = 46.0
+text = "The Wizard"
+label_settings = SubResource("LabelSettings_isf77")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="ChargeInterval" to="." method="_on_charge_interval_timeout"]
