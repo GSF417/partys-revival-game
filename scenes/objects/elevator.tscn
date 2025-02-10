@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bok32di4fr4rf"]
+
+[ext_resource type="Script" path="res://scripts/elevator.gd" id="1_sm4uy"]
+[ext_resource type="Texture2D" uid="uid://1ng7323pr2m4" path="res://images/elevator.png" id="2_lxro7"]
+[ext_resource type="Texture2D" uid="uid://dscr53nfbvdef" path="res://images/corrente.png" id="2_n0ymn"]
+[ext_resource type="PackedScene" uid="uid://b1fyjsi227yrw" path="res://scenes/components/hitbox_component.tscn" id="3_j4i5d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ii0n1"]
+size = Vector2(26.5921, 172)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4uwe"]
+size = Vector2(152, 22.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nn33v"]
+size = Vector2(144, 11)
+
+[node name="ElevatorTest" type="RigidBody2D"]
+lock_rotation = true
+script = ExtResource("1_sm4uy")
+
+[node name="Corrente" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -441)
+scale = Vector2(2, 2)
+texture = ExtResource("2_n0ymn")
+
+[node name="Elevator" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.8, 3.8)
+texture = ExtResource("2_lxro7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(62.7039, 6)
+shape = SubResource("RectangleShape2D_ii0n1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 102.75)
+shape = SubResource("RectangleShape2D_b4uwe")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(1.14143e-05, -1.18414)
+scale = Vector2(3.78125, 3.76249)
+polygon = PackedVector2Array(-20, -21, -20, -25, -17, -25, -14, -28, -10, -28, -6, -32, 6, -32, 10, -28, 14, -28, 17, -25, 20, -25, 20, -21)
+
+[node name="HitboxComponent" parent="." groups=["Damage"] instance=ExtResource("3_j4i5d")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(4, 115.5)
+shape = SubResource("RectangleShape2D_nn33v")
+debug_color = Color(0.854455, 0.368407, 1.15514e-06, 0.42)

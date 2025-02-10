@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://b2t8tc7crh164"]
+
+[ext_resource type="Script" path="res://scripts/Furnance.gd" id="1_arcea"]
+[ext_resource type="Texture2D" uid="uid://dcsg6e4e43upi" path="res://images/furnance/furnanceActv1.png" id="2_ewsp4"]
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_wafra"]
+[ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="3_bvnh3"]
+[ext_resource type="Texture2D" uid="uid://cog8jn84xibm8" path="res://images/furnanceDis.png" id="3_duej8"]
+[ext_resource type="Texture2D" uid="uid://c8d6vs623hu3b" path="res://images/furnance/furnanceActv2.png" id="3_gade7"]
+[ext_resource type="Texture2D" uid="uid://duw2hhrnsw0uu" path="res://images/furnance/furnanceActv3.png" id="4_erd1c"]
+[ext_resource type="Texture2D" uid="uid://dqoaicyf8bpv3" path="res://images/furnance/furnanceActv4.png" id="5_1mu6v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_meb8c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ewsp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gade7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_erd1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1mu6v")
+}],
+"loop": true,
+"name": &"activated",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_duej8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8sc18"]
+radius = 26.0
+
+[sub_resource type="Gradient" id="Gradient_16mby"]
+offsets = PackedFloat32Array(0, 0.709957)
+colors = PackedColorArray(1, 0.838055, 0.349715, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ag51y"]
+gradient = SubResource("Gradient_16mby")
+width = 54
+height = 54
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="furnance" type="Node2D"]
+script = ExtResource("1_arcea")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_meb8c")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -42)
+texture = ExtResource("2_wafra")
+hframes = 20
+vframes = 20
+frame = 237
+
+[node name="DetectionRange" parent="." instance=ExtResource("3_bvnh3")]
+interactable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+visible = false
+position = Vector2(3, 0)
+shape = SubResource("CircleShape2D_8sc18")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, 6)
+energy = 0.7
+texture = SubResource("GradientTexture2D_ag51y")

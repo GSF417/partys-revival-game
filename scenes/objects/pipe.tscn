@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://dikxl8yegmq5x"]
+
+[ext_resource type="Script" path="res://scripts/pipe.gd" id="1_oce5y"]
+[ext_resource type="Texture2D" uid="uid://bmfqxb1oyn3cp" path="res://images/CanoEstourado/canoEstourado1.png" id="2_3m3od"]
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_wafra"]
+[ext_resource type="Texture2D" uid="uid://rfq8fwtq2bi5" path="res://images/CanoEstourado/canoEstourado2.png" id="3_7bixf"]
+[ext_resource type="Texture2D" uid="uid://opjpm5f2rsba" path="res://images/cano.png" id="3_b0gex"]
+[ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="3_bvnh3"]
+[ext_resource type="Texture2D" uid="uid://0yl13a8w2uqg" path="res://images/CanoEstourado/canoEstourado3.png" id="4_ayals"]
+[ext_resource type="Texture2D" uid="uid://gdhllgo74m7g" path="res://images/CanoEstourado/canoEstourado4.png" id="5_867c1"]
+[ext_resource type="Texture2D" uid="uid://dkuw6rge5cwjs" path="res://images/CanoEstourado/canoEstourado5.png" id="6_dr5tm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_meb8c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3m3od")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7bixf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ayals")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_867c1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dr5tm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_867c1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ayals")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7bixf")
+}],
+"loop": true,
+"name": &"activated",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_b0gex")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsyph"]
+size = Vector2(28, 57)
+
+[node name="pipe" type="Node2D"]
+script = ExtResource("1_oce5y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_meb8c")
+frame_progress = 0.0720849
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -42)
+texture = ExtResource("2_wafra")
+hframes = 20
+vframes = 20
+frame = 237
+
+[node name="DetectionRange" parent="." instance=ExtResource("3_bvnh3")]
+position = Vector2(0, 63)
+interactable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+position = Vector2(0, 24.5)
+shape = SubResource("RectangleShape2D_jsyph")
