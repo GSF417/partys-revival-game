@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://8evb60e0drfs"]
+
+[ext_resource type="Script" path="res://scripts/beam_end.gd" id="1_hinxl"]
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_uws13"]
+[ext_resource type="PackedScene" uid="uid://b1fyjsi227yrw" path="res://scenes/components/hitbox_component.tscn" id="2_5oxes"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mr15i"]
+size = Vector2(50, 64)
+
+[node name="BeamEnd" type="Node2D"]
+script = ExtResource("1_hinxl")
+move_speed = 400.0
+move_dir = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(7, 0)
+texture = ExtResource("1_uws13")
+hframes = 20
+vframes = 20
+frame = 87
+
+[node name="HitboxComponent" parent="." groups=["Damage", "Enemy_Attack"] instance=ExtResource("2_5oxes")]
+position = Vector2(7, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-7, 0)
+shape = SubResource("RectangleShape2D_mr15i")
+debug_color = Color(0.992974, 0, 0.244413, 0.42)
+
+[node name="ExtenderTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="ExtenderTimer" to="." method="_on_extender_timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

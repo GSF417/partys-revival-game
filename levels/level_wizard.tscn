@@ -1,5 +1,6 @@
-[gd_scene load_steps=32 format=4 uid="uid://bq7kr2obd38hf"]
+[gd_scene load_steps=33 format=4 uid="uid://bq7kr2obd38hf"]
 
+[ext_resource type="Texture2D" uid="uid://c1cnl57s20fkp" path="res://images/abstract-space-background-with-fictional-planet.jpg" id="1_jfn6q"]
 [ext_resource type="Texture2D" uid="uid://b07bokmtqimc2" path="res://tilesets/Mine Tileset/5. Mine Tileset - Starter Pack 32p/Mine_Tileset_1B.png" id="1_y481m"]
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="2_j3mdn"]
 [ext_resource type="PackedScene" uid="uid://dll64ogrgpcpo" path="res://scenes/heroes/hero_tobu.tscn" id="3_wqexl"]
@@ -15,25 +16,10 @@
 [ext_resource type="PackedScene" uid="uid://canyhltdfqw6m" path="res://scenes/enemies/reaper.tscn" id="14_psc64"]
 [ext_resource type="PackedScene" uid="uid://c7guhmawub6ja" path="res://scenes/objects/lever.tscn" id="16_8ypux"]
 [ext_resource type="PackedScene" uid="uid://c8j8tks6ne7al" path="res://scenes/objects/explosive.tscn" id="18_nvpjc"]
+[ext_resource type="AudioStream" uid="uid://p0inj0xmqiuu" path="res://sounds/omega.mp3" id="19_bf46p"]
 [ext_resource type="PackedScene" uid="uid://cwthhov5107qg" path="res://scenes/enemies/biter.tscn" id="19_btk6d"]
 [ext_resource type="PackedScene" uid="uid://c5540jjp8iquv" path="res://scenes/objects/spikes.tscn" id="19_bvlxd"]
-[ext_resource type="TileSet" uid="uid://bax1h15rekh86" path="res://levels/tilesets/cave_bg_2.tres" id="21_cfjs5"]
-[ext_resource type="AudioStream" uid="uid://dinrpl5akdt6o" path="res://sounds/music.mp3" id="23_j3ovl"]
-
-[sub_resource type="Animation" id="Animation_e5ffy"]
-resource_name = "starting_position"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(30, -670)]
-}
+[ext_resource type="PackedScene" uid="uid://7t3u2b5qnj3g" path="res://scenes/enemies/the_wizard.tscn" id="20_khoj0"]
 
 [sub_resource type="Animation" id="Animation_rg4wj"]
 length = 0.001
@@ -48,21 +34,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(30, -670)]
-}
-
-[sub_resource type="Animation" id="Animation_k3edg"]
-resource_name = "move_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(30, -670), Vector2(30, -925)]
 }
 
 [sub_resource type="Animation" id="Animation_5533y"]
@@ -80,15 +51,22 @@ tracks/0/keys = {
 "values": [Vector2(30, -925), Vector2(30, -670)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_50ius"]
-_data = {
-"RESET": SubResource("Animation_rg4wj"),
-"move_back": SubResource("Animation_5533y"),
-"move_out": SubResource("Animation_k3edg"),
-"starting_position": SubResource("Animation_e5ffy")
+[sub_resource type="Animation" id="Animation_k3edg"]
+resource_name = "move_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(30, -670), Vector2(30, -925)]
 }
 
-[sub_resource type="Animation" id="Animation_w82dy"]
+[sub_resource type="Animation" id="Animation_e5ffy"]
 resource_name = "starting_position"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -100,7 +78,15 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(825, -670)]
+"values": [Vector2(30, -670)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_50ius"]
+_data = {
+"RESET": SubResource("Animation_rg4wj"),
+"move_back": SubResource("Animation_5533y"),
+"move_out": SubResource("Animation_k3edg"),
+"starting_position": SubResource("Animation_e5ffy")
 }
 
 [sub_resource type="Animation" id="Animation_oul0v"]
@@ -118,6 +104,21 @@ tracks/0/keys = {
 "values": [Vector2(825, -670)]
 }
 
+[sub_resource type="Animation" id="Animation_ja6ew"]
+resource_name = "move_back"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(825, -925), Vector2(825, -670)]
+}
+
 [sub_resource type="Animation" id="Animation_5mxy1"]
 resource_name = "move_out"
 tracks/0/type = "value"
@@ -133,8 +134,8 @@ tracks/0/keys = {
 "values": [Vector2(825, -670), Vector2(825, -925)]
 }
 
-[sub_resource type="Animation" id="Animation_ja6ew"]
-resource_name = "move_back"
+[sub_resource type="Animation" id="Animation_w82dy"]
+resource_name = "starting_position"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -142,10 +143,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(825, -925), Vector2(825, -670)]
+"values": [Vector2(825, -670)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8ac8l"]
@@ -1320,6 +1321,11 @@ sources/1 = SubResource("TileSetAtlasSource_njqhm")
 
 [node name="Main" type="Node2D"]
 
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(438, -471.5)
+scale = Vector2(0.3048, 0.24975)
+texture = ExtResource("1_jfn6q")
+
 [node name="IronDoor1" type="Node2D" parent="."]
 position = Vector2(30, -670)
 script = ExtResource("10_06xrd")
@@ -1492,14 +1498,11 @@ limit_top = -960
 limit_right = 1056
 limit_bottom = 32
 
-[node name="Background" type="TileMap" parent="."]
-z_index = -6
-position = Vector2(1, -4)
-tile_set = ExtResource("21_cfjs5")
-format = 2
-layer_0/tile_data = PackedInt32Array(-393215, 0, 0, -2293759, 0, 0, 1507329, 0, 0, -327619, 0, 0, 1507387, 0, 0, -2293699, 0, 0)
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("23_j3ovl")
+stream = ExtResource("19_bf46p")
 volume_db = -10.0
 autoplay = true
+
+[node name="The Wizard" parent="." instance=ExtResource("20_khoj0")]
+position = Vector2(112, -860)
+movement_points = Array[Vector2]([Vector2(752, -80), Vector2(752, -340), Vector2(752, -600), Vector2(752, -860), Vector2(112, -80), Vector2(112, -340), Vector2(112, -600), Vector2(112, -860)])
