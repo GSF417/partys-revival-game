@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dll64ogrgpcpo"]
+[gd_scene load_steps=30 format=3 uid="uid://dll64ogrgpcpo"]
 
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_5bwuj"]
 [ext_resource type="Script" path="res://scripts/hero_tobu.gd" id="1_to5ir"]
@@ -83,13 +83,32 @@ tracks/0/keys = {
 "values": [6]
 }
 
+[sub_resource type="Animation" id="Animation_n416m"]
+resource_name = "tobu_death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v5nts"]
 _data = {
 "RESET": SubResource("Animation_v7ppq"),
+"tobu_death": SubResource("Animation_n416m"),
 "tobu_idle": SubResource("Animation_l1u7w"),
 "tobu_jump": SubResource("Animation_ic3u3"),
 "tobu_move": SubResource("Animation_naobk")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ggq1f"]
+animation = &"tobu_death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1oga8"]
 animation = &"tobu_idle"
@@ -123,14 +142,28 @@ advance_expression = "!jumping"
 advance_mode = 2
 advance_expression = "jumping"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_noncg"]
+advance_mode = 2
+advance_expression = "dying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tk26m"]
+advance_mode = 2
+advance_expression = "dying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xj5wm"]
+advance_mode = 2
+advance_expression = "dying"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1tiv3"]
+states/tobu_death/node = SubResource("AnimationNodeAnimation_ggq1f")
+states/tobu_death/position = Vector2(561, 204)
 states/tobu_idle/node = SubResource("AnimationNodeAnimation_1oga8")
 states/tobu_idle/position = Vector2(369, 68)
 states/tobu_jump/node = SubResource("AnimationNodeAnimation_1rs2t")
-states/tobu_jump/position = Vector2(468, 147)
+states/tobu_jump/position = Vector2(369, 204)
 states/tobu_move/node = SubResource("AnimationNodeAnimation_6s77u")
 states/tobu_move/position = Vector2(561, 68)
-transitions = ["Start", "tobu_idle", SubResource("AnimationNodeStateMachineTransition_38kgo"), "tobu_idle", "tobu_move", SubResource("AnimationNodeStateMachineTransition_v4f4b"), "tobu_move", "tobu_idle", SubResource("AnimationNodeStateMachineTransition_ltwn7"), "tobu_idle", "tobu_jump", SubResource("AnimationNodeStateMachineTransition_vak3q"), "tobu_jump", "tobu_idle", SubResource("AnimationNodeStateMachineTransition_l8dtx"), "tobu_move", "tobu_jump", SubResource("AnimationNodeStateMachineTransition_uv21p")]
+transitions = ["Start", "tobu_idle", SubResource("AnimationNodeStateMachineTransition_38kgo"), "tobu_idle", "tobu_move", SubResource("AnimationNodeStateMachineTransition_v4f4b"), "tobu_move", "tobu_idle", SubResource("AnimationNodeStateMachineTransition_ltwn7"), "tobu_idle", "tobu_jump", SubResource("AnimationNodeStateMachineTransition_vak3q"), "tobu_jump", "tobu_idle", SubResource("AnimationNodeStateMachineTransition_l8dtx"), "tobu_move", "tobu_jump", SubResource("AnimationNodeStateMachineTransition_uv21p"), "tobu_jump", "tobu_death", SubResource("AnimationNodeStateMachineTransition_noncg"), "tobu_move", "tobu_death", SubResource("AnimationNodeStateMachineTransition_tk26m"), "tobu_idle", "tobu_death", SubResource("AnimationNodeStateMachineTransition_xj5wm")]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8jotl"]
 radius = 21.0

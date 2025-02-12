@@ -7,6 +7,7 @@ class_name HeroEntity
 @export var jump_sfx : AudioStreamPlayer2D
 @export var hero_ability : HeroAbility
 @export var cleanup_timer : Timer
+@export var ability_timer : Timer
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -23,6 +24,7 @@ var interactables_num = 0
 var moving : bool = false
 var jumping : bool = false
 var dying : bool = false
+var using_ability : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -87,6 +89,9 @@ func useAbility():
 		hero_ability.execute(lookLeft)
 		if ability_sfx != null:
 			ability_sfx.play()
+		using_ability = true
+		if ability_timer != null:
+			ability_timer.start()
 
 func die():
 	if dying:
