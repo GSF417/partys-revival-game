@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxthpkt8nu05i"]
+[gd_scene load_steps=11 format=3 uid="uid://dxthpkt8nu05i"]
 
 [ext_resource type="Script" path="res://scripts/hero_yari.gd" id="1_eljcu"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_vsq16"]
 [ext_resource type="PackedScene" uid="uid://vfvqnuxp2t81" path="res://scenes/heroes/abilities/yari_ability.tscn" id="3_eeror"]
 [ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="4_6eqk7"]
 [ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="5_0srty"]
+[ext_resource type="AudioStream" uid="uid://dlecny0y6g60b" path="res://sounds/jump.wav" id="6_t0882"]
+[ext_resource type="AudioStream" uid="uid://cn507ruki1fd8" path="res://sounds/cut.wav" id="7_qj3k7"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fx4hr"]
 
@@ -14,11 +16,14 @@
 radius = 7.0
 height = 58.0
 
-[node name="HeroYari" type="CharacterBody2D" node_paths=PackedStringArray("hero_ability")]
+[node name="HeroYari" type="CharacterBody2D" node_paths=PackedStringArray("ability_sfx", "jump_sfx", "hero_ability", "cleanup_timer")]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_eljcu")
+ability_sfx = NodePath("AudioStreamPlayer2D")
+jump_sfx = NodePath("JumpSound")
 hero_ability = NodePath("YariAbility")
+cleanup_timer = NodePath("Timer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -52,3 +57,15 @@ shape = SubResource("CapsuleShape2D_wntyp")
 debug_color = Color(0.980392, 0.133333, 0, 0.419608)
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_0srty")]
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_t0882")
+volume_db = -10.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_qj3k7")
+volume_db = -10.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

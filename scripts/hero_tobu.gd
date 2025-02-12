@@ -17,3 +17,7 @@ func _process(delta: float) -> void:
 
 func attack_recoil() -> void:
 	velocity.y = jump_height * 1.75
+
+
+func _on_timer_timeout() -> void:
+	queue_free()

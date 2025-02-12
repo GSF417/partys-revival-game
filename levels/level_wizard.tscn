@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://canyhltdfqw6m" path="res://scenes/enemies/reaper.tscn" id="14_psc64"]
 [ext_resource type="PackedScene" uid="uid://c7guhmawub6ja" path="res://scenes/objects/lever.tscn" id="16_8ypux"]
 [ext_resource type="PackedScene" uid="uid://c8j8tks6ne7al" path="res://scenes/objects/explosive.tscn" id="18_nvpjc"]
-[ext_resource type="AudioStream" uid="uid://p0inj0xmqiuu" path="res://sounds/omega.mp3" id="19_bf46p"]
+[ext_resource type="AudioStream" uid="uid://bn6o7tpoq6hs6" path="res://sounds/boss_fight.mp3" id="19_ax8eo"]
 [ext_resource type="PackedScene" uid="uid://cwthhov5107qg" path="res://scenes/enemies/biter.tscn" id="19_btk6d"]
 [ext_resource type="PackedScene" uid="uid://c5540jjp8iquv" path="res://scenes/objects/spikes.tscn" id="19_bvlxd"]
 [ext_resource type="PackedScene" uid="uid://7t3u2b5qnj3g" path="res://scenes/enemies/the_wizard.tscn" id="20_khoj0"]
@@ -1500,7 +1500,7 @@ limit_right = 1056
 limit_bottom = 32
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("19_bf46p")
+stream = ExtResource("19_ax8eo")
 volume_db = -10.0
 autoplay = true
 

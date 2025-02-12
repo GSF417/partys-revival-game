@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4lw1o0a5u8ri"]
+[gd_scene load_steps=11 format=3 uid="uid://c4lw1o0a5u8ri"]
 
 [ext_resource type="Script" path="res://scripts/hero_kinroy.gd" id="1_8w6l6"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_qcxh3"]
 [ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="3_lr5qj"]
 [ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="4_qm3b0"]
+[ext_resource type="AudioStream" uid="uid://dlecny0y6g60b" path="res://sounds/jump.wav" id="5_wj17i"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fx4hr"]
 
@@ -18,11 +19,12 @@ height = 40.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ll4ta"]
 size = Vector2(2, 2)
 
-[node name="HeroKinroy" type="CharacterBody2D"]
+[node name="HeroKinroy" type="CharacterBody2D" node_paths=PackedStringArray("jump_sfx")]
 position = Vector2(1, -13)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_8w6l6")
+jump_sfx = NodePath("JumpSound")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -64,3 +66,11 @@ debug_color = Color(0.980392, 0.133333, 0, 0.419608)
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5)
 shape = SubResource("RectangleShape2D_ll4ta")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_wj17i")
+volume_db = -10.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

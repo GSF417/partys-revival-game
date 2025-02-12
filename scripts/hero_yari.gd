@@ -6,3 +6,6 @@ func _ready() -> void:
 	super()
 	SPEED = 225
 	jump_height = -375
+
+func _on_timer_timeout() -> void:
+	queue_free()

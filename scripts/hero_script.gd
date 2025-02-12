@@ -3,8 +3,10 @@ class_name HeroEntity
 
 @onready var sprite = $Sprite2D
 
-@export var jump_sfx : AudioStreamPlayer
+@export var ability_sfx : AudioStreamPlayer2D
+@export var jump_sfx : AudioStreamPlayer2D
 @export var hero_ability : HeroAbility
+@export var cleanup_timer : Timer
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -18,6 +20,8 @@ var lookLeft = false
 var interactables_list = []
 var interactables_num = 0
 
+var moving : bool = false
+var jumping : bool = false
 var dying : bool = false
 
 # Called when the node enters the scene tree for the first time.
@@ -30,9 +34,14 @@ func _physics_process(delta: float) -> void:
 		return
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		jumping = true
+	else:
+		jumping = false
 	if direction:
 		velocity.x = direction * SPEED
+		moving = true
 	else:
+		moving = false
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
 	
@@ -54,6 +63,8 @@ func jump():
 	if Input.is_action_just_pressed("MoveUp") and is_on_floor():
 		#jump_sfx.play()
 		velocity.y = jump_height
+		if jump_sfx != null:
+			jump_sfx.play()
 
 func addInteractable(interactable):
 	if interactable.has_method("interact"):
@@ -74,6 +85,14 @@ func useAbility():
 		interactWithAll()
 	elif hero_ability != null and Input.is_action_just_pressed("ExecuteAction"):
 		hero_ability.execute(lookLeft)
+		if ability_sfx != null:
+			ability_sfx.play()
+
+func die():
+	if dying:
+		return
+	dying = true
+	cleanup_timer.start()
 
 func checkForActions():
 	if dying:

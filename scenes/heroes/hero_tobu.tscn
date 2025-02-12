@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dll64ogrgpcpo"]
+[gd_scene load_steps=25 format=3 uid="uid://dll64ogrgpcpo"]
 
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_5bwuj"]
 [ext_resource type="Script" path="res://scripts/hero_tobu.gd" id="1_to5ir"]
 [ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="3_qkuw4"]
 [ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="4_yn46n"]
 [ext_resource type="PackedScene" uid="uid://b1fyjsi227yrw" path="res://scenes/components/hitbox_component.tscn" id="5_6jc4r"]
+[ext_resource type="AudioStream" uid="uid://dlecny0y6g60b" path="res://sounds/jump.wav" id="6_qts4f"]
 
 [sub_resource type="Animation" id="Animation_v7ppq"]
 length = 0.001
@@ -19,6 +20,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_l1u7w"]
@@ -36,13 +49,88 @@ tracks/0/keys = {
 "values": [Vector2i(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_naobk"]
+resource_name = "tobu_move"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_ic3u3"]
+resource_name = "tobu_jump"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v5nts"]
 _data = {
 "RESET": SubResource("Animation_v7ppq"),
-"tobu_idle": SubResource("Animation_l1u7w")
+"tobu_idle": SubResource("Animation_l1u7w"),
+"tobu_jump": SubResource("Animation_ic3u3"),
+"tobu_move": SubResource("Animation_naobk")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1oga8"]
+animation = &"tobu_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1rs2t"]
+animation = &"tobu_jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6s77u"]
+animation = &"tobu_move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_38kgo"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v4f4b"]
+advance_mode = 2
+advance_expression = "moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ltwn7"]
+advance_mode = 2
+advance_expression = "!moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vak3q"]
+advance_mode = 2
+advance_expression = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l8dtx"]
+advance_mode = 2
+advance_expression = "!jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uv21p"]
+advance_mode = 2
+advance_expression = "jumping"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1tiv3"]
+states/tobu_idle/node = SubResource("AnimationNodeAnimation_1oga8")
+states/tobu_idle/position = Vector2(369, 68)
+states/tobu_jump/node = SubResource("AnimationNodeAnimation_1rs2t")
+states/tobu_jump/position = Vector2(468, 147)
+states/tobu_move/node = SubResource("AnimationNodeAnimation_6s77u")
+states/tobu_move/position = Vector2(561, 68)
+transitions = ["Start", "tobu_idle", SubResource("AnimationNodeStateMachineTransition_38kgo"), "tobu_idle", "tobu_move", SubResource("AnimationNodeStateMachineTransition_v4f4b"), "tobu_move", "tobu_idle", SubResource("AnimationNodeStateMachineTransition_ltwn7"), "tobu_idle", "tobu_jump", SubResource("AnimationNodeStateMachineTransition_vak3q"), "tobu_jump", "tobu_idle", SubResource("AnimationNodeStateMachineTransition_l8dtx"), "tobu_move", "tobu_jump", SubResource("AnimationNodeStateMachineTransition_uv21p")]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8jotl"]
 radius = 21.0
@@ -53,10 +141,12 @@ height = 68.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwyby"]
 size = Vector2(28, 20)
 
-[node name="HeroTobu" type="CharacterBody2D"]
+[node name="HeroTobu" type="CharacterBody2D" node_paths=PackedStringArray("jump_sfx", "cleanup_timer")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_to5ir")
+jump_sfx = NodePath("JumpSound")
+cleanup_timer = NodePath("Timer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -73,6 +163,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath(".")
 tree_root = SubResource("AnimationNodeStateMachine_1tiv3")
+advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_qkuw4")]
@@ -97,3 +188,12 @@ shape = SubResource("RectangleShape2D_v8v1y")
 position = Vector2(2, 30)
 shape = SubResource("RectangleShape2D_kwyby")
 debug_color = Color(1, 0.616667, 0, 0.419608)
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_qts4f")
+volume_db = -10.0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

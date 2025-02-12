@@ -1,12 +1,120 @@
-[gd_scene load_steps=9 format=3 uid="uid://0b0n7gs3rbil"]
+[gd_scene load_steps=23 format=3 uid="uid://0b0n7gs3rbil"]
 
 [ext_resource type="Script" path="res://scripts/hero_bakudan.gd" id="1_l4ii1"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_piksm"]
 [ext_resource type="PackedScene" uid="uid://2y10hrtu4pu6" path="res://scenes/components/hurtbox_component.tscn" id="3_p85lr"]
 [ext_resource type="PackedScene" uid="uid://4v6hqfvsop8b" path="res://scenes/components/health_component.tscn" id="4_8tq7g"]
 [ext_resource type="PackedScene" uid="uid://b24bfdc2n88hc" path="res://scenes/heroes/abilities/bakudan_ability.tscn" id="5_kf6dc"]
+[ext_resource type="AudioStream" uid="uid://dlecny0y6g60b" path="res://sounds/jump.wav" id="6_vah1q"]
+
+[sub_resource type="Animation" id="Animation_ypdh3"]
+resource_name = "bakudan_idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [60]
+}
+
+[sub_resource type="Animation" id="Animation_yqs3b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [60]
+}
+
+[sub_resource type="Animation" id="Animation_4uo0k"]
+resource_name = "bakudan_walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [61, 62, 63, 64, 63, 62]
+}
+
+[sub_resource type="Animation" id="Animation_4p2bn"]
+resource_name = "bakudan_jump"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [64]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6i8ap"]
+_data = {
+"RESET": SubResource("Animation_yqs3b"),
+"bakudan_idle": SubResource("Animation_ypdh3"),
+"bakudan_jump": SubResource("Animation_4p2bn"),
+"bakudan_walk": SubResource("Animation_4uo0k")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6lxbv"]
+animation = &"bakudan_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_horo8"]
+animation = &"bakudan_jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qxkot"]
+animation = &"bakudan_walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0305s"]
+advance_mode = 2
+advance_expression = "moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p5vnl"]
+advance_mode = 2
+advance_expression = "!moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gueac"]
+advance_mode = 2
+advance_expression = "!jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4fk4g"]
+advance_mode = 2
+advance_expression = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_roial"]
+advance_mode = 2
+advance_expression = "jumping"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fx4hr"]
+states/bakudan_idle/node = SubResource("AnimationNodeAnimation_6lxbv")
+states/bakudan_idle/position = Vector2(335, 76)
+states/bakudan_jump/node = SubResource("AnimationNodeAnimation_horo8")
+states/bakudan_jump/position = Vector2(463, 197)
+states/bakudan_walk/node = SubResource("AnimationNodeAnimation_qxkot")
+states/bakudan_walk/position = Vector2(589, 76)
+transitions = ["bakudan_idle", "bakudan_walk", SubResource("AnimationNodeStateMachineTransition_0305s"), "bakudan_walk", "bakudan_idle", SubResource("AnimationNodeStateMachineTransition_p5vnl"), "bakudan_jump", "bakudan_idle", SubResource("AnimationNodeStateMachineTransition_gueac"), "bakudan_idle", "bakudan_jump", SubResource("AnimationNodeStateMachineTransition_4fk4g"), "bakudan_walk", "bakudan_jump", SubResource("AnimationNodeStateMachineTransition_roial")]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oksr0"]
 
@@ -14,11 +122,12 @@
 radius = 12.0
 height = 38.0
 
-[node name="HeroBakudan" type="CharacterBody2D" node_paths=PackedStringArray("hero_ability") groups=["Explosion"]]
+[node name="HeroBakudan" type="CharacterBody2D" node_paths=PackedStringArray("jump_sfx", "hero_ability") groups=["Explosion"]]
 position = Vector2(0, -13)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_l4ii1")
+jump_sfx = NodePath("JumpSound")
 hero_ability = NodePath("BakudanAbility")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -30,9 +139,13 @@ vframes = 20
 frame = 60
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6i8ap")
+}
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_fx4hr")
+advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -54,5 +167,9 @@ debug_color = Color(0.982246, 0.13206, 0, 0.42)
 [node name="BakudanAbility" parent="." instance=ExtResource("5_kf6dc")]
 
 [node name="CleanupTimer" type="Timer" parent="."]
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_vah1q")
+volume_db = -10.0
 
 [connection signal="timeout" from="CleanupTimer" to="." method="_on_cleanup_timer_timeout"]

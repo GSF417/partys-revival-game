@@ -14,6 +14,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("Restart"):
 		if confirm_restart:
 			end_game()
+			return
 		confirm_restart = true
 	if event.is_action_pressed("ui_cancel") or event.is_action_pressed("Restart"):
 		visible = true
