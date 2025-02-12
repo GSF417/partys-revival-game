@@ -1,18 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgpaeodlbq1jo"]
+[gd_scene load_steps=13 format=3 uid="uid://cbp2m5oo5er5h"]
 
-[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_qwe6w"]
-[ext_resource type="Shader" path="res://interface/pauseMenu/blur_shader.gdshader" id="2_onl2a"]
-[ext_resource type="FontFile" uid="uid://cmlwdpru017yw" path="res://interface/mainMenu/American Captain.otf" id="2_yn0t1"]
-[ext_resource type="Texture2D" uid="uid://bqrchughclfhx" path="res://interface/pauseMenu/Button_Blue_3Slides.png" id="3_x6c3d"]
-[ext_resource type="Texture2D" uid="uid://bxduehra2x44k" path="res://interface/pauseMenu/Button_Red_3Slides.png" id="4_y8k84"]
-[ext_resource type="Texture2D" uid="uid://bfco07fem7l3y" path="res://interface/pauseMenu/Button_Hover_3Slides.png" id="5_ulwr2"]
+[ext_resource type="Script" path="res://scripts/restart_menu.gd" id="1_8bia8"]
+[ext_resource type="Shader" path="res://interface/pauseMenu/blur_shader.gdshader" id="2_rtbtb"]
+[ext_resource type="FontFile" uid="uid://cmlwdpru017yw" path="res://interface/mainMenu/American Captain.otf" id="3_xtope"]
+[ext_resource type="Texture2D" uid="uid://bqrchughclfhx" path="res://interface/pauseMenu/Button_Blue_3Slides.png" id="4_fabef"]
+[ext_resource type="Texture2D" uid="uid://bxduehra2x44k" path="res://interface/pauseMenu/Button_Red_3Slides.png" id="5_3ncgj"]
+[ext_resource type="Texture2D" uid="uid://bfco07fem7l3y" path="res://interface/pauseMenu/Button_Hover_3Slides.png" id="6_rqxuy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_18ul5"]
-shader = ExtResource("2_onl2a")
+shader = ExtResource("2_rtbtb")
 shader_parameter/lod = 0.0
 
 [sub_resource type="Theme" id="Theme_tp1ue"]
-default_font = ExtResource("2_yn0t1")
+default_font = ExtResource("3_xtope")
 default_font_size = 25
 
 [sub_resource type="Animation" id="Animation_02l3f"]
@@ -70,9 +70,9 @@ _data = {
 "resumeGame": SubResource("Animation_nky2p")
 }
 
-[node name="pauseMenu" type="CanvasLayer"]
+[node name="restartMenu" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("1_qwe6w")
+script = ExtResource("1_8bia8")
 
 [node name="bg" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_18ul5")
@@ -98,36 +98,12 @@ grow_vertical = 2
 scale = Vector2(1.66608, 1.66608)
 theme = SubResource("Theme_tp1ue")
 
-[node name="resume" type="TextureButton" parent="bg/menuHolder"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource("3_x6c3d")
-texture_pressed = ExtResource("4_y8k84")
-texture_hover = ExtResource("5_ulwr2")
-
-[node name="Label" type="Label" parent="bg/menuHolder/resume"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.5
-offset_top = -18.0
-offset_right = 64.5
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Voltar ao Jogo"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="restart" type="TextureButton" parent="bg/menuHolder"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture_normal = ExtResource("3_x6c3d")
-texture_pressed = ExtResource("4_y8k84")
-texture_hover = ExtResource("5_ulwr2")
+texture_normal = ExtResource("4_fabef")
+texture_pressed = ExtResource("5_3ncgj")
+texture_hover = ExtResource("6_rqxuy")
 
 [node name="Label" type="Label" parent="bg/menuHolder/restart"]
 layout_mode = 1
@@ -146,14 +122,14 @@ text = "Reiniciar"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="quit" type="TextureButton" parent="bg/menuHolder"]
+[node name="resume" type="TextureButton" parent="bg/menuHolder"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture_normal = ExtResource("3_x6c3d")
-texture_pressed = ExtResource("4_y8k84")
-texture_hover = ExtResource("5_ulwr2")
+texture_normal = ExtResource("4_fabef")
+texture_pressed = ExtResource("5_3ncgj")
+texture_hover = ExtResource("6_rqxuy")
 
-[node name="Label" type="Label" parent="bg/menuHolder/quit"]
+[node name="Label" type="Label" parent="bg/menuHolder/resume"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -166,7 +142,7 @@ offset_right = 64.5
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Sair"
+text = "Voltar ao jogo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -175,6 +151,5 @@ libraries = {
 "": SubResource("AnimationLibrary_2et48")
 }
 
-[connection signal="pressed" from="bg/menuHolder/resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="bg/menuHolder/restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="bg/menuHolder/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="bg/menuHolder/resume" to="." method="_on_return_pressed"]

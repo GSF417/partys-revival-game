@@ -11,7 +11,13 @@ var activated = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	sprite_arrow.visible = false
+
+func _process(delta: float) -> void:
+	if detection_range.heroes_count() > 0 and not activated:
+		sprite_arrow.visible = true
+	else:
+		sprite_arrow.visible = false
 
 func interact(source: Node2D) -> void:
 	if source is not HeroYari:

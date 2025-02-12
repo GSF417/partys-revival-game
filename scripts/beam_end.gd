@@ -19,6 +19,6 @@ func _on_death_timer_timeout() -> void:
 
 func _on_extender_timer_timeout() -> void:
 	var instance = beam_middle.instantiate()
-	instance.global_position = global_position - Vector2(18 * move_dir, 0)
+	instance.global_position = global_position - Vector2(20 * move_dir, 0)
 	main.add_child(instance)
 	$ExtenderTimer.start()
