@@ -1,5 +1,4 @@
 extends Node2D
-class_name Furnance
 
 @export var target : Node2D
 @export var players : Array[HeroEntity] = [null, null, null, null]

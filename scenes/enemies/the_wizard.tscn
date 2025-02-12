@@ -324,6 +324,21 @@ states/moving_left/node = SubResource("AnimationNodeAnimation_1m1nl")
 states/moving_left/position = Vector2(514, 182)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_i2wnr"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_yack3"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_dlu2d"), "idle", "moving_left", SubResource("AnimationNodeStateMachineTransition_ts8iv"), "moving_left", "idle", SubResource("AnimationNodeStateMachineTransition_qlc4a"), "idle", "charging_up", SubResource("AnimationNodeStateMachineTransition_81hxr"), "charging_up", "idle", SubResource("AnimationNodeStateMachineTransition_87adu"), "charging_up", "moving_left", SubResource("AnimationNodeStateMachineTransition_pparu"), "charging_up", "moving", SubResource("AnimationNodeStateMachineTransition_ejau1")]
 
+[sub_resource type="Animation" id="Animation_eavm8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wizard Sprite:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+
 [sub_resource type="Animation" id="Animation_pxss8"]
 resource_name = "hit_flash"
 length = 0.4
@@ -338,21 +353,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [null, 1.0, 0.0, 1.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_eavm8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Wizard Sprite:material:shader_parameter/flash_value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [null]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3meqx"]

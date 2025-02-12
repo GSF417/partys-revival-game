@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://b2t8tc7crh164"]
 
-[ext_resource type="Script" path="res://scripts/Furnance.gd" id="1_arcea"]
+[ext_resource type="Script" path="res://scripts/furnace.gd" id="1_t1n6a"]
 [ext_resource type="Texture2D" uid="uid://dcsg6e4e43upi" path="res://images/furnance/furnanceActv1.png" id="2_ewsp4"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_wafra"]
 [ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="3_bvnh3"]
@@ -52,7 +52,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="furnance" type="Node2D"]
-script = ExtResource("1_arcea")
+script = ExtResource("1_t1n6a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
