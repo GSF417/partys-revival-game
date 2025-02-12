@@ -9,6 +9,7 @@ class_name HeroEntity
 @export var cleanup_timer : Timer
 @export var ability_timer : Timer
 
+@onready var main = get_tree().get_root().get_node("Main")
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var SPEED : int = 225

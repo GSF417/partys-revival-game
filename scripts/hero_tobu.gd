@@ -2,6 +2,7 @@ extends HeroEntity
 class_name HeroTobu
 
 @onready var hitbox_component = $HitboxComponent
+@onready var ghost_scene = load("res://scenes/heroes/ghost_tobu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,4 +21,7 @@ func attack_recoil() -> void:
 
 
 func _on_timer_timeout() -> void:
+	var ghost_instance = ghost_scene.instantiate()
+	ghost_instance.global_position = global_position
+	main.add_child(ghost_instance)
 	queue_free()

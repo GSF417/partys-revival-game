@@ -15,8 +15,6 @@ func suffer_damage():
 	var parent = get_parent()
 	health -= 2
 	if health_bar != null:
-		print("Current Health:")
-		print(health)
 		health_bar.set_health(health)
 	if flash_player != null:
 		flash_player.play("hit_flash")
