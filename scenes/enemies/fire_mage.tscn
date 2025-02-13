@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b0y5w2hjky3wr"]
+[gd_scene load_steps=26 format=3 uid="uid://b0y5w2hjky3wr"]
 
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="1_2tp1g"]
 [ext_resource type="Script" path="res://scripts/fire_roach.gd" id="1_7tafs"]
@@ -183,6 +183,18 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_xj4v0"]
 resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireRoach:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [182]
+}
 
 [sub_resource type="Animation" id="Animation_lily4"]
 resource_name = "idle"
@@ -282,6 +294,9 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u0rei"]
 animation = &"attacking"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hrpof"]
+animation = &"dead"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c8thk"]
 animation = &"idle"
 
@@ -296,12 +311,22 @@ advance_expression = "attacking"
 advance_mode = 2
 advance_expression = "!attacking"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6tbfm"]
+advance_mode = 2
+advance_expression = "dying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_isbme"]
+advance_mode = 2
+advance_expression = "dying"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_p10o1"]
 states/attacking/node = SubResource("AnimationNodeAnimation_u0rei")
 states/attacking/position = Vector2(459, 79)
+states/dead/node = SubResource("AnimationNodeAnimation_hrpof")
+states/dead/position = Vector2(377, 199)
 states/idle/node = SubResource("AnimationNodeAnimation_c8thk")
 states/idle/position = Vector2(341, 76)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1kxwg"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_c2ty2"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_doufm")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1kxwg"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_c2ty2"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_doufm"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_6tbfm"), "attacking", "dead", SubResource("AnimationNodeStateMachineTransition_isbme")]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptn26"]
 size = Vector2(284, 258)
@@ -436,4 +461,7 @@ debug_color = Color(0.998048, 0, 0.151823, 0.42)
 
 [node name="HealthComponent" parent="." instance=ExtResource("6_71qre")]
 
+[node name="CleanupTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CleanupTimer" to="." method="_on_cleanup_timer_timeout"]

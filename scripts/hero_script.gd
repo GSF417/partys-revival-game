@@ -54,6 +54,9 @@ func _physics_process(delta: float) -> void:
 		if c.get_collider() is RigidBody2D:
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 
+func halt_movement():
+	direction = 0
+
 func move():
 	direction = Input.get_axis("MoveLeft", "MoveRight")
 	if direction == -1:

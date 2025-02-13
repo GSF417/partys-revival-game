@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	pass
 
 func trigger() -> void:
-	interactable.interact()
+	interactable.interact(self)
 
 func die():
 	dying = true

@@ -25,6 +25,7 @@ func switch_hero(switch_to: int):
 		return
 	if switch_to < 0 or switch_to >= 4:
 		return
+	players[selected_hero].halt_movement()
 	selected_hero = switch_to
 	if (players[selected_hero] == null):
 		selected_hero = find_living_hero()
