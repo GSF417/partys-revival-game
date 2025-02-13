@@ -121,7 +121,7 @@ size = Vector2(42, 288)
 
 [node name="Warp Instance" parent="." instance=ExtResource("15_0p0oq")]
 position = Vector2(1341, 92)
-warp_to = "res://levels/level5.tscn"
+warp_to = "res://levels/elevator.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Warp Instance"]
 position = Vector2(28, -127)
