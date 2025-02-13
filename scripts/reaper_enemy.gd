@@ -6,10 +6,11 @@ extends Node2D
 var detected_hero : bool = false
 var attacking : bool = false
 
+var dying : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -21,6 +22,13 @@ func _process(delta: float) -> void:
 	else:
 		detected_hero = false
 
+func die() -> void:
+	dying = true
+	$CleanupTimer.start()
+
 func _on_attack_timer_timeout() -> void:
 	if attack_range.heroes_count() <= 0:
 		attacking = false
+
+func _on_cleanup_timer_timeout() -> void:
+	queue_free()
