@@ -80,7 +80,7 @@ position = Vector2(265, 532)
 position = Vector2(138, 536)
 
 [node name="HeroYari" parent="." instance=ExtResource("8_00xl1")]
-position = Vector2(75, 535)
+position = Vector2(82, 533)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(241, 491)
@@ -188,7 +188,7 @@ texture = ExtResource("15_gjl73")
 [node name="ElevatorTest" parent="." instance=ExtResource("16_roee0")]
 position = Vector2(781, 459)
 freeze = true
-distance = 244
+distance = 247
 
 [node name="HealthComponent" parent="ElevatorTest" instance=ExtResource("13_wi2p8")]
 
@@ -218,12 +218,13 @@ volume_db = -10.0
 autoplay = true
 
 [node name="Warp Instance" parent="." instance=ExtResource("18_v5bpf")]
-position = Vector2(1129, 165)
-warp_to = "res://levels/level_wizard.tscn"
+position = Vector2(1188, 165)
+warp_to = "res://levels/cakes.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Warp Instance"]
-position = Vector2(-3, -13.5)
+position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_ewio1")
 
 [node name="pauseMenu" parent="." instance=ExtResource("20_yhi55")]
+visible = false
 script = ExtResource("21_qhwow")

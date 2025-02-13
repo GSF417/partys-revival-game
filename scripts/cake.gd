@@ -1,17 +1,18 @@
 extends Node2D
-class_name Pipe
 
-@export var target : Node2D
+@export var portal : Node2D
+@export var ord : int
 @onready var sprite = $AnimatedSprite2D
-@onready var sinal = $Sinal
+@onready var sinal = $AnimatedSprite2D/Sinal
+@onready var light = $AnimatedSprite2D/PointLight2D
+@onready var move = $AnimationPlayer
 @onready var detection_range = $DetectionRange
-
-var selected_hero = 0
 var activated = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	sinal.visible = false
+	move.play("moving")
 
 func _process(delta: float) -> void:
 	if detection_range.heroes_count() > 0 and not activated:
@@ -20,11 +21,12 @@ func _process(delta: float) -> void:
 		sinal.visible = false
 
 func interact(source: Node2D) -> void:
-	if source is not HeroYari:
+	if source is not HeroKinroy:
 		return
-	if target == null:
+	if portal == null:
 		return
-	if target.has_method("trigger") && activated == false:
+	if portal.has_method("trigger") && activated == false:
+		light.visible = true
 		sprite.play("activated")
-		target.trigger()
+		portal.trigger(ord)
 		activated = true
