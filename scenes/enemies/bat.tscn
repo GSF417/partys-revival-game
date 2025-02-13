@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://lpv2tavx2blo"]
+[gd_scene load_steps=19 format=3 uid="uid://lpv2tavx2blo"]
 
 [ext_resource type="Script" path="res://scripts/bat.gd" id="1_8g5h2"]
 [ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_il6sk"]
@@ -45,11 +45,30 @@ tracks/0/keys = {
 "values": [160, 161]
 }
 
+[sub_resource type="Animation" id="Animation_l4x7t"]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [162]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3qgix"]
 _data = {
 "RESET": SubResource("Animation_nckld"),
+"dead": SubResource("Animation_l4x7t"),
 "idle": SubResource("Animation_mx5y5")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ppf4s"]
+animation = &"dead"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_215y1"]
 animation = &"idle"
@@ -57,10 +76,16 @@ animation = &"idle"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q4o6e"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gxw2w"]
+advance_mode = 2
+advance_expression = "dying"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7p2t6"]
+states/dead/node = SubResource("AnimationNodeAnimation_ppf4s")
+states/dead/position = Vector2(515, 152)
 states/idle/node = SubResource("AnimationNodeAnimation_215y1")
 states/idle/position = Vector2(363, 89)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_q4o6e")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_q4o6e"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_gxw2w")]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gxxbq"]
 radius = 33.0151
@@ -119,4 +144,7 @@ debug_color = Color(0, 0.651004, 0.0466897, 0.42)
 
 [node name="HealthComponent" parent="." instance=ExtResource("6_84l2x")]
 
+[node name="CleanupTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CleanupTimer" to="." method="_on_cleanup_timer_timeout"]

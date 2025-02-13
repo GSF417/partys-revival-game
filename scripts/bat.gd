@@ -7,6 +7,8 @@ var rng = RandomNumberGenerator.new()
 var starting_pos : Vector2
 var target_pos : Vector2
 
+var dying : bool = false
+
 func _ready() -> void:
 	rng.randomize()
 	find_new_pos()
@@ -36,3 +38,10 @@ func _on_timer_timeout() -> void:
 		return
 	find_new_pos()
 	$Timer.start()
+
+func die() -> void:
+	dying = true
+	$CleanupTimer.start()
+
+func _on_cleanup_timer_timeout() -> void:
+	queue_free()
