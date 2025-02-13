@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpeft5ww3y042"]
+
+[ext_resource type="Texture2D" uid="uid://clyrsxcw8dlq4" path="res://interface/UI/1.png" id="1_dw7s2"]
+[ext_resource type="Texture2D" uid="uid://cbk61scs1modo" path="res://interface/UI/2.png" id="2_hay4p"]
+[ext_resource type="Texture2D" uid="uid://bes0yrikf8bsg" path="res://interface/UI/3.png" id="3_fkqjd"]
+[ext_resource type="Texture2D" uid="uid://c8313jfht74g2" path="res://interface/UI/4.png" id="4_ai4wj"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="1" type="TextureButton" parent="ColorRect"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 13.0
+offset_right = 80.0
+offset_bottom = 76.0
+scale = Vector2(1.06792, 1.06792)
+texture_normal = ExtResource("1_dw7s2")
+
+[node name="Label" type="Label" parent="ColorRect/1"]
+layout_mode = 0
+offset_left = 20.6681
+offset_top = 62.0043
+offset_right = 60.6681
+offset_bottom = 85.0043
+text = "(1)"
+
+[node name="2" type="TextureButton" parent="ColorRect"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 13.0
+offset_right = 158.0
+offset_bottom = 76.0
+scale = Vector2(1.06792, 1.06792)
+texture_normal = ExtResource("2_hay4p")
+
+[node name="Label" type="Label" parent="ColorRect/2"]
+layout_mode = 0
+offset_left = 20.6681
+offset_top = 62.0043
+offset_right = 60.6681
+offset_bottom = 85.0043
+text = "(2)"
+
+[node name="3" type="TextureButton" parent="ColorRect"]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 13.0
+offset_right = 238.0
+offset_bottom = 78.0
+scale = Vector2(1.06792, 1.06792)
+texture_normal = ExtResource("3_fkqjd")
+
+[node name="Label" type="Label" parent="ColorRect/3"]
+layout_mode = 0
+offset_left = 20.6681
+offset_top = 62.0043
+offset_right = 60.6681
+offset_bottom = 85.0043
+text = "(3)"
+
+[node name="4" type="TextureButton" parent="ColorRect"]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 13.0
+offset_right = 319.0
+offset_bottom = 78.0
+scale = Vector2(1.06792, 1.06792)
+texture_normal = ExtResource("4_ai4wj")
+
+[node name="Label" type="Label" parent="ColorRect/4"]
+layout_mode = 0
+offset_left = 21.5371
+offset_top = 62.7385
+offset_right = 61.5371
+offset_bottom = 85.7385
+text = "(4)"

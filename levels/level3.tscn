@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bggya41q0tch2"]
+[gd_scene load_steps=39 format=3 uid="uid://bggya41q0tch2"]
 
 [ext_resource type="Texture2D" uid="uid://4e5hq8h3we6g" path="res://levels/assets/Cave_Background_1.png" id="1_0kj3b"]
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_thw4h"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://0b0n7gs3rbil" path="res://scenes/heroes/hero_bakudan.tscn" id="5_2qtvf"]
 [ext_resource type="Script" path="res://levels/level3_door_controller.gd" id="6_76yfl"]
 [ext_resource type="PackedScene" uid="uid://lpv2tavx2blo" path="res://scenes/enemies/bat.tscn" id="6_ixp0s"]
-[ext_resource type="PackedScene" uid="uid://c5pmubnnb88ng" path="res://scenes/objects/iron_door.tscn" id="6_wtwr2"]
+[ext_resource type="PackedScene" path="res://scenes/objects/iron_door.tscn" id="6_wtwr2"]
 [ext_resource type="PackedScene" uid="uid://dctp4qgghvdhb" path="res://scenes/objects/web.tscn" id="6_y40a0"]
 [ext_resource type="PackedScene" uid="uid://bjtd5vtd6bkjp" path="res://scenes/objects/chain.tscn" id="7_gfyxy"]
 [ext_resource type="PackedScene" uid="uid://d0fi0cvmqk3c" path="res://scenes/objects/lock.tscn" id="8_agemo"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://cuily6pjelejh" path="res://scenes/objects/spawners/missile_spawner.tscn" id="23_m1lx1"]
 [ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="24_aa6ob"]
 [ext_resource type="PackedScene" uid="uid://cgpaeodlbq1jo" path="res://interface/pauseMenu/pause_menu.tscn" id="25_5uoob"]
+[ext_resource type="PackedScene" uid="uid://bpeft5ww3y042" path="res://interface/UI/ui.tscn" id="26_yqi5n"]
 
 [sub_resource type="Animation" id="Animation_quyom"]
 length = 0.001
@@ -310,3 +311,5 @@ travel_dir = -1
 spawn_offset = Vector2(500, -30)
 
 [node name="pauseMenu" parent="." instance=ExtResource("25_5uoob")]
+
+[node name="UI" parent="." instance=ExtResource("26_yqi5n")]
