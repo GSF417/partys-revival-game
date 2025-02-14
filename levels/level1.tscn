@@ -366,4 +366,5 @@ autoplay = true
 
 [node name="pauseMenu" parent="." instance=ExtResource("19_yeqm1")]
 
-[node name="UI" parent="." instance=ExtResource("20_o2g7x")]
+[node name="UI" parent="." node_paths=PackedStringArray("hero_controller") instance=ExtResource("20_o2g7x")]
+hero_controller = NodePath("../HeroesController")

@@ -227,3 +227,6 @@ shape = SubResource("RectangleShape2D_ewio1")
 [node name="pauseMenu" parent="." instance=ExtResource("20_yhi55")]
 visible = false
 script = ExtResource("21_qhwow")
+
+[node name="UI" parent="." node_paths=PackedStringArray("hero_controller") instance=ExtResource("22_wxvve")]
+hero_controller = NodePath("../HeroesController")
