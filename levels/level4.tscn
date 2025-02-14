@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://da4bfft201rj5"]
+[gd_scene load_steps=39 format=3 uid="uid://da4bfft201rj5"]
 
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_747c0"]
 [ext_resource type="PackedScene" uid="uid://dll64ogrgpcpo" path="res://scenes/heroes/hero_tobu.tscn" id="2_10wv6"]
@@ -24,8 +24,6 @@
 [ext_resource type="PackedScene" uid="uid://cp17hygj10n6s" path="res://scenes/objects/spawners/gnome_spawner.tscn" id="16_iqut8"]
 [ext_resource type="PackedScene" uid="uid://c5540jjp8iquv" path="res://scenes/objects/spikes.tscn" id="18_emewk"]
 [ext_resource type="PackedScene" uid="uid://b1fyjsi227yrw" path="res://scenes/components/hitbox_component.tscn" id="20_f0vt2"]
-[ext_resource type="PackedScene" uid="uid://cgpaeodlbq1jo" path="res://interface/pauseMenu/pause_menu.tscn" id="24_rvxau"]
-[ext_resource type="PackedScene" uid="uid://bpeft5ww3y042" path="res://interface/UI/ui.tscn" id="25_26n4f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2qti"]
 size = Vector2(56, 78)
@@ -385,8 +383,3 @@ layer_0/tile_data = PackedInt32Array(-1376258, 131072, 2, -1310722, 131072, 3, -
 stream = ExtResource("16_5b0n6")
 volume_db = -10.0
 autoplay = true
-
-[node name="pauseMenu" parent="." instance=ExtResource("24_rvxau")]
-
-[node name="UI" parent="." node_paths=PackedStringArray("hero_controller") instance=ExtResource("25_26n4f")]
-hero_controller = NodePath("../HeroesController")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://bk8if6lbvdy28"]
+[gd_scene load_steps=43 format=4 uid="uid://bk8if6lbvdy28"]
 
 [ext_resource type="TileSet" uid="uid://bklnaeiufvlf2" path="res://levels/tilesets/castle.tres" id="1_uvi11"]
 [ext_resource type="TileSet" uid="uid://mjv0ipepd0wx" path="res://levels/tilesets/Mine.tres" id="1_ydb8b"]
@@ -22,8 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://dt0enxs652vd4" path="res://images/saphira.png" id="13_t6qkw"]
 [ext_resource type="PackedScene" uid="uid://b1fyjsi227yrw" path="res://scenes/components/hitbox_component.tscn" id="20_knm0k"]
 [ext_resource type="AudioStream" uid="uid://bn6o7tpoq6hs6" path="res://sounds/boss_fight.mp3" id="22_3coqt"]
-[ext_resource type="PackedScene" uid="uid://cgpaeodlbq1jo" path="res://interface/pauseMenu/pause_menu.tscn" id="23_u1l51"]
-[ext_resource type="PackedScene" uid="uid://bpeft5ww3y042" path="res://interface/UI/ui.tscn" id="24_3q6ev"]
 
 [sub_resource type="Gradient" id="Gradient_yv4bd"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -497,8 +495,3 @@ autoplay = true
 max_distance = 1000.0
 attenuation = 1.36604
 parameters/looping = true
-
-[node name="pauseMenu" parent="." instance=ExtResource("23_u1l51")]
-
-[node name="UI" parent="." node_paths=PackedStringArray("hero_controller") instance=ExtResource("24_3q6ev")]
-hero_controller = NodePath("../HeroesController")

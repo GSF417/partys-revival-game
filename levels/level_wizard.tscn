@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://djdqiasjkfnif"]
+[gd_scene load_steps=33 format=4 uid="uid://djdqiasjkfnif"]
 
 [ext_resource type="Texture2D" uid="uid://c1cnl57s20fkp" path="res://images/abstract-space-background-with-fictional-planet.jpg" id="1_jfn6q"]
 [ext_resource type="Texture2D" uid="uid://b07bokmtqimc2" path="res://tilesets/Mine Tileset/5. Mine Tileset - Starter Pack 32p/Mine_Tileset_1B.png" id="1_y481m"]
@@ -20,8 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://cwthhov5107qg" path="res://scenes/enemies/biter.tscn" id="19_btk6d"]
 [ext_resource type="PackedScene" uid="uid://c5540jjp8iquv" path="res://scenes/objects/spikes.tscn" id="19_bvlxd"]
 [ext_resource type="PackedScene" uid="uid://7t3u2b5qnj3g" path="res://scenes/enemies/the_wizard.tscn" id="20_khoj0"]
-[ext_resource type="PackedScene" uid="uid://cgpaeodlbq1jo" path="res://interface/pauseMenu/pause_menu.tscn" id="21_j735p"]
-[ext_resource type="PackedScene" uid="uid://bpeft5ww3y042" path="res://interface/UI/ui.tscn" id="22_4lw4r"]
 
 [sub_resource type="Animation" id="Animation_rg4wj"]
 length = 0.001
@@ -1508,8 +1506,3 @@ autoplay = true
 [node name="The Wizard" parent="." instance=ExtResource("20_khoj0")]
 position = Vector2(419, -478)
 movement_points = Array[Vector2]([Vector2(752, -80), Vector2(752, -340), Vector2(752, -600), Vector2(752, -860), Vector2(112, -80), Vector2(112, -340), Vector2(112, -600), Vector2(112, -860)])
-
-[node name="pauseMenu" parent="." instance=ExtResource("21_j735p")]
-
-[node name="UI" parent="." node_paths=PackedStringArray("hero_controller") instance=ExtResource("22_4lw4r")]
-hero_controller = NodePath("../HeroesController")

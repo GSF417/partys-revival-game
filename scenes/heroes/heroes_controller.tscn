@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvxbnopxsg856"]
+[gd_scene load_steps=4 format=3 uid="uid://bvxbnopxsg856"]
 
 [ext_resource type="Script" path="res://scripts/heroes_controller.gd" id="1_2vrtm"]
+[ext_resource type="PackedScene" uid="uid://bpeft5ww3y042" path="res://interface/UI/ui.tscn" id="2_fxtu5"]
+[ext_resource type="PackedScene" uid="uid://cgpaeodlbq1jo" path="res://interface/pauseMenu/pause_menu.tscn" id="3_clgrl"]
 
 [node name="HeroesController" type="Node2D"]
 script = ExtResource("1_2vrtm")
+
+[node name="UI" parent="." node_paths=PackedStringArray("hero_controller") instance=ExtResource("2_fxtu5")]
+hero_controller = NodePath("..")
+
+[node name="pauseMenu" parent="." instance=ExtResource("3_clgrl")]

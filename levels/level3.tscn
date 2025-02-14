@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bggya41q0tch2"]
+[gd_scene load_steps=37 format=3 uid="uid://bggya41q0tch2"]
 
 [ext_resource type="Texture2D" uid="uid://4e5hq8h3we6g" path="res://levels/assets/Cave_Background_1.png" id="1_0kj3b"]
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_thw4h"]
@@ -24,8 +24,6 @@
 [ext_resource type="AudioStream" uid="uid://dinrpl5akdt6o" path="res://sounds/music.mp3" id="18_vok7p"]
 [ext_resource type="PackedScene" uid="uid://cuily6pjelejh" path="res://scenes/objects/spawners/missile_spawner.tscn" id="23_m1lx1"]
 [ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="24_aa6ob"]
-[ext_resource type="PackedScene" uid="uid://cgpaeodlbq1jo" path="res://interface/pauseMenu/pause_menu.tscn" id="25_5uoob"]
-[ext_resource type="PackedScene" uid="uid://bpeft5ww3y042" path="res://interface/UI/ui.tscn" id="26_yqi5n"]
 
 [sub_resource type="Animation" id="Animation_quyom"]
 length = 0.001
@@ -309,8 +307,3 @@ shape = SubResource("CircleShape2D_pn17d")
 ammunition = 2
 travel_dir = -1
 spawn_offset = Vector2(500, -30)
-
-[node name="pauseMenu" parent="." instance=ExtResource("25_5uoob")]
-
-[node name="UI" parent="." node_paths=PackedStringArray("hero_controller") instance=ExtResource("26_yqi5n")]
-hero_controller = NodePath("../HeroesController")
