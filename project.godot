@@ -10,14 +10,22 @@ config_version=5
 
 [application]
 
-config/name="github"
-run/main_scene="res://levels/level1.tscn"
+config/name="Revival's Party"
+config/description="Control 4 heroes as they go on an adventure to have their vengeance on a mad wizard!
+Solve deadly puzzles! Thanks to your powers of resurrection, you need not to fear for your end.
+
+Controls
+WASD/Arrows -> Movement
+1, 2, 3, 4 -> Swap Hero
+Z -> Special Ability / Interact with Object"
+config/version="1.0.0"
+run/main_scene="res://interface/mainMenu/menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://WayOfRevival_Icon.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/amano-ldtk-importer-main/addons/amano-ldtk-importer/plugin.cfg")
+enabled=PackedStringArray()
 
 [global_group]
 

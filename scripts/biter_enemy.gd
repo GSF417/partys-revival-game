@@ -63,10 +63,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func die() -> void:
+	if dead:
+		return
 	moving = false
 	dead = true
-	hitbox_component.monitorable = false
-	hitbox_component.monitoring = false
+	hitbox_component.queue_free()
 	timer.start()
 
 func _on_timer_timeout() -> void:

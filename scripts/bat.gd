@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED = 4
 @export var roaming_range : int
 @onready var burning_detection : BurningDetectionRange = $BurningDetection
+@onready var hitbox_component = $HitboxComponent
 var rng = RandomNumberGenerator.new()
 var starting_pos : Vector2
 var target_pos : Vector2
@@ -40,8 +41,11 @@ func _on_timer_timeout() -> void:
 	$Timer.start()
 
 func die() -> void:
+	if dying:
+		return
 	dying = true
 	$CleanupTimer.start()
+	hitbox_component.queue_free()
 
 func _on_cleanup_timer_timeout() -> void:
 	queue_free()
