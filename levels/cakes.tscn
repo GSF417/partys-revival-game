@@ -125,7 +125,7 @@ size = Vector2(1700, 44)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_svjxv"]
 size = Vector2(157, 83)
 
-[node name="Main3" type="Node2D"]
+[node name="Main" type="Node2D"]
 metadata/_edit_vertical_guides_ = [575.0]
 metadata/_edit_horizontal_guides_ = [414.0, 567.0, 1203.0]
 

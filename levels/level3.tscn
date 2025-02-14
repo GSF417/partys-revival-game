@@ -118,7 +118,7 @@ size = Vector2(343.5, 128)
 [sub_resource type="CircleShape2D" id="CircleShape2D_pn17d"]
 radius = 30.0167
 
-[node name="Main2" type="Node2D"]
+[node name="Main" type="Node2D"]
 
 [node name="HeroesController" parent="." node_paths=PackedStringArray("players", "camera") instance=ExtResource("1_thw4h")]
 position = Vector2(1, -4)

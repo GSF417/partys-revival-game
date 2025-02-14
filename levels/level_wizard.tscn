@@ -1321,7 +1321,7 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_njqhm")
 
-[node name="Main4" type="Node2D"]
+[node name="Main" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(438, -471.5)

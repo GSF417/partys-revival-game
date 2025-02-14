@@ -43,7 +43,7 @@ size = Vector2(152, 229)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewio1"]
 size = Vector2(56, 113)
 
-[node name="Main3" type="Node2D"]
+[node name="Main" type="Node2D"]
 
 [node name="Tiles" type="Node2D" parent="."]
 
