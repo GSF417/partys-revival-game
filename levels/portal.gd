@@ -22,11 +22,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if self.visible == true:
 		countInc += 1
-		if countInc > 15:
+		if countInc > 20:
 			countInc = 0
 			inc += 1
-			light.texture_scale = light.texture_scale - ((light.texture_scale*cos(inc%17))/30)
-			light.energy = light.energy - ((light.energy*cos(inc%17))/20)
+			light.texture_scale = light.texture_scale - ((1*cos(inc%17))/2)
+			light.energy = light.energy - ((1*cos(inc%17))/2)
+			#print(light.texture_scale, " " ,light.energy)
 
 
 func trigger(ord : int) -> void:

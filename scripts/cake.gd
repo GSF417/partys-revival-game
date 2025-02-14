@@ -20,11 +20,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if self.visible == true:
 		countInc += 1
-		if countInc > 15:
+		if countInc > 20:
 			countInc = 0
 			inc += 1
-			light.texture_scale = light.texture_scale - ((light.texture_scale*cos(inc%17))/22)
-			light.energy = light.energy - ((light.energy*cos(inc%17))/17)
+			light.texture_scale = light.texture_scale - ((1*cos(inc%17))/5)
+			light.energy = light.energy - ((1*cos(inc%17))/5)
 	
 	if detection_range.heroes_count() > 0 and not activated:
 		sinal.visible = true
