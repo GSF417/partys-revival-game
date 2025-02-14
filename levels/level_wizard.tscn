@@ -1502,6 +1502,7 @@ limit_bottom = 32
 stream = ExtResource("19_ax8eo")
 volume_db = -10.0
 autoplay = true
+parameters/looping = false
 
 [node name="The Wizard" parent="." instance=ExtResource("20_khoj0")]
 position = Vector2(419, -478)

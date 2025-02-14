@@ -81,7 +81,7 @@ func move_to_next() -> void:
 		target_index = 1
 
 func restart_charge_interval() -> void:
-	$ChargeInterval.start(rng.randi_range(18, 24))
+	$ChargeInterval.start(rng.randi_range(16, 20))
 
 func _on_move_timer_timeout() -> void:
 	if charging_up:
@@ -91,6 +91,9 @@ func _on_move_timer_timeout() -> void:
 
 func _on_charge_interval_timeout() -> void:
 	charging_up = true
+
+func die():
+	get_tree().change_scene_to_file("res://interface/story/story_end.tscn")
 
 func _on_charging_timer_timeout() -> void:
 	var start_x = 68
