@@ -1,0 +1,130 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy5mxkq2i1n2p"]
+
+[ext_resource type="Texture2D" uid="uid://cebcfnh5qdshg" path="res://images/PartysRevivalComic1.png" id="1_ss0ck"]
+[ext_resource type="Script" path="res://interface/story/story.gd" id="1_sv871"]
+
+[sub_resource type="Animation" id="Animation_gher3"]
+resource_name = "storytelling"
+length = 21.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1166, -0.25, 0, 0.25, 0, 1136, -0.25, 0, 0.25, 0, 58, -0.25, 0, 0.25, 0, 46, -0.25, 0, 0.25, 0, 1178, -0.25, 0, 0.25, 0, 77, -0.25, 0, 0.25, 0, 959, -0.25, 0, 0.25, 0, 206, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 3.1, 5.7, 8.76667, 10.6333, 13.8, 17.0333, 19.7333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1169, -0.25, 0, 0.25, 0, 765, -0.25, 0, 0.25, 0, 1089, -0.25, 0, 0.25, 0, 722, -0.25, 0, 0.25, 0, 217, -0.25, 0, 0.25, 0, 190, -0.25, 0, 0.25, 0, -302, -0.25, 0, 0.25, 0, -299, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 3.1, 5.7, 8.76667, 10.6333, 13.8, 17.0333, 19.7333)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(2.91261, -0.25, 0, 0.25, 0, 2.80616, -0.25, 0, 0.25, 0, 2.72441, -0.25, 0, 0.25, 0, 2.81699, -0.25, 0, 0.25, 0, 2.92202, -0.25, 0, 0.25, 0, 2.67617, -0.25, 0, 0.25, 0, 2.38541, -0.25, 0, 0.25, 0, 2.38541, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 3.1, 5.7, 8.76667, 10.6333, 13.8, 17.0333, 19.7333)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(2.91261, -0.25, 0, 0.25, 0, 2.80616, -0.25, 0, 0.25, 0, 2.72441, -0.25, 0, 0.25, 0, 2.81699, -0.25, 0, 0.25, 0, 2.92202, -0.25, 0, 0.25, 0, 2.67617, -0.25, 0, 0.25, 0, 2.38541, -0.25, 0, 0.25, 0, 2.38541, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 3.1, 5.7, 8.76667, 10.6333, 13.8, 17.0333, 19.7333)
+}
+
+[sub_resource type="Animation" id="Animation_5qtco"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(894, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(892, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2.22861, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2.22861, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7qa0b"]
+_data = {
+"RESET": SubResource("Animation_5qtco"),
+"storytelling": SubResource("Animation_gher3")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sv871")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PartysRevivalComic1" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(894, 892)
+scale = Vector2(2.22861, 2.22861)
+texture = ExtResource("1_ss0ck")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CanvasLayer/PartysRevivalComic1")
+libraries = {
+"": SubResource("AnimationLibrary_7qa0b")
+}
+autoplay = "storytelling"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

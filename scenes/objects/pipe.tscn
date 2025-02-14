@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dikxl8yegmq5x"]
+[gd_scene load_steps=14 format=3 uid="uid://dikxl8yegmq5x"]
 
 [ext_resource type="Script" path="res://scripts/pipe.gd" id="1_oce5y"]
 [ext_resource type="Texture2D" uid="uid://bmfqxb1oyn3cp" path="res://images/CanoEstourado/canoEstourado1.png" id="2_3m3od"]
@@ -9,6 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://0yl13a8w2uqg" path="res://images/CanoEstourado/canoEstourado3.png" id="4_ayals"]
 [ext_resource type="Texture2D" uid="uid://gdhllgo74m7g" path="res://images/CanoEstourado/canoEstourado4.png" id="5_867c1"]
 [ext_resource type="Texture2D" uid="uid://dkuw6rge5cwjs" path="res://images/CanoEstourado/canoEstourado5.png" id="6_dr5tm"]
+
+[sub_resource type="Gradient" id="Gradient_f6i6m"]
+colors = PackedColorArray(0.188371, 0.188371, 0.188371, 1, 0.197937, 0.197937, 0.197937, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ha3i1"]
+gradient = SubResource("Gradient_f6i6m")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_meb8c"]
 animations = [{
@@ -56,6 +62,11 @@ size = Vector2(28, 57)
 [node name="pipe" type="Node2D"]
 script = ExtResource("1_oce5y")
 
+[node name="Sinal" type="PointLight2D" parent="."]
+position = Vector2(0.5, 10)
+scale = Vector2(0.109375, 3.28125)
+texture = SubResource("GradientTexture2D_ha3i1")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -13)
@@ -63,6 +74,7 @@ sprite_frames = SubResource("SpriteFrames_meb8c")
 frame_progress = 0.0720849
 
 [node name="Arrow" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(5, 64)
 texture = ExtResource("2_wafra")

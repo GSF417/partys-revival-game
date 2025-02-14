@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://nuxnyfvrk8iu"]
+[gd_scene load_steps=32 format=3 uid="uid://nuxnyfvrk8iu"]
 
 [ext_resource type="PackedScene" uid="uid://cwthhov5107qg" path="res://scenes/enemies/biter.tscn" id="1_8rdgr"]
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="1_xle22"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://c5fy2lt00i7b0" path="res://scenes/objects/warp_instance.tscn" id="20_pah15"]
 [ext_resource type="PackedScene" uid="uid://cuily6pjelejh" path="res://scenes/objects/spawners/missile_spawner.tscn" id="21_wtri2"]
 [ext_resource type="PackedScene" uid="uid://cgpaeodlbq1jo" path="res://interface/pauseMenu/pause_menu.tscn" id="23_gj6q2"]
+[ext_resource type="PackedScene" uid="uid://bpeft5ww3y042" path="res://interface/UI/ui.tscn" id="24_cbg0o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1pyr"]
 size = Vector2(108, 326.5)
@@ -377,3 +378,5 @@ position = Vector2(1623.5, -32.5)
 shape = SubResource("RectangleShape2D_q8rbh")
 
 [node name="pauseMenu" parent="." instance=ExtResource("23_gj6q2")]
+
+[node name="UI" parent="." instance=ExtResource("24_cbg0o")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2t8tc7crh164"]
+[gd_scene load_steps=15 format=3 uid="uid://b2t8tc7crh164"]
 
 [ext_resource type="Script" path="res://scripts/furnace.gd" id="1_t1n6a"]
 [ext_resource type="Texture2D" uid="uid://dcsg6e4e43upi" path="res://images/furnance/furnanceActv1.png" id="2_ewsp4"]
@@ -8,6 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://c8d6vs623hu3b" path="res://images/furnance/furnanceActv2.png" id="3_gade7"]
 [ext_resource type="Texture2D" uid="uid://duw2hhrnsw0uu" path="res://images/furnance/furnanceActv3.png" id="4_erd1c"]
 [ext_resource type="Texture2D" uid="uid://dqoaicyf8bpv3" path="res://images/furnance/furnanceActv4.png" id="5_1mu6v"]
+
+[sub_resource type="Gradient" id="Gradient_qdhn2"]
+colors = PackedColorArray(0.188371, 0.188371, 0.188371, 1, 0.197937, 0.197937, 0.197937, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sn47x"]
+gradient = SubResource("Gradient_qdhn2")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_meb8c"]
 animations = [{
@@ -54,12 +60,18 @@ fill_from = Vector2(0.5, 0.5)
 [node name="furnance" type="Node2D"]
 script = ExtResource("1_t1n6a")
 
+[node name="Sinal" type="PointLight2D" parent="."]
+position = Vector2(7.15256e-07, 2)
+scale = Vector2(0.40625, 0.53125)
+texture = SubResource("GradientTexture2D_sn47x")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_meb8c")
 
 [node name="Arrow" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(0, -27)
 texture = ExtResource("2_wafra")

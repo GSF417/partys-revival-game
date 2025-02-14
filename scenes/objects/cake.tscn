@@ -1,0 +1,139 @@
+[gd_scene load_steps=18 format=3 uid="uid://chqrfaqp0h3p1"]
+
+[ext_resource type="Script" path="res://scripts/cake.gd" id="1_epgdo"]
+[ext_resource type="Texture2D" uid="uid://bee53dgu5pd5j" path="res://images/cake.png" id="1_exx7q"]
+[ext_resource type="Texture2D" uid="uid://022geufdxpg5" path="res://images/CakeAnim/1.png" id="2_ocqh5"]
+[ext_resource type="Texture2D" uid="uid://chq6u55jqcwad" path="res://images/WayOfRevival2.png" id="2_wafra"]
+[ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="3_bvnh3"]
+[ext_resource type="Texture2D" uid="uid://baa71r07bj4vg" path="res://images/CakeAnim/2.png" id="3_c5403"]
+[ext_resource type="Texture2D" uid="uid://dft7rjqkxk27p" path="res://images/CakeAnim/3.png" id="4_aj1ba"]
+[ext_resource type="AudioStream" uid="uid://detx3wofp74ik" path="res://sounds/clap.mp3" id="8_tt1fw"]
+
+[sub_resource type="Animation" id="Animation_bl4y2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -13)]
+}
+
+[sub_resource type="Animation" id="Animation_d3ec0"]
+resource_name = "moving"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -13), Vector2(0, -16), Vector2(0, -13)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hs5ow"]
+_data = {
+"RESET": SubResource("Animation_bl4y2"),
+"moving": SubResource("Animation_d3ec0")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8sc18"]
+radius = 26.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_meb8c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ocqh5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_c5403")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_aj1ba")
+}],
+"loop": true,
+"name": &"activated",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_exx7q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_qdhn2"]
+colors = PackedColorArray(0.188371, 0.188371, 0.188371, 1, 0.197937, 0.197937, 0.197937, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sn47x"]
+gradient = SubResource("Gradient_qdhn2")
+
+[sub_resource type="Gradient" id="Gradient_16mby"]
+offsets = PackedFloat32Array(0, 0.709957)
+colors = PackedColorArray(1, 0.87786, 0.441213, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ag51y"]
+gradient = SubResource("Gradient_16mby")
+width = 40
+height = 40
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="cake" type="Node2D"]
+position = Vector2(0, -38)
+script = ExtResource("1_epgdo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hs5ow")
+}
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -27)
+texture = ExtResource("2_wafra")
+hframes = 20
+vframes = 20
+frame = 237
+
+[node name="DetectionRange" parent="." instance=ExtResource("3_bvnh3")]
+interactable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+visible = false
+position = Vector2(3, 0)
+shape = SubResource("CircleShape2D_8sc18")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_meb8c")
+
+[node name="Sinal" type="PointLight2D" parent="AnimatedSprite2D"]
+position = Vector2(4.76837e-07, 0.5)
+scale = Vector2(0.5625, 0.296875)
+texture = SubResource("GradientTexture2D_sn47x")
+
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
+visible = false
+position = Vector2(0, -26)
+texture = SubResource("GradientTexture2D_ag51y")
+texture_scale = 1.3
+
+[node name="clap" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_tt1fw")
+parameters/looping = true
