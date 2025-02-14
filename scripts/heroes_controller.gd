@@ -57,7 +57,8 @@ func _process(delta: float) -> void:
 		switch_hero(2)
 	if Input.is_action_pressed("SwitchFourth"):
 		switch_hero(3)
-	camera.global_position = camera.global_position.lerp(players[selected_hero].global_position, delta * FOLLOW_SPEED)
+	if is_instance_valid(players[selected_hero]):
+		camera.global_position = camera.global_position.lerp(players[selected_hero].global_position, delta * FOLLOW_SPEED)
 
 func end_game():
 	# TO DO: Create an end game screen
