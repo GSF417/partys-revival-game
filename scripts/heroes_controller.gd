@@ -11,15 +11,6 @@ var selected_hero
 func _ready() -> void:
 	selected_hero = 0
 
-func get_alive() -> Array:
-	var alive_array = []
-	for hero in players:
-		if is_instance_valid(hero):
-			alive_array.append(true)
-		else:
-			alive_array.append(false)
-	return alive_array
-
 func find_living_hero() -> int:
 	var candidate
 	for i in range(4):
