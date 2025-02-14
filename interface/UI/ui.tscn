@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpeft5ww3y042"]
+[gd_scene load_steps=7 format=3 uid="uid://bpeft5ww3y042"]
 
 [ext_resource type="Texture2D" uid="uid://clyrsxcw8dlq4" path="res://interface/UI/1.png" id="1_dw7s2"]
+[ext_resource type="Script" path="res://interface/UI/ui.gd" id="1_ui1b1"]
 [ext_resource type="Texture2D" uid="uid://cbk61scs1modo" path="res://interface/UI/2.png" id="2_hay4p"]
 [ext_resource type="Texture2D" uid="uid://bes0yrikf8bsg" path="res://interface/UI/3.png" id="3_fkqjd"]
 [ext_resource type="Texture2D" uid="uid://c8313jfht74g2" path="res://interface/UI/4.png" id="4_ai4wj"]
+[ext_resource type="Texture2D" uid="uid://ccc4xjam67mwq" path="res://images/checkmark.png" id="6_4nj58"]
 
 [node name="UI" type="CanvasLayer"]
+script = ExtResource("1_ui1b1")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -82,3 +85,8 @@ offset_top = 62.7385
 offset_right = 61.5371
 offset_bottom = 85.7385
 text = "(4)"
+
+[node name="Checkmark" type="TextureRect" parent="ColorRect"]
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("6_4nj58")
