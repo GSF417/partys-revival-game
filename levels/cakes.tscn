@@ -1,7 +1,7 @@
-[gd_scene load_steps=45 format=4 uid="uid://bk8if6lbvdy28"]
+[gd_scene load_steps=44 format=4 uid="uid://ctpdntpk5ku7q"]
 
 [ext_resource type="TileSet" uid="uid://bklnaeiufvlf2" path="res://levels/tilesets/castle.tres" id="1_uvi11"]
-[ext_resource type="TileSet" uid="uid://mjv0ipepd0wx" path="res://levels/tilesets/Mine.tres" id="1_ydb8b"]
+[ext_resource type="TileSet" uid="uid://cw8u3i5p08stl" path="res://levels/tilesets/Mine.tres" id="1_ydb8b"]
 [ext_resource type="PackedScene" uid="uid://bvxbnopxsg856" path="res://scenes/heroes/heroes_controller.tscn" id="2_b2aim"]
 [ext_resource type="Texture2D" uid="uid://c6fxmfvqdd18t" path="res://images/parte.png" id="2_dxoc4"]
 [ext_resource type="Script" path="res://levels/portal.gd" id="3_hsqb7"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bh3uhsd7vk6cg" path="res://scenes/components/detection_range_component.tscn" id="5_dg7f4"]
 [ext_resource type="AudioStream" uid="uid://detx3wofp74ik" path="res://sounds/clap.mp3" id="5_rt2gj"]
 [ext_resource type="PackedScene" uid="uid://dxthpkt8nu05i" path="res://scenes/heroes/hero_yari.tscn" id="6_tpxau"]
-[ext_resource type="PackedScene" path="res://scenes/objects/cake.tscn" id="8_ycqmd"]
+[ext_resource type="PackedScene" uid="uid://chqrfaqp0h3p1" path="res://scenes/objects/cake.tscn" id="8_ycqmd"]
 [ext_resource type="Texture2D" uid="uid://lmnafh4jreyi" path="res://images/wizardStatue.png" id="9_fvgoh"]
 [ext_resource type="Texture2D" uid="uid://6q5bsmodtwj1" path="res://images/ouro.png" id="10_yalkq"]
 [ext_resource type="Texture2D" uid="uid://bbqn7v0emchea" path="res://images/salmao.png" id="11_a12t3"]
@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://b1fyjsi227yrw" path="res://scenes/components/hitbox_component.tscn" id="20_knm0k"]
 [ext_resource type="AudioStream" uid="uid://bn6o7tpoq6hs6" path="res://sounds/boss_fight.mp3" id="22_3coqt"]
 [ext_resource type="PackedScene" uid="uid://cgpaeodlbq1jo" path="res://interface/pauseMenu/pause_menu.tscn" id="23_u1l51"]
-[ext_resource type="PackedScene" uid="uid://bpeft5ww3y042" path="res://interface/UI/ui.tscn" id="24_6aiu0"]
 
 [sub_resource type="Gradient" id="Gradient_yv4bd"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -499,6 +498,3 @@ attenuation = 1.36604
 parameters/looping = true
 
 [node name="pauseMenu" parent="." instance=ExtResource("23_u1l51")]
-
-[node name="UI" parent="." node_paths=PackedStringArray("hero_controller") instance=ExtResource("24_6aiu0")]
-hero_controller = NodePath("../HeroesController")

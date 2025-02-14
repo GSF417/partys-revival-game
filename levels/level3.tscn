@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://0b0n7gs3rbil" path="res://scenes/heroes/hero_bakudan.tscn" id="5_2qtvf"]
 [ext_resource type="Script" path="res://levels/level3_door_controller.gd" id="6_76yfl"]
 [ext_resource type="PackedScene" uid="uid://lpv2tavx2blo" path="res://scenes/enemies/bat.tscn" id="6_ixp0s"]
-[ext_resource type="PackedScene" uid="uid://c5pmubnnb88ng" path="res://scenes/objects/iron_door.tscn" id="6_wtwr2"]
+[ext_resource type="PackedScene" path="res://scenes/objects/iron_door.tscn" id="6_wtwr2"]
 [ext_resource type="PackedScene" uid="uid://dctp4qgghvdhb" path="res://scenes/objects/web.tscn" id="6_y40a0"]
 [ext_resource type="PackedScene" uid="uid://bjtd5vtd6bkjp" path="res://scenes/objects/chain.tscn" id="7_gfyxy"]
 [ext_resource type="PackedScene" uid="uid://d0fi0cvmqk3c" path="res://scenes/objects/lock.tscn" id="8_agemo"]
@@ -312,5 +312,4 @@ spawn_offset = Vector2(500, -30)
 
 [node name="pauseMenu" parent="." instance=ExtResource("25_5uoob")]
 
-[node name="UI" parent="." node_paths=PackedStringArray("hero_controller") instance=ExtResource("26_yqi5n")]
-hero_controller = NodePath("../HeroesController")
+[node name="UI" parent="." instance=ExtResource("26_yqi5n")]

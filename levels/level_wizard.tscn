@@ -8,14 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://c4lw1o0a5u8ri" path="res://scenes/heroes/hero_kinroy.tscn" id="5_h8m82"]
 [ext_resource type="PackedScene" uid="uid://lpv2tavx2blo" path="res://scenes/enemies/bat.tscn" id="6_1snya"]
 [ext_resource type="PackedScene" uid="uid://0b0n7gs3rbil" path="res://scenes/heroes/hero_bakudan.tscn" id="6_uytfc"]
-[ext_resource type="PackedScene" uid="uid://b0y5w2hjky3wr" path="res://scenes/enemies/fire_mage.tscn" id="8_5e23m"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/fire_mage.tscn" id="8_5e23m"]
 [ext_resource type="PackedScene" uid="uid://cx5gk6k1yhs5r" path="res://scenes/objects/button.tscn" id="9_gnssa"]
 [ext_resource type="Script" path="res://levels/level3_door_controller.gd" id="10_06xrd"]
 [ext_resource type="PackedScene" uid="uid://bam7022karoot" path="res://scenes/objects/portal.tscn" id="10_8srm2"]
-[ext_resource type="PackedScene" uid="uid://c5pmubnnb88ng" path="res://scenes/objects/iron_door.tscn" id="11_fj4nk"]
+[ext_resource type="PackedScene" path="res://scenes/objects/iron_door.tscn" id="11_fj4nk"]
 [ext_resource type="PackedScene" uid="uid://canyhltdfqw6m" path="res://scenes/enemies/reaper.tscn" id="14_psc64"]
 [ext_resource type="PackedScene" uid="uid://c7guhmawub6ja" path="res://scenes/objects/lever.tscn" id="16_8ypux"]
-[ext_resource type="PackedScene" uid="uid://c8j8tks6ne7al" path="res://scenes/objects/explosive.tscn" id="18_nvpjc"]
+[ext_resource type="PackedScene" path="res://scenes/objects/explosive.tscn" id="18_nvpjc"]
 [ext_resource type="AudioStream" uid="uid://bn6o7tpoq6hs6" path="res://sounds/boss_fight.mp3" id="19_ax8eo"]
 [ext_resource type="PackedScene" uid="uid://cwthhov5107qg" path="res://scenes/enemies/biter.tscn" id="19_btk6d"]
 [ext_resource type="PackedScene" uid="uid://c5540jjp8iquv" path="res://scenes/objects/spikes.tscn" id="19_bvlxd"]
@@ -1511,5 +1511,4 @@ movement_points = Array[Vector2]([Vector2(752, -80), Vector2(752, -340), Vector2
 
 [node name="pauseMenu" parent="." instance=ExtResource("21_j735p")]
 
-[node name="UI" parent="." node_paths=PackedStringArray("hero_controller") instance=ExtResource("22_4lw4r")]
-hero_controller = NodePath("../HeroesController")
+[node name="UI" parent="." instance=ExtResource("22_4lw4r")]
