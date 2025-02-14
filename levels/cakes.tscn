@@ -453,7 +453,7 @@ freeze = true
 shape = SubResource("CircleShape2D_gbv4n")
 
 [node name="PointLight2D" type="PointLight2D" parent="RigidBody2D"]
-position = Vector2(7, -15.5)
+position = Vector2(8, -15.5)
 scale = Vector2(31.3125, 2.48437)
 color = Color(0.711702, 3.39803e-05, 0.537798, 1)
 energy = 4.0

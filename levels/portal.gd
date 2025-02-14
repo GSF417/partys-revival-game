@@ -35,7 +35,7 @@ func trigger(ord : int) -> void:
 		clap.play()
 	count += 1
 	print("interagiu com o portal", count, " ", entered_sequence[count-1])
-	if entered_sequence[ord-1] == ord:
+	if entered_sequence[count-1] == correct_sequence[count-1]:
 		correct += 1
 		clap.volume_db += 4
 		music.volume_db += 1
