@@ -7,7 +7,10 @@ extends Node2D
 @onready var light = $AnimatedSprite2D/PointLight2D
 @onready var move = $AnimationPlayer
 @onready var detection_range = $DetectionRange
+
 var activated = false
+var inc = 0
+var countInc = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,6 +18,14 @@ func _ready() -> void:
 	move.play("moving")
 
 func _process(delta: float) -> void:
+	if self.visible == true:
+		countInc += 1
+		if countInc > 20:
+			countInc = 0
+			inc += 1
+			light.texture_scale = light.texture_scale - ((1*cos(inc%17))/5)
+			light.energy = light.energy - ((1*cos(inc%17))/5)
+	
 	if detection_range.heroes_count() > 0 and not activated:
 		sinal.visible = true
 	else:

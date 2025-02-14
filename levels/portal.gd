@@ -3,11 +3,15 @@ extends Sprite2D
 @onready var move = $AnimationPlayer
 @export var kill : RigidBody2D
 @export var clap : AudioStreamPlayer2D
+@export var music : AudioStreamPlayer2D
+@export var light : Node2D
 
 var correct_sequence = [1, 2, 3, 4]
 var entered_sequence = []
 var count = 0
 var correct = 0
+var inc = 0
+var countInc = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,7 +20,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if self.visible == true:
+		countInc += 1
+		if countInc > 20:
+			countInc = 0
+			inc += 1
+			light.texture_scale = light.texture_scale - ((1*cos(inc%17))/2)
+			light.energy = light.energy - ((1*cos(inc%17))/2)
+			#print(light.texture_scale, " " ,light.energy)
 
 
 func trigger(ord : int) -> void:
@@ -25,9 +36,11 @@ func trigger(ord : int) -> void:
 		clap.play()
 	count += 1
 	print("interagiu com o portal", count, " ", entered_sequence[count-1])
-	if entered_sequence[ord-1] == ord:
+	if entered_sequence[count-1] == correct_sequence[count-1]:
 		correct += 1
 		clap.volume_db += 4
+		music.volume_db += 1
+		clap.pitch_scale += 0.15
 	if count == 4:
 		if correct == 4:
 			print("portal ativado")
